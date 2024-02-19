@@ -1,0 +1,58 @@
+{
+    "authorname": "OpenVoiceOS",
+    "foldername": "skill-ovos-wordnet",
+    "url": "https://github.com/OpenVoiceOS/skill-ovos-wordnet",
+    "branch": "dev",
+    "license": "apache-2.0",
+    "tags": [
+        "query",
+        "Wordnet",
+        "Information",
+        "permissive-license"
+    ],
+    "short_description": "Use Wordnet to answer dictionary like questions",
+    "last_updated": "2024-02-19T21:05:29Z",
+    "skillname": "Wordnet Skill",
+    "description": "Uses [Wordnet](https://wordnet.princeton.edu/) to provide information.",
+    "examples": [
+        "what are the hypernyms of {query}",
+        "what is a lemma of {query}",
+        "search word net for {query}",
+        "what is a hyponym of {query}",
+        "what is the holonym of {query}",
+        "what is the lemma of {query}",
+        "what is the hyponym of {query}",
+        "ask word net about {query}",
+        "what does wordnet say about {query}",
+        "what is a {query}",
+        "what is a hypernym of {query}",
+        "what is a holonym of {query}",
+        "what is the antonym of {query}",
+        "what does word net say about {query}",
+        "what is a antonym of {query}",
+        "what are the antonyms of {query}",
+        "what is the definition of {query}",
+        "what are the hyponyms of {query}",
+        "what is the hypernym of {query}",
+        "ask wordnet about {query}",
+        "search wordnet for {query}",
+        "what are the holonyms of {query}",
+        "what are the lemmas of {query}"
+    ],
+    "category": "Information",
+    "categories": [
+        "Information"
+    ],
+    "requirements": {
+        "python": [
+            "ovos-translate-server-plugin",
+            "ovos_workshop~=0.0, >=0.0.11",
+            "ovos-classifiers",
+            "ovos-config~=0.0, >=0.0.11",
+            "ovos-utils~=0.0, >=0.0.35"
+        ],
+        "skill": [],
+        "system": {}
+    },
+    "desktopFile": false
+}
