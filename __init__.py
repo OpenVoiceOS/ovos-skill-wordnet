@@ -34,7 +34,7 @@ class WordnetSkill(CommonQuerySkill):
     @intent_handler("definition.intent")
     def handle_definition(self, message):
         query = message.data["query"]
-        res = self.wordnet.search(query, lang=self.lang).get("definition")
+        res = self.wordnet.search(query, context={"lang": self.lang}).get("definition")
         if res:
             self.speak(res)
         else:
@@ -45,7 +45,7 @@ class WordnetSkill(CommonQuerySkill):
     @intent_handler("lemma.intent")
     def handle_lemma(self, message):
         query = message.data["query"]
-        res = self.wordnet.search(query, lang=self.lang).get("lemmas")
+        res = self.wordnet.search(query, context={"lang": self.lang}).get("lemmas")
         if res:
             self.speak(random.choice(res))
         else:
@@ -54,7 +54,7 @@ class WordnetSkill(CommonQuerySkill):
     @intent_handler("antonym.intent")
     def handle_antonym(self, message):
         query = message.data["query"]
-        res = self.wordnet.search(query, lang=self.lang).get("antonyms")
+        res = self.wordnet.search(query, context={"lang": self.lang}).get("antonyms")
         if res:
             self.speak(random.choice(res))
         else:
@@ -63,7 +63,7 @@ class WordnetSkill(CommonQuerySkill):
     @intent_handler("holonym.intent")
     def handle_holonym(self, message):
         query = message.data["query"]
-        res = self.wordnet.search(query, lang=self.lang).get("holonyms")
+        res = self.wordnet.search(query, context={"lang": self.lang}).get("holonyms")
         if res:
             self.speak(random.choice(res))
         else:
@@ -72,7 +72,7 @@ class WordnetSkill(CommonQuerySkill):
     @intent_handler("hyponym.intent")
     def handle_hyponym(self, message):
         query = message.data["query"]
-        res = self.wordnet.search(query, lang=self.lang).get("hyponyms")
+        res = self.wordnet.search(query, context={"lang": self.lang}).get("hyponyms")
         if res:
             self.speak(random.choice(res))
         else:
@@ -81,7 +81,7 @@ class WordnetSkill(CommonQuerySkill):
     @intent_handler("hypernym.intent")
     def handle_hypernym(self, message):
         query = message.data["query"]
-        res = self.wordnet.search(query, lang=self.lang).get("hypernyms")
+        res = self.wordnet.search(query, context={"lang": self.lang}).get("hypernyms")
         if res:
             self.speak(random.choice(res))
         else:
@@ -107,7 +107,7 @@ if __name__ == "__main__":
 
     query = "what is the definition of computer"
 
-    ans = d.wordnet.search("computer")
+    ans = d.wordnet.search("computer", context={"lang": "es-es"})
     print(ans)
     # {'lemmas': ['computer', 'computing machine', 'computing device', 'data processor', 'electronic computer', 'information processing system'],
     # 'antonyms': [],
