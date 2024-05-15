@@ -1,0 +1,39 @@
+{
+    "hypernym.intent": [
+        "what is a hypernym of {query}",
+        "what is the hypernym of {query}",
+        "what are the hypernyms of {query}"
+    ],
+    "antonym.intent": [
+        "what is a antonym of {query}",
+        "what is the antonym of {query}",
+        "what are the antonyms of {query}"
+    ],
+    "hyponym.intent": [
+        "what is a hyponym of {query}",
+        "what is the hyponym of {query}",
+        "what are the hyponyms of {query}"
+    ],
+    "holonym.intent": [
+        "what is a holonym of {query}",
+        "what is the holonym of {query}",
+        "what are the holonyms of {query}"
+    ],
+    "definition.intent": [
+        "what is a {query}",
+        "what is the definition of {query}"
+    ],
+    "search_wordnet.intent": [
+        "search wordnet for {query}",
+        "search word net for {query}",
+        "ask word net about {query}",
+        "ask wordnet about {query}",
+        "what does wordnet say about {query}",
+        "what does word net say about {query}"
+    ],
+    "lemma.intent": [
+        "what is a lemma of {query}",
+        "what is the lemma of {query}",
+        "what are the lemmas of {query}"
+    ]
+}
