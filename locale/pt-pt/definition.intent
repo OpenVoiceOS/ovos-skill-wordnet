@@ -1,3 +1,2 @@
-# auto translated from en-us to pt-pt
-o que é um
-qual é a definição de {query}
+(define|qual é a definição de) {query}
+o que é (uma|um|) {query}
