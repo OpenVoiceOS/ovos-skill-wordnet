@@ -1,5 +1,19 @@
 # Changelog
 
+## [Unreleased](https://github.com/OpenVoiceOS/skill-ovos-wordnet/tree/HEAD)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-wordnet/compare/V0.0.1a3...HEAD)
+
+**Merged pull requests:**
+
+- update\_opm [\#3](https://github.com/OpenVoiceOS/skill-ovos-wordnet/pull/3) ([JarbasAl](https://github.com/JarbasAl))
+- pt-pt/translate [\#2](https://github.com/OpenVoiceOS/skill-ovos-wordnet/pull/2) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+- automations/translations [\#1](https://github.com/OpenVoiceOS/skill-ovos-wordnet/pull/1) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.1a3](https://github.com/OpenVoiceOS/skill-ovos-wordnet/tree/V0.0.1a3) (2024-02-19)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-wordnet/compare/V0.0.1a2...V0.0.1a3)
+
 ## [V0.0.1a2](https://github.com/OpenVoiceOS/skill-ovos-wordnet/tree/V0.0.1a2) (2024-02-19)
 
 [Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-wordnet/compare/17f306c1a9dc5e1376e917f98d82a234dd979525...V0.0.1a2)
