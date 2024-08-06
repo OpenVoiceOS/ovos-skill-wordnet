@@ -2,7 +2,19 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/skill-ovos-wordnet/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-wordnet/compare/V0.0.1a3...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-wordnet/compare/V0.0.1a4...HEAD)
+
+**Fixed bugs:**
+
+- fix/typo [\#5](https://github.com/OpenVoiceOS/skill-ovos-wordnet/pull/5) ([JarbasAl](https://github.com/JarbasAl))
+
+**Closed issues:**
+
+- NameError: name 'query' is not defined [\#4](https://github.com/OpenVoiceOS/skill-ovos-wordnet/issues/4)
+
+## [V0.0.1a4](https://github.com/OpenVoiceOS/skill-ovos-wordnet/tree/V0.0.1a4) (2024-08-04)
+
+[Full Changelog](https://github.com/OpenVoiceOS/skill-ovos-wordnet/compare/V0.0.1a3...V0.0.1a4)
 
 **Merged pull requests:**
 
