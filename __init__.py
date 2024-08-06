@@ -89,7 +89,7 @@ class WordnetSkill(CommonQuerySkill):
 
     # common query
     def CQS_match_query_phrase(self, phrase):
-        summary = self.wordnet.spoken_answer(query, lang=self.lang)
+        summary = self.wordnet.spoken_answer(phrase, lang=self.lang)
         if summary:
             self.log.info(f"Wordnet answer: {summary}")
             return (phrase, CQSMatchLevel.CATEGORY, summary,
