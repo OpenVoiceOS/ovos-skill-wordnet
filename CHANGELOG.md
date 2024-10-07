@@ -1,12 +1,12 @@
 # Changelog
 
-## [0.0.2a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.2a1) (2024-09-10)
+## [0.0.3a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.3a1) (2024-10-07)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/V0.0.1...0.0.2a1)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.2...0.0.3a1)
 
 **Merged pull requests:**
 
-- chore:automations [\#6](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/6) ([JarbasAl](https://github.com/JarbasAl))
+- Add Catalan translation [\#8](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/8) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
 
 
 
