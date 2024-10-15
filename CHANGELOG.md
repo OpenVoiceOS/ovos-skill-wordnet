@@ -1,12 +1,12 @@
 # Changelog
 
-## [0.0.3a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.3a1) (2024-10-07)
+## [0.0.4a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.4a1) (2024-10-15)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.2...0.0.3a1)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.3...0.0.4a1)
 
 **Merged pull requests:**
 
-- Add Catalan translation [\#8](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/8) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+- fix:requirements.txt [\#10](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/10) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
