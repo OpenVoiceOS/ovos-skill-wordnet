@@ -1,39 +1,25 @@
 {
-  "hypernym.intent": [
-    null,
-    "qual é o hiperônimo de {query}",
-    null
-  ],
-  "antonym.intent": [
-    "qual é um antônimo de {query}",
-    "qual é o antônimo de {query}",
-    null
-  ],
-  "hyponym.intent": [
-    null,
-    "qual é o hipônimo de {query}",
-    null
-  ],
-  "holonym.intent": [
-    null,
-    "qual é o holônimo de {query}",
-    null
-  ],
-  "definition.intent": [
-    "o que é (uma|um|) {query}",
-    "(define|qual é a definição de) {query}"
-  ],
-  "search_wordnet.intent": [
-    null,
-    null,
-    null,
-    null,
-    "o que diz (o|a) wordnet sobre {query}",
-    null
-  ],
-  "lemma.intent": [
-    null,
-    "qual é o sinónimo de {query}",
-    null
-  ]
+    "hypernym.intent": [
+        "qual \u00e9 o hiper\u00f4nimo de {query}"
+    ],
+    "antonym.intent": [
+        "qual \u00e9 o ant\u00f4nimo de {query}",
+        "qual \u00e9 um ant\u00f4nimo de {query}"
+    ],
+    "holonym.intent": [
+        "qual \u00e9 o hol\u00f4nimo de {query}"
+    ],
+    "lemma.intent": [
+        "qual \u00e9 o sin\u00f3nimo de {query}"
+    ],
+    "hyponym.intent": [
+        "qual \u00e9 o hip\u00f4nimo de {query}"
+    ],
+    "search_wordnet.intent": [
+        "o que diz (o|a) wordnet sobre {query}"
+    ],
+    "definition.intent": [
+        "(define|qual \u00e9 a defini\u00e7\u00e3o de) {query}",
+        "o que \u00e9 (uma|um|) {query}"
+    ]
 }

@@ -1,39 +1,115 @@
 {
     "hypernym.intent": [
+        "what are the hypernyms of {query}",
         "what is a hypernym of {query}",
         "what is the hypernym of {query}",
-        "what are the hypernyms of {query}"
+        "what is a broader term for {query}",
+        "what is a general word that includes {query}",
+        "can you give me a term that is more general than {query}",
+        "what is a word that describes a category including {query}",
+        "can you tell me the name of the class that {query} falls under",
+        "what is a term that encompasses {query}",
+        "what is a term that represents a larger concept than {query}"
     ],
     "antonym.intent": [
+        "what are the antonyms of {query}",
         "what is a antonym of {query}",
         "what is the antonym of {query}",
-        "what are the antonyms of {query}"
-    ],
-    "hyponym.intent": [
-        "what is a hyponym of {query}",
-        "what is the hyponym of {query}",
-        "what are the hyponyms of {query}"
+        "what are the antonyms of {query}",
+        "what is an antonym for {query}",
+        "what is the opposite of {query}",
+        "can you tell me the antonyms for {query}",
+        "do you know any antonyms for {query}",
+        "can you give me the opposite of {query}",
+        "I'm curious, what is the antonym of {query}",
+        "are there any antonyms for {query}",
+        "is there a word that means the opposite of {query}",
+        "I need to know the antonyms of {query}",
+        "help me find an antonym for {query}",
+        "could you help me with the antonyms of {query}",
+        "for the word {query}, what is the antonym",
+        "if I say {query}, what is the opposite",
+        "can you give me some antonyms for the word {query}"
     ],
     "holonym.intent": [
+        "what are the holonyms of {query}",
         "what is a holonym of {query}",
         "what is the holonym of {query}",
-        "what are the holonyms of {query}"
+        "can you tell me the holonyms for {query}",
+        "what is a holonym for {query}",
+        "do you know any holonyms of {query}",
+        "can you give me the holonym of {query}",
+        "are there any holonyms for {query}",
+        "what can I say that includes {query}",
+        "what is the larger term that includes {query}",
+        "what is the term that encompasses {query}",
+        "what are the words that include {query}",
+        "what is a term that represents a group including {query}",
+        "what is a broader term for {query}",
+        "can you give me the name of the category that {query} belongs to",
+        "what is a term that describes a whole including {query}",
+        "what is a word that represents a larger concept that includes {query}",
+        "what is the name for something that includes {query}",
+        "can you tell me the name of the class that {query} falls under",
+        "what is the larger category that includes {query}",
+        "what would you call the group that {query} is part of"
+    ],
+    "lemma.intent": [
+        "what are the lemmas of {query}",
+        "what is a lemma of {query}",
+        "what is the lemma of {query}",
+        "what are the lemmas of {query}",
+        "what is a lemma of {query}",
+        "what is the lemma of {query}",
+        "what are the different forms of the word {query}",
+        "can you give me the base form of {query}",
+        "what is a related word to {query}",
+        "what is the root form of {query}",
+        "can you tell me the variations of {query}",
+        "what are the words derived from {query}",
+        "what are some related terms to {query}"
+    ],
+    "hyponym.intent": [
+        "what are the hyponyms of {query}",
+        "what is a hyponym of {query}",
+        "what is the hyponym of {query}",
+        "what is a more specific term for {query}",
+        "can you give me a term that falls under {query}",
+        "what is a word that refers to a subtype of {query}",
+        "what is an example of something that is a type of {query}",
+        "can you tell me a specific instance of {query}",
+        "what would you call a member of the category {query}",
+        "what is a term that describes a particular kind of {query}"
+    ],
+    "search_wordnet.intent": [
+        "ask word net about {query}",
+        "ask wordnet about {query}",
+        "search word net for {query}",
+        "search wordnet for {query}",
+        "what does word net say about {query}",
+        "what does wordnet say about {query}",
+        "ask WordNet about {query}",
+        "ask WordNet for information on {query}",
+        "search WordNet for {query}",
+        "search WordNet to find out about {query}",
+        "what does WordNet say about {query}",
+        "what information does WordNet provide for {query}",
+        "can you check WordNet for {query}",
+        "what insights does WordNet have on {query}",
+        "look up {query} in WordNet.",
+        "can you find {query} in WordNet"
     ],
     "definition.intent": [
         "what is a {query}",
-        "what is the definition of {query}"
-    ],
-    "search_wordnet.intent": [
-        "search wordnet for {query}",
-        "search word net for {query}",
-        "ask word net about {query}",
-        "ask wordnet about {query}",
-        "what does wordnet say about {query}",
-        "what does word net say about {query}"
-    ],
-    "lemma.intent": [
-        "what is a lemma of {query}",
-        "what is the lemma of {query}",
-        "what are the lemmas of {query}"
+        "what is the definition of {query}",
+        "can you tell me what a {query} is",
+        "what does {query} mean",
+        "give me the definition of {query}",
+        "what is the meaning of {query}",
+        "how would you define {query}",
+        "could you explain what {query} is",
+        "what is a {query}",
+        "can you describe {query}",
+        "what do you call a {query}"
     ]
 }
