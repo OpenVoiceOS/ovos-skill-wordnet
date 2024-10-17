@@ -11,7 +11,7 @@
 # limitations under the License.
 #
 import random
-
+import nltk
 from ovos_classifiers.opm.nltk import WordnetSolverPlugin
 from ovos_workshop.decorators import intent_handler
 from ovos_workshop.skills.common_query_skill import CommonQuerySkill, CQSMatchLevel
@@ -19,6 +19,8 @@ from ovos_workshop.skills.common_query_skill import CommonQuerySkill, CQSMatchLe
 
 class WordnetSkill(CommonQuerySkill):
     def initialize(self):
+        nltk.download('punkt_tab')
+        nltk.download('averaged_perceptron_tagger_eng')
         self.wordnet = WordnetSolverPlugin()
 
     # intents
