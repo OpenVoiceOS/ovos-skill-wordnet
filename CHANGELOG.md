@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.7a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.7a2) (2024-11-02)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.7a1...0.0.7a2)
+
+**Merged pull requests:**
+
+- de-de/translate [\#16](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/16) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+
 ## [0.0.7a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.7a1) (2024-11-02)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.6...0.0.7a1)
