@@ -1,0 +1,39 @@
+{
+  "hypernym.intent": [
+    "was ist ein Überbegriff für {query}",
+    "was ist der Überbegriff für {query}",
+    "was sind Überbegriffe für {query}"
+  ],
+  "antonym.intent": [
+    "was das Gegenteil von {query}",
+    "was ist das Gegenteil von {query}",
+    "was sind Gegenteile von {query}"
+  ],
+  "hyponym.intent": [
+    "was ist eine Unterkategorie von {query}",
+    "was ist die Unterkategorie {query}",
+    "was sind (die|) Unterkategorien von {query}"
+  ],
+  "holonym.intent": [
+    "Wovon ist {query} ein Teil von",
+    "was ist das Holonym von {query}",
+    "was sind die Holonyme von {query}"
+  ],
+  "definition.intent": [
+    "was ist (ein|eine) {query}",
+    "was ist die Definition von {query}"
+  ],
+  "search_wordnet.intent": [
+    "Suche im Wordnet nach {query}",
+    "Suche im word net nach {query}",
+    "frage word net nach {query}",
+    "Frage Wordnet über {query}",
+    "was sagt Wordnet über {query}",
+    "was sagt word net über {query}"
+  ],
+  "lemma.intent": [
+    "was ist die Grundform von {query}",
+    "was ist das Lemma von {query}",
+    "was sind die Lemmata von {query}"
+  ]
+}
