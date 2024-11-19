@@ -1,20 +1,12 @@
 # Changelog
 
-## [0.0.8a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.8a1) (2024-11-15)
+## [0.0.9a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.9a1) (2024-11-19)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.7a3...0.0.8a1)
-
-**Merged pull requests:**
-
-- fix: skill.json [\#20](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/20) ([JarbasAl](https://github.com/JarbasAl))
-
-## [0.0.7a3](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.7a3) (2024-11-10)
-
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.7...0.0.7a3)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.8...0.0.9a1)
 
 **Merged pull requests:**
 
-- de-de/translate [\#19](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/19) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+- fix:allow workshop 3.0.0 [\#22](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/22) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
