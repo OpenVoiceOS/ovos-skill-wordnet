@@ -1,0 +1,39 @@
+{
+  "hypernym.intent": [
+    "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|què és|vull saber) un (hiperònim|sinònim) de {query}",
+    "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|quin és|vull saber) (el |es |l'|s')(hiperònim|sinònim) de {query} {query}",
+    "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|quins són|vull saber) els (hiperònims|sinònims) de {query}"
+  ],
+  "antonym.intent": [
+    "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|què és|vull saber) un antònim de {query}",
+    "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|quin és|vull saber) (l|s)'antònim de {query} {query}",
+    "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|quins són|vull saber) els antònims de {query}"
+  ],
+  "hyponym.intent": [
+    "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|què és|vull saber) un (hipònim|terme més específic|terme més especialitzat) de {query}",
+    "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|què és|vull saber) (el |es |l'|s')(hipònim|terme més específic|terme més especialitzat) de {query}",
+    "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|quin és|vull saber) (els |es |l'|s')(hipònims|termes més específics|termes més especialitzats) de {query}"
+  ],
+  "holonym.intent": [
+    "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|què és|vull saber) un holònim de {query}",
+    "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|quin és|vull saber) (l|s)'holònim de {query} {query}",
+    "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|quins són|vull saber) els holònims de {query}"
+  ],
+  "definition.intent": [
+    "què és {query}",
+    "quina és (la|sa) definició (de |d'){query}"
+  ],
+  "search_wordnet.intent": [
+    "(cerca|busca) (en el tesaure|al tesaure|en la xarxa de mots|a la xarxa de mots|en el diccionari de sinònims|al diccionari de sinònims) {query}",
+    "(cerca|busca) {query} (al tesaure|a la xarxa de mots|al diccionari de sinònims)",
+    "(demana|pregunta) (al tesaure|a la xarxa de mots|al diccionari de sinònims) sobre {query}",
+    "(demana|pregunta) (al tesaure|a la xarxa de mots|al diccionari de sinònims) {query}",
+    "què diu (el tesaure|la xarxa de mots|el diccionari de sinònims)(sobre |de |d'|){query}(?|)",
+    "què diu (es tesaure|sa xarxa de mots|es diccionari de sinònims)(sobre |de|d'|){query}(?|)"
+  ],
+  "lemma.intent": [
+    "(digues |digue'me |dis-me |)quin és el lema (de |d'|per a |per ){query}(?|)",
+    "(digues |digue'me |dis-me |)quin lema té {query}(?|)",
+    "(digues |digue'me |dis-me |)quins són els lemes (de |d'|per a |per ){query}(?|)"
+  ]
+}
