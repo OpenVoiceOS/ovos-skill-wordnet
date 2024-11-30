@@ -1,12 +1,21 @@
 # Changelog
 
-## [0.0.11a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.11a1) (2024-11-25)
+## [0.0.12a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.12a2) (2024-11-30)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.10...0.0.11a1)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.12a1...0.0.12a2)
 
 **Merged pull requests:**
 
-- da-dk/translate [\#24](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/24) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+- de-de/translate [\#28](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/28) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+
+## [0.0.12a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.12a1) (2024-11-27)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.11...0.0.12a1)
+
+**Merged pull requests:**
+
+- Add Catalan strings [\#27](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/27) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+- Add Catalan strings [\#26](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/26) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
 
 
 
