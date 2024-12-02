@@ -1,12 +1,12 @@
 # Changelog
 
-## [0.0.13a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.13a1) (2024-12-02)
+## [0.0.14a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.14a1) (2024-12-02)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.12...0.0.13a1)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.13...0.0.14a1)
 
 **Merged pull requests:**
 
-- import galician translations [\#30](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/30) ([JarbasAl](https://github.com/JarbasAl))
+- import basque translations [\#32](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/32) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
