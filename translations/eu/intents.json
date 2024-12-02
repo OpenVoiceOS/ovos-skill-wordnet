@@ -1,0 +1,39 @@
+{
+    "hypernym.intent": [
+        "zein dira honen hiperonimoak: {query}?",
+        "zein da honen holonimo bat: {query}?",
+        "zein da honen holonimoa: {query}?"
+    ],
+    "antonym.intent": [
+        "zein dira honen antonimoak: {query}?",
+        "zein da honen antonimo bat: {query}?",
+        "zein da honen antonimoa: {query}?"
+    ],
+    "hyponym.intent": [
+        "zein dira honen hiponimoak: {query}?",
+        "zein da honen hiponimo bat: {query}?",
+        "zein da honen hiponimoa: {query}?"
+    ],
+    "holonym.intent": [
+        "zein dira honen holonimoak: {query}?",
+        "zein da honen holonimo bat: {query}?",
+        "zein da honen holonimoa: {query}?"
+    ],
+    "definition.intent": [
+        "zer da {query}?",
+        "zein da honen definizioa: {query}?"
+    ],
+    "search_wordnet.intent": [
+        "bilatu word net datu-basean {query}",
+        "bilatu wordnet datu-basean {query}",
+        "bilatu word net datu-basean {query}",
+        "bilatu wordnet datu-basean {query}",
+        "zer dio word net datu-baseak honi buruz: {query}?",
+        "zer dio wordnet datu-baseak honi buruz: {query}?"
+    ],
+    "lemma.intent": [
+        "zein dira honen lemak: {query}?",
+        "zein da honen lema bat: {query}?",
+        "zein da honen lema: {query}?"
+    ]
+}
