@@ -1,21 +1,12 @@
 # Changelog
 
-## [0.0.12a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.12a2) (2024-11-30)
+## [0.0.13a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.13a1) (2024-12-02)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.12a1...0.0.12a2)
-
-**Merged pull requests:**
-
-- de-de/translate [\#28](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/28) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
-
-## [0.0.12a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.12a1) (2024-11-27)
-
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.11...0.0.12a1)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.12...0.0.13a1)
 
 **Merged pull requests:**
 
-- Add Catalan strings [\#27](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/27) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
-- Add Catalan strings [\#26](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/26) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+- import galician translations [\#30](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/30) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
