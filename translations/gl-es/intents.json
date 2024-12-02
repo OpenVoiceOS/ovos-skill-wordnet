@@ -1,0 +1,39 @@
+{
+    "hypernym.intent": [
+        "cales son os hiperónimos de {query}",
+        "que é un hiperónimo de {query}",
+        "cal é o hiperónimo de {query}"
+    ],
+    "antonym.intent": [
+        "cales son os antónimos de {query}",
+        "que é un antónimo de {query}",
+        "cal é o antónimo de {query}"
+    ],
+    "hyponym.intent": [
+        "cales son os hipónimos de {query}",
+        "que é un hipónimo de {query}",
+        "cal é o hipónimo de {query}"
+    ],
+    "holonym.intent": [
+        "cales son os holónimos de {query}",
+        "que é un holónimo de {query}",
+        "cal é o holónimo de {query}"
+    ],
+    "definition.intent": [
+        "que é {query}",
+        "cal é a definición de {query}"
+    ],
+    "search_wordnet.intent": [
+        "preguntar a word net sobre {query}",
+        "preguntar a wordnet sobre {query}",
+        "procurar en word net {query}",
+        "procurar en wordnet {query}",
+        "que di word net sobre {query}",
+        "que di wordnet sobre {query}"
+    ],
+    "lemma.intent": [
+        "cales son os lemas de {query}",
+        "que é un lema de {query}",
+        "cal é o lema de {query}"
+    ]
+}
