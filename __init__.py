@@ -11,32 +11,250 @@
 # limitations under the License.
 #
 import random
+from typing import Optional, Dict
+
 import nltk
-from ovos_classifiers.opm.nltk import WordnetSolverPlugin
+from nltk.corpus import wordnet as wn
+from nltk.data import find
+from ovos_plugin_manager.templates.language import LanguageTranslator
+from ovos_utils.lang import standardize_lang_tag
 from ovos_workshop.decorators import intent_handler
-from ovos_workshop.skills.common_query_skill import CommonQuerySkill, CQSMatchLevel
+from ovos_workshop.skills.common_query_skill import CommonQuerySkill
+
+
+def download_nltk_resource(res: str, res_type: str = "taggers"):
+    """
+    Download necessary NLTK resource if not already downloaded.
+    """
+
+    resource_name = f'{res_type}/{res}.zip'
+    try:
+        find(resource_name)
+    except LookupError:
+        # Download resource if not already present
+        nltk.download(res)
+
+
+class Wordnet:
+    LANGMAP = {'en': 'eng', 'als': 'als', 'arb': 'arb', 'bg': 'bul', 'cmn': 'cmn',
+               'da': 'dan', 'el': 'ell', 'fi': 'fin', 'fr': 'fra', 'he': 'heb',
+               'hr': 'hrv', 'is': 'isl', 'it': 'ita', 'it-iwn': 'ita_iwn', 'ja': 'jpn',
+               'ca': 'cat', 'eu': 'eus', 'gl': 'glg', 'es': 'spa', 'id': 'ind', 'zsm': 'zsm',
+               'nl': 'nld', 'nn': 'nno', 'nb': 'nob', 'pl': 'pol', 'pt': 'por', 'ro': 'ron',
+               'lt': 'lit', 'sk': 'slk', 'sl': 'slv', 'sv': 'swe', 'th': 'tha'}
+    translator: Optional[LanguageTranslator] = None
+    download_nltk_resource("wordnet", "corpora")
+    download_nltk_resource("omw-1.4", "corpora")
+
+    @staticmethod
+    def get_synsets(word, pos=wn.NOUN, lang: Optional[str] = "en"):
+        lang = Wordnet.LANGMAP[standardize_lang_tag(lang.split("-")[0])]
+        synsets = wn.synsets(word, pos=pos, lang=lang)
+        if not len(synsets):
+            return []
+        return synsets
+
+    @staticmethod
+    def get_definition(word, pos=wn.NOUN, synset=None, lang: Optional[str] = "en"):
+        lang = Wordnet.LANGMAP[standardize_lang_tag(lang.split("-")[0])]
+        if synset is None:
+            synsets = wn.synsets(word, pos=pos, lang=lang)
+            if not len(synsets):
+                return []
+            synset = synsets[0]
+        defi = synset.definition(lang=lang)
+        if not defi:
+            # translate if possible
+            if Wordnet.translator is not None:
+                return Wordnet.translator.translate(text=synset.definition(lang="eng"),
+                                                    target=standardize_lang_tag(lang),
+                                                    source="en")
+        return defi
+
+    @staticmethod
+    def get_examples(word, pos=wn.NOUN, synset=None, lang: Optional[str] = "en"):
+        lang = Wordnet.LANGMAP[standardize_lang_tag(lang.split("-")[0])]
+        if synset is None:
+            synsets = wn.synsets(word, pos=pos, lang=lang)
+            if not len(synsets):
+                return []
+            synset = synsets[0]
+        return synset.examples(lang=lang)
+
+    @staticmethod
+    def get_lemmas(word, pos=wn.NOUN, synset=None, lang: Optional[str] = "en"):
+        lang = Wordnet.LANGMAP[standardize_lang_tag(lang.split("-")[0])]
+        if synset is None:
+            synsets = wn.synsets(word, pos=pos, lang=lang)
+            if not len(synsets):
+                return []
+            synset = synsets[0]
+        return [l.name().replace("_", " ") for l in synset.lemmas(lang=lang)]
+
+    @staticmethod
+    def get_hypernyms(word, pos=wn.NOUN, synset=None, lang: Optional[str] = "en"):
+        lang = Wordnet.LANGMAP[standardize_lang_tag(lang.split("-")[0])]
+        if synset is None:
+            synsets = wn.synsets(word, pos=pos, lang=lang)
+            if not len(synsets):
+                return []
+            synset = synsets[0]
+
+        # Translate hypernyms to lang
+        lang_h = []
+        for hypernym in synset.hypernyms():
+            lang_h += [lemma.name().split(".")[0].replace("_", " ")
+                       for lemma in hypernym.lemmas(lang=lang)]
+        return lang_h
+
+    @staticmethod
+    def get_hyponyms(word, pos=wn.NOUN, synset=None, lang: Optional[str] = "en"):
+        lang = Wordnet.LANGMAP[standardize_lang_tag(lang.split("-")[0])]
+        if synset is None:
+            synsets = wn.synsets(word, pos=pos, lang=lang)
+            if not len(synsets):
+                return []
+            synset = synsets[0]
+        # Translate hyponyms to lang
+        lang_h = []
+        for hyponym in synset.hyponyms():
+            lang_h += [lemma.name().split(".")[0].replace("_", " ")
+                       for lemma in hyponym.lemmas(lang=lang)]
+        return lang_h
+
+    @staticmethod
+    def get_holonyms(word, pos=wn.NOUN, synset=None, lang: Optional[str] = "en"):
+        lang = Wordnet.LANGMAP[standardize_lang_tag(lang.split("-")[0])]
+        if synset is None:
+            synsets = wn.synsets(word, pos=pos, lang=lang)
+            if not len(synsets):
+                return []
+            synset = synsets[0]
+        # Translate holonyms to lang
+        lang_h = []
+        for holonym in synset.member_holonyms():
+            lang_h += [lemma.name().split(".")[0].replace("_", " ")
+                       for lemma in holonym.lemmas(lang=lang)]
+        return lang_h
+
+    @staticmethod
+    def get_root_hypernyms(word, pos=wn.NOUN, synset=None, lang: Optional[str] = "en"):
+        lang = Wordnet.LANGMAP[standardize_lang_tag(lang.split("-")[0])]
+        if synset is None:
+            synsets = wn.synsets(word, pos=pos, lang=lang)
+            if not len(synsets):
+                return []
+            synset = synsets[0]
+        # Translate hypernyms to lang
+        lang_h = []
+        for hypernym in synset.root_hypernyms():
+            lang_h += [lemma.name().split(".")[0].replace("_", " ")
+                       for lemma in hypernym.lemmas(lang=lang)]
+        return lang_h
+
+    @staticmethod
+    def common_hypernyms(word, word2, pos=wn.NOUN, lang: Optional[str] = "en"):
+        lang = Wordnet.LANGMAP[standardize_lang_tag(lang.split("-")[0])]
+        synsets = wn.synsets(word, pos=pos, lang=lang)
+        if not len(synsets):
+            return []
+        synset = synsets[0]
+        synsets = wn.synsets(word2, pos=pos, lang=lang)
+        if not len(synsets):
+            return []
+        synset2 = synsets[0]
+        return [l.name().split(".")[0].replace("_", " ") for l in
+                synset.lowest_common_hypernyms(synset2, lang=lang)]
+
+    @staticmethod
+    def get_antonyms(word, pos=wn.NOUN, synset=None, lang: Optional[str] = "en"):
+        lang = Wordnet.LANGMAP[standardize_lang_tag(lang.split("-")[0])]
+        if synset is None:
+            synsets = wn.synsets(word, pos=pos, lang=lang)
+            if not len(synsets):
+                return []
+            synset = synsets[0]
+        lemmas = synset.lemmas(lang=lang)
+        if not len(lemmas):
+            return []
+        lemma = lemmas[0]
+        antonyms = lemma.antonyms()
+
+        return [l.name().split(".")[0].replace("_", " ") for l in antonyms]
+
+    @classmethod
+    def query(cls, query, pos=wn.NOUN, synset=None, lang: Optional[str] = "en"):
+        lang = Wordnet.LANGMAP[standardize_lang_tag(lang.split("-")[0])]
+        if synset is None:
+            synsets = wn.synsets(query, pos=pos, lang=lang)
+            if not len(synsets):
+                return {}
+            synset = synsets[0]
+        res = {"lemmas": cls.get_lemmas(query, pos=pos, synset=synset, lang=lang),
+               "antonyms": cls.get_antonyms(query, pos=pos, synset=synset, lang=lang),
+               "holonyms": cls.get_holonyms(query, pos=pos, synset=synset, lang=lang),
+               "hyponyms": cls.get_hyponyms(query, pos=pos, synset=synset, lang=lang),
+               "hypernyms": cls.get_hypernyms(query, pos=pos, synset=synset, lang=lang),
+               "root_hypernyms": cls.get_root_hypernyms(query, pos=pos, synset=synset, lang=lang),
+               "definition": cls.get_definition(query, pos=pos, synset=synset, lang=lang)}
+        return res
 
 
 class WordnetSkill(CommonQuerySkill):
+
     def initialize(self):
-        nltk.download('punkt_tab')
-        nltk.download('averaged_perceptron_tagger_eng')
-        self.wordnet = WordnetSolverPlugin()
+        Wordnet.translator = self.translator
+
+    @staticmethod
+    def get_data(query: str, lang: Optional[str] = "en", pos="auto") -> Dict[str, str]:
+        """
+        Retrieves WordNet data for the given query.
+
+        Args:
+            query (str): The query string.
+            lang (Optional[str]): The language of the query. Defaults to None.
+
+        Returns:
+            Dict[str, str]: A dictionary containing WordNet data such as lemmas, antonyms, definitions, etc.
+        """
+        p = wn.NOUN if pos not in [wn.NOUN, wn.ADJ, wn.VERB] else pos
+
+        lang = Wordnet.LANGMAP[standardize_lang_tag(lang.split("-")[0])]
+        synsets = wn.synsets(query, pos=p, lang=lang)
+        if not synsets and pos == "auto" and p == wn.NOUN:
+            # try looking for an adjective
+            p = wn.ADJ
+            synsets = wn.synsets(query, pos=p, lang=lang)
+        if not synsets and pos == "auto" and p == wn.ADJ:
+            # try looking for a verb
+            p = wn.VERB
+            synsets = wn.synsets(query, pos=p, lang=lang)
+
+        if not synsets:
+            return {}
+
+        synset = synsets[0]
+        res = {
+            "postag": "ADJ" if p == wn.ADJ else "VERB" if p == wn.VERB else "NOUN",
+            "lemmas": Wordnet.get_lemmas(query, pos=pos, synset=synset, lang=lang),
+            "antonyms": Wordnet.get_antonyms(query, pos=pos, synset=synset, lang=lang),
+            "holonyms": Wordnet.get_holonyms(query, pos=pos, synset=synset, lang=lang),
+            "hyponyms": Wordnet.get_hyponyms(query, pos=pos, synset=synset, lang=lang),
+            "hypernyms": Wordnet.get_hypernyms(query, pos=pos, synset=synset, lang=lang),
+            "root_hypernyms": Wordnet.get_root_hypernyms(query, pos=pos, synset=synset, lang=lang),
+            "definition": Wordnet.get_definition(query, pos=pos, synset=synset, lang=lang)
+        }
+        return res
 
     # intents
     @intent_handler("search_wordnet.intent")
     def handle_search(self, message):
-        query = message.data["query"]
-        summary = self.wordnet.spoken_answer(query, lang=self.lang)
-        if summary:
-            self.speak(summary)
-        else:
-            self.speak_dialog("no_answer")
+        self.handle_definition(message)
 
     @intent_handler("definition.intent")
     def handle_definition(self, message):
         query = message.data["query"]
-        res = self.wordnet.search(query, lang=self.lang).get("definition")
+        res = self.get_data(query, lang=self.lang).get("definition")
         if res:
             self.speak(res)
         else:
@@ -47,7 +265,7 @@ class WordnetSkill(CommonQuerySkill):
     @intent_handler("lemma.intent")
     def handle_lemma(self, message):
         query = message.data["query"]
-        res = self.wordnet.search(query, lang=self.lang).get("lemmas")
+        res = self.get_data(query, lang=self.lang).get("lemmas")
         if res:
             self.speak(random.choice(res))
         else:
@@ -56,7 +274,7 @@ class WordnetSkill(CommonQuerySkill):
     @intent_handler("antonym.intent")
     def handle_antonym(self, message):
         query = message.data["query"]
-        res = self.wordnet.search(query, lang=self.lang).get("antonyms")
+        res = self.get_data(query, lang=self.lang).get("antonyms")
         if res:
             self.speak(random.choice(res))
         else:
@@ -65,7 +283,7 @@ class WordnetSkill(CommonQuerySkill):
     @intent_handler("holonym.intent")
     def handle_holonym(self, message):
         query = message.data["query"]
-        res = self.wordnet.search(query, lang=self.lang).get("holonyms")
+        res = self.get_data(query, lang=self.lang).get("holonyms")
         if res:
             self.speak(random.choice(res))
         else:
@@ -74,7 +292,7 @@ class WordnetSkill(CommonQuerySkill):
     @intent_handler("hyponym.intent")
     def handle_hyponym(self, message):
         query = message.data["query"]
-        res = self.wordnet.search(query, lang=self.lang).get("hyponyms")
+        res = self.get_data(query, lang=self.lang).get("hyponyms")
         if res:
             self.speak(random.choice(res))
         else:
@@ -83,48 +301,33 @@ class WordnetSkill(CommonQuerySkill):
     @intent_handler("hypernym.intent")
     def handle_hypernym(self, message):
         query = message.data["query"]
-        res = self.wordnet.search(query, lang=self.lang).get("hypernyms")
+        res = self.get_data(query, lang=self.lang).get("hypernyms")
         if res:
             self.speak(random.choice(res))
         else:
             self.speak_dialog("no_answer")
 
-    # common query
-    def CQS_match_query_phrase(self, phrase):
-        summary = self.wordnet.spoken_answer(phrase, lang=self.lang)
-        if summary:
-            self.log.info(f"Wordnet answer: {summary}")
-            return (phrase, CQSMatchLevel.CATEGORY, summary,
-                    {'query': phrase,
-                     'answer': summary})
-
-    def CQS_action(self, phrase, data):
-        pass
-
 
 if __name__ == "__main__":
+    print(list(Wordnet.LANGMAP))
     from ovos_utils.fakebus import FakeBus
 
     d = WordnetSkill(skill_id="wordnet.ovos", bus=FakeBus())
 
     query = "what is the definition of computer"
 
-    ans = d.wordnet.search("computer", context={"lang": "es-es"})
-    print(ans)
-    # {'lemmas': ['computer', 'computing machine', 'computing device', 'data processor', 'electronic computer', 'information processing system'],
+    ans = d.get_data("computador", lang="pt")
+    print("pt", ans)
+    # {'postag': 'NOUN',
+    # 'lemmas': ['Calculadoras', 'calculador', 'calculadora', 'calculista', 'computador'],
     # 'antonyms': [],
     # 'holonyms': [],
-    # 'hyponyms': ['analog computer', 'digital computer', 'home computer', 'node', 'number cruncher', 'pari-mutuel machine', 'predictor', 'server', 'turing machine', 'web site'],
-    # 'hypernyms': ['machine'],
-    # 'root_hypernyms': ['entity'],
-    # 'definition': 'a machine for performing calculations automatically'}
+    # 'hyponyms': ['quipo', 'máquina de somar', 'Ossos de Napier', 'Ossos de napier', 'Abaco', 'ábaco'],
+    # 'hypernyms': ['maquinaria', 'máquina'],
+    # 'root_hypernyms': ['ente', 'entidade', 'ser'],
+    # 'definition': None}
 
     # full answer
-    ans = d.wordnet.spoken_answer(query)
-    print(ans)
+    ans = d.get_data("computer")["definition"]
+    print("en", ans)
     # a machine for performing calculations automatically
-
-    # bidirectional auto translate by passing lang
-    sentence = d.wordnet.spoken_answer("qual é a definição de computador", lang="pt-pt")
-    print(sentence)
-    # uma máquina para realizar cálculos automaticamente
