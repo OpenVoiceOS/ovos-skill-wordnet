@@ -19,7 +19,7 @@ from nltk.data import find
 from ovos_plugin_manager.templates.language import LanguageTranslator
 from ovos_utils.lang import standardize_lang_tag
 from ovos_workshop.decorators import intent_handler
-from ovos_workshop.skills.common_query_skill import CommonQuerySkill
+from ovos_workshop.skills.ovos import OVOSSkill
 
 
 def download_nltk_resource(res: str, res_type: str = "taggers"):
@@ -200,7 +200,7 @@ class Wordnet:
         return res
 
 
-class WordnetSkill(CommonQuerySkill):
+class WordnetSkill(OVOSSkill):
 
     def initialize(self):
         Wordnet.translator = self.translator
@@ -325,7 +325,7 @@ if __name__ == "__main__":
     # 'hyponyms': ['quipo', 'máquina de somar', 'Ossos de Napier', 'Ossos de napier', 'Abaco', 'ábaco'],
     # 'hypernyms': ['maquinaria', 'máquina'],
     # 'root_hypernyms': ['ente', 'entidade', 'ser'],
-    # 'definition': None}
+    # 'definition': "Uma máquina pequena utilizada para cálculos matemáticos"}
 
     # full answer
     ans = d.get_data("computer")["definition"]
