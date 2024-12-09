@@ -1,12 +1,12 @@
 {
   "hypernym.intent": [
     "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|què és|vull saber) un (hiperònim|sinònim) de {query}",
-    "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|quin és|vull saber) (el |es |l'|s')(hiperònim|sinònim) de {query} {query}",
+    "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|quin és|vull saber) (el |es |l'|s')(hiperònim|sinònim) de {query}",
     "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|quins són|vull saber) els (hiperònims|sinònims) de {query}"
   ],
   "antonym.intent": [
     "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|què és|vull saber) un antònim de {query}",
-    "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|quin és|vull saber) (l|s)'antònim de {query} {query}",
+    "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|quin és|vull saber) (l|s)'antònim de {query}",
     "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|quins són|vull saber) els antònims de {query}"
   ],
   "hyponym.intent": [
@@ -16,7 +16,7 @@
   ],
   "holonym.intent": [
     "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|què és|vull saber) un holònim de {query}",
-    "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|quin és|vull saber) (l|s)'holònim de {query} {query}",
+    "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|quin és|vull saber) (l|s)'holònim de {query}",
     "(digues|digue'm|digues-me|dona|dóna|dona'm|dóna'm|indica|indica'm|quins són|vull saber) els holònims de {query}"
   ],
   "definition.intent": [
