@@ -1,12 +1,12 @@
 # Changelog
 
-## [0.1.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.1.0a1) (2024-12-04)
+## [0.1.1a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.1.1a1) (2024-12-09)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.14...0.1.0a1)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.1.0...0.1.1a1)
 
 **Merged pull requests:**
 
-- feat: multilingual wordnet [\#34](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/34) ([JarbasAl](https://github.com/JarbasAl))
+- fix: typo in catalan \(invalid syntax\) [\#36](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/36) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
