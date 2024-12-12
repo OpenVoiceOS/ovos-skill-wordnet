@@ -1,8 +1,8 @@
 {
   "hypernym.intent": [
-    "was ist ein Überbegriff für {query}",
-    "was ist der Überbegriff für {query}",
-    "was sind Überbegriffe für {query}"
+    "was ist ein Oberbegriff für {query}",
+    "was ist der Oberbegriff für {query}",
+    "was sind Oberbegriffe für {query}"
   ],
   "antonym.intent": [
     "was das Gegenteil von {query}",
@@ -16,7 +16,7 @@
   ],
   "holonym.intent": [
     "Wovon ist {query} ein Teil von",
-    "was ist das Holonym von {query}",
+    "was ist das Holonym von {query}\nwas ist die übergeordnete Kategorie von {query}",
     "was sind die Holonyme von {query}"
   ],
   "definition.intent": [
@@ -27,7 +27,7 @@
     "Suche im Wordnet nach {query}",
     "Suche im word net nach {query}",
     "frage word net nach {query}",
-    "Frage Wordnet über {query}",
+    "Befrage Wordnet über {query}",
     "was sagt Wordnet über {query}",
     "was sagt word net über {query}"
   ],
