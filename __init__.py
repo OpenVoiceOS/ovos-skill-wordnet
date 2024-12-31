@@ -11,14 +11,14 @@
 # limitations under the License.
 #
 import random
-from typing import Optional, Dict
+from typing import Optional, Dict, Tuple
 
 import nltk
 from nltk.corpus import wordnet as wn
 from nltk.data import find
 from ovos_plugin_manager.templates.language import LanguageTranslator
 from ovos_utils.lang import standardize_lang_tag
-from ovos_workshop.decorators import intent_handler
+from ovos_workshop.decorators import intent_handler, common_query
 from ovos_workshop.skills.ovos import OVOSSkill
 
 
@@ -245,6 +245,11 @@ class WordnetSkill(OVOSSkill):
             "definition": Wordnet.get_definition(query, pos=pos, synset=synset, lang=lang)
         }
         return res
+
+    @common_query()
+    def match_common_query(self, phrase: str, lang: str) -> Tuple[str, float]:
+        res = self.get_data(phrase, lang=lang).get("definition")
+        return res, 0.6
 
     # intents
     @intent_handler("search_wordnet.intent")
