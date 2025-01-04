@@ -249,7 +249,9 @@ class WordnetSkill(OVOSSkill):
     @common_query()
     def match_common_query(self, phrase: str, lang: str) -> Tuple[str, float]:
         res = self.get_data(phrase, lang=lang).get("definition")
-        return res, 0.6
+        if res:
+            return res, 0.6
+        return None, 0.0
 
     # intents
     @intent_handler("search_wordnet.intent")
