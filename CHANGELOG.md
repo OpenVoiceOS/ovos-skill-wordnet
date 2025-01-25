@@ -1,11 +1,12 @@
 # Changelog
 
-## [0.1.2a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.1.2a1) (2025-01-04)
+## [0.1.2a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.1.2a2) (2025-01-25)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.1.2a1...0.1.2a1)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.1.2a1...0.1.2a2)
 
 **Merged pull requests:**
 
+- fix automations [\#40](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/40) ([JarbasAl](https://github.com/JarbasAl))
 - refactor: new common query decorators [\#39](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/39) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.1.2a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.1.2a1) (2024-12-12)
