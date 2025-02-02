@@ -1,12 +1,12 @@
 # Changelog
 
-## [0.1.3a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.1.3a1) (2025-01-27)
+## [0.2.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.0a1) (2025-02-02)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.1.2...0.1.3a1)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.1.3...0.2.0a1)
 
 **Merged pull requests:**
 
-- fix:catalan intents punctuation [\#42](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/42) ([JarbasAl](https://github.com/JarbasAl))
+- feat: add solver plugin + persona [\#44](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/44) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
