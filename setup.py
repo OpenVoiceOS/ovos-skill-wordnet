@@ -12,7 +12,7 @@ PYPI_NAME = "skill-wordnet"  # pip install PYPI_NAME - TODO - standardize to ovo
 SKILL_AUTHOR, SKILL_NAME = URL.split(".com/")[-1].split("/")
 SKILL_PKG = SKILL_NAME.lower().replace('-', '_')
 PLUGIN_ENTRY_POINT = f'{SKILL_NAME.lower()}.{SKILL_AUTHOR.lower()}={SKILL_PKG}:{SKILL_CLAZZ}'
-SOLVER_ENTRY_POINT = f'ovos-solver-plugin-wordnet={SKILL_PKG}:WordnetSolver'
+SOLVER_ENTRY_POINT = f'ovos-solver-wordnet-plugin={SKILL_PKG}:WordnetSolver'
 PERSONA_ENTRY_POINT = f'Wordnet={SKILL_PKG}:WORDNET_PERSONA'
 
 
