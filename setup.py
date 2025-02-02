@@ -6,13 +6,13 @@ from setuptools import setup
 
 URL = "https://github.com/OpenVoiceOS/skill-ovos-wordnet"
 SKILL_CLAZZ = "WordnetSkill"  # needs to match __init__.py class name
-PYPI_NAME = "skill-wordnet"  # pip install PYPI_NAME
+PYPI_NAME = "skill-wordnet"  # pip install PYPI_NAME - TODO - standardize to ovos-skill-XXX
 
 # below derived from github url to ensure standard skill_id
 SKILL_AUTHOR, SKILL_NAME = URL.split(".com/")[-1].split("/")
 SKILL_PKG = SKILL_NAME.lower().replace('-', '_')
 PLUGIN_ENTRY_POINT = f'{SKILL_NAME.lower()}.{SKILL_AUTHOR.lower()}={SKILL_PKG}:{SKILL_CLAZZ}'
-# skill_id=package_name:SkillClass
+SOLVER_ENTRY_POINT = f'ovos-solver-plugin-wordnet={SKILL_PKG}:WordnetSolver'
 
 
 def get_requirements(requirements_filename: str):
@@ -86,5 +86,6 @@ setup(
     include_package_data=True,
     install_requires=get_requirements("requirements.txt"),
     keywords='ovos skill plugin',
-    entry_points={'ovos.plugin.skill': PLUGIN_ENTRY_POINT}
+    entry_points={'ovos.plugin.skill': PLUGIN_ENTRY_POINT,
+                  'neon.plugin.solver': SOLVER_ENTRY_POINT}
 )
