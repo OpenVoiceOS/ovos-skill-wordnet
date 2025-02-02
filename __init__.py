@@ -349,6 +349,14 @@ class WordnetSolver(QuestionSolver):
         return data.get("definition")
 
 
+WORDNET_PERSONA = {
+  "name": "Wordnet",
+  "solvers": [
+    "ovos-solver-wordnet-plugin",
+    "ovos-solver-failure-plugin"
+  ]
+}
+
 if __name__ == "__main__":
     print(list(Wordnet.LANGMAP))
 
