@@ -11,12 +11,14 @@
 # limitations under the License.
 #
 import random
-from typing import Optional, Dict, Tuple
+from typing import Optional, Dict, Tuple, Any
 
 import nltk
 from nltk.corpus import wordnet as wn
 from nltk.data import find
-from ovos_plugin_manager.templates.language import LanguageTranslator
+
+from ovos_plugin_manager.templates.language import LanguageTranslator, LanguageDetector
+from ovos_plugin_manager.templates.solvers import QuestionSolver
 from ovos_utils.lang import standardize_lang_tag
 from ovos_workshop.decorators import intent_handler, common_query
 from ovos_workshop.skills.ovos import OVOSSkill
@@ -203,16 +205,99 @@ class Wordnet:
 class WordnetSkill(OVOSSkill):
 
     def initialize(self):
-        Wordnet.translator = self.translator
+        self.solver = WordnetSolver(translator=self.translator,
+                                    detector=self.lang_detector)
 
-    @staticmethod
-    def get_data(query: str, lang: Optional[str] = "en", pos="auto") -> Dict[str, str]:
+    @common_query()
+    def match_common_query(self, phrase: str, lang: str) -> Tuple[Optional[str], float]:
+        res = self.solver.get_data(phrase, lang=lang).get("definition")
+        if res:
+            return res, 0.6
+        return None, 0.0
+
+    # intents
+    @intent_handler("search_wordnet.intent")
+    def handle_search(self, message):
+        self.handle_definition(message)
+
+    @intent_handler("definition.intent")
+    def handle_definition(self, message):
+        query = message.data["query"]
+        res = self.solver.get_data(query, lang=self.lang).get("definition")
+        if res:
+            self.speak(res)
+        else:
+            self.speak_dialog("no_answer")
+
+    # TODO - plural vs singular questions
+    # TODO - "N lemmas of {query}"
+    @intent_handler("lemma.intent")
+    def handle_lemma(self, message):
+        query = message.data["query"]
+        res = self.solver.get_data(query, lang=self.lang).get("lemmas")
+        if res:
+            self.speak(random.choice(res))
+        else:
+            self.speak_dialog("no_answer")
+
+    @intent_handler("antonym.intent")
+    def handle_antonym(self, message):
+        query = message.data["query"]
+        res = self.solver.get_data(query, lang=self.lang).get("antonyms")
+        if res:
+            self.speak(random.choice(res))
+        else:
+            self.speak_dialog("no_answer")
+
+    @intent_handler("holonym.intent")
+    def handle_holonym(self, message):
+        query = message.data["query"]
+        res = self.solver.get_data(query, lang=self.lang).get("holonyms")
+        if res:
+            self.speak(random.choice(res))
+        else:
+            self.speak_dialog("no_answer")
+
+    @intent_handler("hyponym.intent")
+    def handle_hyponym(self, message):
+        query = message.data["query"]
+        res = self.solver.get_data(query, lang=self.lang).get("hyponyms")
+        if res:
+            self.speak(random.choice(res))
+        else:
+            self.speak_dialog("no_answer")
+
+    @intent_handler("hypernym.intent")
+    def handle_hypernym(self, message):
+        query = message.data["query"]
+        res = self.solver.get_data(query, lang=self.lang).get("hypernyms")
+        if res:
+            self.speak(random.choice(res))
+        else:
+            self.speak_dialog("no_answer")
+
+
+class WordnetSolver(QuestionSolver):
+    """
+    A solver for answering questions using Wordnet
+    """
+
+    def __init__(self, config: Optional[Dict[str, Any]] = None,
+                 translator: Optional[LanguageTranslator] = None,
+                 detector: Optional[LanguageDetector] = None):
+        super().__init__(config, enable_tx=False, priority=70,
+                         translator=translator, detector=detector)
+        Wordnet.translator = self._translator
+
+    def get_data(self, query: str, lang: Optional[str] = "en",
+                 units: Optional[str] = None, pos="auto") -> Dict[str, str]:
         """
         Retrieves WordNet data for the given query.
 
         Args:
             query (str): The query string.
             lang (Optional[str]): The language of the query. Defaults to None.
+            units (Optional[str]): Optional units for the query. Defaults to None.
 
         Returns:
             Dict[str, str]: A dictionary containing WordNet data such as lemmas, antonyms, definitions, etc.
@@ -246,80 +331,36 @@ class WordnetSkill(OVOSSkill):
         }
         return res
 
-    @common_query()
-    def match_common_query(self, phrase: str, lang: str) -> Tuple[str, float]:
-        res = self.get_data(phrase, lang=lang).get("definition")
-        if res:
-            return res, 0.6
-        return None, 0.0
+    def get_spoken_answer(self, query: str,
+                          lang: Optional[str] = None,
+                          units: Optional[str] = None) -> Optional[str]:
+        """
+        Obtain the spoken answer for a given query.
 
-    # intents
-    @intent_handler("search_wordnet.intent")
-    def handle_search(self, message):
-        self.handle_definition(message)
+        Args:
+            query (str): The query text.
+            lang (Optional[str]): Optional language code. Defaults to None.
+            units (Optional[str]): Optional units for the query. Defaults to None.
 
-    @intent_handler("definition.intent")
-    def handle_definition(self, message):
-        query = message.data["query"]
-        res = self.get_data(query, lang=self.lang).get("definition")
-        if res:
-            self.speak(res)
-        else:
-            self.speak_dialog("no_answer")
+        Returns:
+            str: The spoken answer as a text response.
+        """
+        data = self.get_data(query, lang=lang)
+        return data.get("definition")
 
-    # TODO - plural vs singular questions
-    # TODO - "N lemmas of {query}"
-    @intent_handler("lemma.intent")
-    def handle_lemma(self, message):
-        query = message.data["query"]
-        res = self.get_data(query, lang=self.lang).get("lemmas")
-        if res:
-            self.speak(random.choice(res))
-        else:
-            self.speak_dialog("no_answer")
 
-    @intent_handler("antonym.intent")
-    def handle_antonym(self, message):
-        query = message.data["query"]
-        res = self.get_data(query, lang=self.lang).get("antonyms")
-        if res:
-            self.speak(random.choice(res))
-        else:
-            self.speak_dialog("no_answer")
-
-    @intent_handler("holonym.intent")
-    def handle_holonym(self, message):
-        query = message.data["query"]
-        res = self.get_data(query, lang=self.lang).get("holonyms")
-        if res:
-            self.speak(random.choice(res))
-        else:
-            self.speak_dialog("no_answer")
-
-    @intent_handler("hyponym.intent")
-    def handle_hyponym(self, message):
-        query = message.data["query"]
-        res = self.get_data(query, lang=self.lang).get("hyponyms")
-        if res:
-            self.speak(random.choice(res))
-        else:
-            self.speak_dialog("no_answer")
-
-    @intent_handler("hypernym.intent")
-    def handle_hypernym(self, message):
-        query = message.data["query"]
-        res = self.get_data(query, lang=self.lang).get("hypernyms")
-        if res:
-            self.speak(random.choice(res))
-        else:
-            self.speak_dialog("no_answer")
-
+WORDNET_PERSONA = {
+  "name": "Wordnet",
+  "solvers": [
+    "ovos-solver-wordnet-plugin",
+    "ovos-solver-failure-plugin"
+  ]
+}
 
 if __name__ == "__main__":
     print(list(Wordnet.LANGMAP))
-    from ovos_utils.fakebus import FakeBus
 
-    d = WordnetSkill(skill_id="wordnet.ovos", bus=FakeBus())
+    d = WordnetSolver()
 
     query = "what is the definition of computer"
 
