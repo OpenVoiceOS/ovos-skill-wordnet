@@ -17,7 +17,7 @@ import nltk
 from nltk.corpus import wordnet as wn
 from nltk.data import find
 
-from ovos_plugin_manager.templates.language import LanguageTranslator
+from ovos_plugin_manager.templates.language import LanguageTranslator, LanguageDetector
 from ovos_plugin_manager.templates.solvers import QuestionSolver
 from ovos_utils.lang import standardize_lang_tag
 from ovos_workshop.decorators import intent_handler, common_query
@@ -205,11 +205,12 @@ class Wordnet:
 class WordnetSkill(OVOSSkill):
 
     def initialize(self):
-        Wordnet.translator = self.translator
+        self.solver = WordnetSolver(translator=self.translator,
+                                    detector=self.lang_detector)
 
     @common_query()
     def match_common_query(self, phrase: str, lang: str) -> Tuple[Optional[str], float]:
-        res = WordnetSolver.get_data(phrase, lang=lang).get("definition")
+        res = self.solver.get_data(phrase, lang=lang).get("definition")
         if res:
             return res, 0.6
         return None, 0.0
@@ -222,7 +223,7 @@ class WordnetSkill(OVOSSkill):
     @intent_handler("definition.intent")
     def handle_definition(self, message):
         query = message.data["query"]
-        res = WordnetSolver.get_data(query, lang=self.lang).get("definition")
+        res = self.solver.get_data(query, lang=self.lang).get("definition")
         if res:
             self.speak(res)
         else:
@@ -233,7 +234,7 @@ class WordnetSkill(OVOSSkill):
     @intent_handler("lemma.intent")
     def handle_lemma(self, message):
         query = message.data["query"]
-        res = WordnetSolver.get_data(query, lang=self.lang).get("lemmas")
+        res = self.solver.get_data(query, lang=self.lang).get("lemmas")
         if res:
             self.speak(random.choice(res))
         else:
@@ -242,7 +243,7 @@ class WordnetSkill(OVOSSkill):
     @intent_handler("antonym.intent")
     def handle_antonym(self, message):
         query = message.data["query"]
-        res = WordnetSolver.get_data(query, lang=self.lang).get("antonyms")
+        res = self.solver.get_data(query, lang=self.lang).get("antonyms")
         if res:
             self.speak(random.choice(res))
         else:
@@ -251,7 +252,7 @@ class WordnetSkill(OVOSSkill):
     @intent_handler("holonym.intent")
     def handle_holonym(self, message):
         query = message.data["query"]
-        res = WordnetSolver.get_data(query, lang=self.lang).get("holonyms")
+        res = self.solver.get_data(query, lang=self.lang).get("holonyms")
         if res:
             self.speak(random.choice(res))
         else:
@@ -260,7 +261,7 @@ class WordnetSkill(OVOSSkill):
     @intent_handler("hyponym.intent")
     def handle_hyponym(self, message):
         query = message.data["query"]
-        res = WordnetSolver.get_data(query, lang=self.lang).get("hyponyms")
+        res = self.solver.get_data(query, lang=self.lang).get("hyponyms")
         if res:
             self.speak(random.choice(res))
         else:
@@ -269,7 +270,7 @@ class WordnetSkill(OVOSSkill):
     @intent_handler("hypernym.intent")
     def handle_hypernym(self, message):
         query = message.data["query"]
-        res = WordnetSolver.get_data(query, lang=self.lang).get("hypernyms")
+        res = self.solver.get_data(query, lang=self.lang).get("hypernyms")
         if res:
             self.speak(random.choice(res))
         else:
@@ -281,11 +282,14 @@ class WordnetSolver(QuestionSolver):
     A solver for answering questions using Wordnet
     """
 
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
-        super().__init__(config, enable_tx=False, priority=70)
+    def __init__(self, config: Optional[Dict[str, Any]] = None,
+                 translator: Optional[LanguageTranslator] = None,
+                 detector: Optional[LanguageDetector] = None):
+        super().__init__(config, enable_tx=False, priority=70,
+                         translator=translator, detector=detector)
+        Wordnet.translator = self._translator
 
-    @staticmethod
-    def get_data(query: str, lang: Optional[str] = "en",
+    def get_data(self, query: str, lang: Optional[str] = "en",
                  units: Optional[str] = None, pos="auto") -> Dict[str, str]:
         """
         Retrieves WordNet data for the given query.
