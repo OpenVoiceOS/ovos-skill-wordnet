@@ -1,12 +1,12 @@
 # Changelog
 
-## [0.2.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.0a1) (2025-02-02)
+## [0.2.1a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.1a1) (2025-02-28)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.1.3...0.2.0a1)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.0...0.2.1a1)
 
 **Merged pull requests:**
 
-- feat: add solver plugin + persona [\#44](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/44) ([JarbasAl](https://github.com/JarbasAl))
+- Translations update [\#46](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/46) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
