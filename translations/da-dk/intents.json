@@ -1,39 +1,39 @@
 {
-  "hypernym.intent": [
-    "hvad er et hypernym af {query}",
-    "hvad er hypernym af {forespørgsel}",
-    "hvad er hypernymerne for {query}"
-  ],
-  "antonym.intent": [
-    "hvad er et antonym til {query}",
-    "hvad er antonymet til {query}",
-    "hvad er antonymerne til {query}"
-  ],
-  "hyponym.intent": [
-    "hvad er et hyponym af {query}",
-    "hvad er hyponymet for {forespørgsel}",
-    "hvad er hyponymer af {query}"
-  ],
-  "holonym.intent": [
-    "hvad er et holonym til {query}",
-    "hvad er holonymet til {query}",
-    "hvad er holonymerne for {query}"
-  ],
-  "definition.intent": [
-    "hvad er en {forespørgsel}",
-    "hvad er definitionen af ​​{query}"
-  ],
-  "search_wordnet.intent": [
-    "søg i wordnet efter {query}",
-    "søgeord net for {query}",
-    "spørg word net om {query}",
-    "spørg wordnet om {query}",
-    "hvad siger wordnet om {query}",
-    "hvad siger word net om {query}"
-  ],
-  "lemma.intent": [
-    "hvad er et lemma for {query}",
-    "hvad er lemmaet for {query}",
-    "hvad er lemmaerne i {query}"
-  ]
+    "hypernym.intent": [
+        "hvad er et hypernym af {query}",
+        "hvad er hypernym af {forespørgsel}",
+        "hvad er hypernymerne for {query}"
+    ],
+    "antonym.intent": [
+        "hvad er antonymerne til {query}",
+        "hvad er antonymet til {query}",
+        "hvad er et antonym til {query}"
+    ],
+    "holonym.intent": [
+        "hvad er et holonym til {query}",
+        "hvad er holonymerne for {query}",
+        "hvad er holonymet til {query}"
+    ],
+    "lemma.intent": [
+        "hvad er et lemma for {query}",
+        "hvad er lemmaerne i {query}",
+        "hvad er lemmaet for {query}"
+    ],
+    "hyponym.intent": [
+        "hvad er et hyponym af {query}",
+        "hvad er hyponymer af {query}",
+        "hvad er hyponymet for {forespørgsel}"
+    ],
+    "search_wordnet.intent": [
+        "hvad siger word net om {query}",
+        "hvad siger wordnet om {query}",
+        "spørg word net om {query}",
+        "spørg wordnet om {query}",
+        "søg i wordnet efter {query}",
+        "søgeord net for {query}"
+    ],
+    "definition.intent": [
+        "hvad er definitionen af ​​{query}",
+        "hvad er en {forespørgsel}"
+    ]
 }
