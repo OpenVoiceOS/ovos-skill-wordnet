@@ -1,27 +1,28 @@
 {
     "hypernym.intent": [
+        "cal é o hiperónimo de {query}",
         "cales son os hiperónimos de {query}",
-        "que é un hiperónimo de {query}",
-        "cal é o hiperónimo de {query}"
+        "que é un hiperónimo de {query}"
     ],
     "antonym.intent": [
+        "cal é o antónimo de {query}",
         "cales son os antónimos de {query}",
-        "que é un antónimo de {query}",
-        "cal é o antónimo de {query}"
-    ],
-    "hyponym.intent": [
-        "cales son os hipónimos de {query}",
-        "que é un hipónimo de {query}",
-        "cal é o hipónimo de {query}"
+        "que é un antónimo de {query}"
     ],
     "holonym.intent": [
+        "cal é o holónimo de {query}",
         "cales son os holónimos de {query}",
-        "que é un holónimo de {query}",
-        "cal é o holónimo de {query}"
+        "que é un holónimo de {query}"
     ],
-    "definition.intent": [
-        "que é {query}",
-        "cal é a definición de {query}"
+    "lemma.intent": [
+        "cal é o lema de {query}",
+        "cales son os lemas de {query}",
+        "que é un lema de {query}"
+    ],
+    "hyponym.intent": [
+        "cal é o hipónimo de {query}",
+        "cales son os hipónimos de {query}",
+        "que é un hipónimo de {query}"
     ],
     "search_wordnet.intent": [
         "preguntar a word net sobre {query}",
@@ -31,9 +32,8 @@
         "que di word net sobre {query}",
         "que di wordnet sobre {query}"
     ],
-    "lemma.intent": [
-        "cales son os lemas de {query}",
-        "que é un lema de {query}",
-        "cal é o lema de {query}"
+    "definition.intent": [
+        "cal é a definición de {query}",
+        "que é {query}"
     ]
 }
