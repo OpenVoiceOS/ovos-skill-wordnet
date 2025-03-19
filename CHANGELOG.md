@@ -1,12 +1,12 @@
 # Changelog
 
-## [0.2.1a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.1a1) (2025-02-28)
+## [0.2.2a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.2a1) (2025-03-19)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.0...0.2.1a1)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.1...0.2.2a1)
 
 **Merged pull requests:**
 
-- Translations update [\#46](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/46) ([JarbasAl](https://github.com/JarbasAl))
+- allow latest ovos-config [\#48](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/48) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
