@@ -6,7 +6,7 @@ from setuptools import setup
 
 URL = "https://github.com/OpenVoiceOS/ovos-skill-wordnet"
 SKILL_CLAZZ = "WordnetSkill"  # needs to match __init__.py class name
-PYPI_NAME = "skill-wordnet"  # pip install PYPI_NAME - TODO - standardize to ovos-skill-XXX
+PYPI_NAME = "ovos-skill-wordnet"  # pip install PYPI_NAME - TODO - standardize to ovos-skill-XXX
 
 # below derived from github url to ensure standard skill_id
 SKILL_AUTHOR, SKILL_NAME = URL.split(".com/")[-1].split("/")

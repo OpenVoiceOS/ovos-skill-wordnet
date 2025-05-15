@@ -1,12 +1,12 @@
 # Changelog
 
-## [0.2.2a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.2a1) (2025-03-19)
+## [0.2.3a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.3a1) (2025-05-15)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.1...0.2.2a1)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.2...0.2.3a1)
 
 **Merged pull requests:**
 
-- allow latest ovos-config [\#48](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/48) ([JarbasAl](https://github.com/JarbasAl))
+- fix: standardize urls / skill-id / pypi-name [\#50](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/50) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
