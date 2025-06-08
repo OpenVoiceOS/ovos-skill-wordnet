@@ -1,12 +1,20 @@
 # Changelog
 
-## [0.2.3a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.3a1) (2025-05-15)
+## [0.2.5a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.5a1) (2025-06-08)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.2...0.2.3a1)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.4a1...0.2.5a1)
 
 **Merged pull requests:**
 
-- fix: standardize urls / skill-id / pypi-name [\#50](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/50) ([JarbasAl](https://github.com/JarbasAl))
+- fix: workshop 7.X.X opm 1.X.X [\#54](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/54) ([JarbasAl](https://github.com/JarbasAl))
+
+## [0.2.4a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.4a1) (2025-06-04)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.3...0.2.4a1)
+
+**Merged pull requests:**
+
+- gl/translate [\#52](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/52) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
 
 
 
