@@ -1,20 +1,16 @@
 # Changelog
 
-## [0.2.5a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.5a1) (2025-06-08)
+## [0.2.6a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.6a2) (2025-11-05)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.4a1...0.2.5a1)
-
-**Merged pull requests:**
-
-- fix: workshop 7.X.X opm 1.X.X [\#54](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/54) ([JarbasAl](https://github.com/JarbasAl))
-
-## [0.2.4a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.4a1) (2025-06-04)
-
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.3...0.2.4a1)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.6a1...0.2.6a2)
 
 **Merged pull requests:**
 
-- gl/translate [\#52](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/52) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+- Update ovos-plugin-manager version constraint [\#57](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/57) ([JarbasAl](https://github.com/JarbasAl))
+
+## [0.2.6a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.6a1) (2025-06-18)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.5...0.2.6a1)
 
 
 

@@ -72,7 +72,7 @@ def get_version():
 
 
 setup(
-    name=PYPI_NAME,
+    name=PYPI_NAME.replace("-", "_"),
     version=get_version(),
     description='ovos Wordnet skill plugin',
     long_description=long_description,
