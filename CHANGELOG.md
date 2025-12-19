@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.7a4](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.7a4) (2025-12-19)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.7a3...0.2.7a4)
+
+**Merged pull requests:**
+
+- chore\(deps\): update actions/setup-python action to v6 [\#67](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/67) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [0.2.7a3](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.7a3) (2025-12-19)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.7a2...0.2.7a3)
