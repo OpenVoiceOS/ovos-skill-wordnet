@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.2.8a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.8a1) (2026-03-24)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.7a5...0.2.8a1)
+
+**Merged pull requests:**
+
+- fix: rename bare lang code locale directories [\#71](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/71) ([ovos-localize[bot]](https://github.com/apps/ovos-localize))
+- Refine French WordNet locale [\#70](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/70) ([goldyfruit](https://github.com/goldyfruit))
+
 ## [0.2.7a5](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.7a5) (2025-12-20)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.7a4...0.2.7a5)
