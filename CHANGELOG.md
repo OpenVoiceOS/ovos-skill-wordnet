@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.2.9a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.9a2) (2026-04-04)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.9a1...0.2.9a2)
+
+**Merged pull requests:**
+
+- ci: modernize GitHub workflows [\#74](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/74) ([JarbasAl](https://github.com/JarbasAl))
+- fix\(i18n\): normalize locale folders to canonical BCP-47 [\#73](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/73) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.2.9a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.9a1) (2026-03-24)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.8a1...0.2.9a1)
