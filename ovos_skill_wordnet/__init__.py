@@ -11,13 +11,14 @@
 # limitations under the License.
 from typing import Optional, Tuple
 
+from ovos_bus_client.session import SessionManager
 from ovos_utils.process_utils import RuntimeRequirements
 from ovos_wordnet_plugin import WordnetRetrievalEngine
-from ovos_workshop.decorators import intent_handler, common_query
-from ovos_workshop.skills.ovos import OVOSSkill
+from ovos_workshop.decorators import intent_handler, common_query, fallback_handler
+from ovos_workshop.skills.fallback import FallbackSkill
 
 
-class WordnetSkill(OVOSSkill):
+class WordnetSkill(FallbackSkill):
     """Voice interface to WordNet via ovos-wordnet-plugin."""
 
     @property
@@ -34,6 +35,10 @@ class WordnetSkill(OVOSSkill):
     def initialize(self) -> None:
         self.engine = WordnetRetrievalEngine(config=dict(self.settings))
 
+    # ------------------------------------------------------------------
+    # Common Query pipeline
+    # ------------------------------------------------------------------
+
     @common_query()
     def match_common_query(self, phrase: str, lang: str) -> Tuple[Optional[str], float]:
         short = lang.split("-")[0]
@@ -41,6 +46,10 @@ class WordnetSkill(OVOSSkill):
         if defn:
             return defn, 0.6
         return None, 0.0
+
+    # ------------------------------------------------------------------
+    # Explicit intent
+    # ------------------------------------------------------------------
 
     @intent_handler("search_wordnet.intent")
     def handle_search(self, message):
@@ -51,3 +60,22 @@ class WordnetSkill(OVOSSkill):
             self.speak(results[0][0])
         else:
             self.speak_dialog("no_answer")
+
+    # ------------------------------------------------------------------
+    # Fallback
+    # ------------------------------------------------------------------
+
+    @fallback_handler(priority=90)
+    def handle_fallback(self, message):
+        utterance = message.data.get("utterance", "")
+        sess = SessionManager.get(message)
+        lang = sess.lang
+
+        if not self.voc_match(utterance, "WordnetQuery", lang=lang):
+            return False
+
+        results = self.engine.query(utterance, lang=lang, k=1)
+        if results:
+            self.speak(results[0][0])
+            return True
+        return False
