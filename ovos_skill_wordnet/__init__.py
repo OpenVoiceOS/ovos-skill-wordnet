@@ -53,7 +53,7 @@ class WordnetSkill(FallbackSkill):
 
     @intent_handler("search_wordnet.intent")
     def handle_search(self, message):
-        query = message.data["query"]
+        query = message.data["word"]
         lang = self.lang
         results = self.engine.query(query, lang=lang, k=1)
         if results:
@@ -74,7 +74,10 @@ class WordnetSkill(FallbackSkill):
         if not self.voc_match(utterance, "WordnetQuery", lang=lang):
             return False
 
-        results = self.engine.query(utterance, lang=lang, k=1)
+        try:
+            results = self.engine.query(utterance, lang=lang, k=1)
+        except Exception:
+            return False
         if results:
             self.speak(results[0][0])
             return True

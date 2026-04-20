@@ -1,4 +1,4 @@
-Demande à WordNet des informations sur {query}
-Interroge WordNet sur {query}
-Cherche {query} dans WordNet
-Que dit WordNet sur {query}
+Demande à WordNet des informations sur {word}
+Interroge WordNet sur {word}
+Cherche {word} dans WordNet
+Que dit WordNet sur {word}

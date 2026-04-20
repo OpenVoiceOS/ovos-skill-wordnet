@@ -1,6 +1,6 @@
-ask word net about {query}
-ask wordnet about {query}
-search word net for {query}
-search wordnet for {query}
-what does word net say about {query}
-what does wordnet say about {query}
+ask word net about {word}
+ask wordnet about {word}
+search word net for {word}
+search wordnet for {word}
+what does word net say about {word}
+what does wordnet say about {word}
