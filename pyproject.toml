@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ovos-skill-wordnet"
+dynamic = ["version"]
+description = "OVOS WordNet skill — dictionary definitions and lexical relations"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.10"
+dependencies = [
+    "ovos-utils>=0.7.0,<1.0.0",
+    "ovos-workshop>=8.0.0,<9.0.0",
+    "ovos-plugin-manager>=2.3.0a1,<3.0.0",
+    "ovos-wordnet-plugin>=0.1.0a1,<1.0.0",
+]
+
+[project.entry-points."ovos.plugin.skill"]
+"ovos-skill-wordnet.openvoiceos" = "ovos_skill_wordnet:WordnetSkill"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ovos_skill_wordnet*"]
+
+[tool.setuptools.package-data]
+"ovos_skill_wordnet" = ["locale/**/*", "*.json"]
+
+[tool.setuptools.dynamic]
+version = {attr = "ovos_skill_wordnet.version.__version__"}

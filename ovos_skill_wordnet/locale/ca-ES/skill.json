@@ -1,0 +1,15 @@
+{
+  "skill_id": "ovos-skill-wordnet.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-wordnet",
+  "name": "Habilitat de Wordnet",
+  "description": "Usa Wordnet per a respondre qüestions relacionades amb diccioanris.",
+  "examples": [
+    "quina és la definició de ...",
+    "quin és l'antònim de..."
+  ],
+  "tags": [
+    "Wordnet",
+    "consulta",
+    "informatió"
+  ]
+}

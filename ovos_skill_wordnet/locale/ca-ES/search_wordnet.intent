@@ -1,0 +1,6 @@
+(cerca|busca) (en el tesaure|al tesaure|en la xarxa de mots|a la xarxa de mots|en el diccionari de sinònims|al diccionari de sinònims) {query}
+(cerca|busca) {query} (al tesaure|a la xarxa de mots|al diccionari de sinònims)
+(demana|pregunta) (al tesaure|a la xarxa de mots|al diccionari de sinònims) sobre {query}
+(demana|pregunta) (al tesaure|a la xarxa de mots|al diccionari de sinònims) {query}
+què diu (el tesaure|la xarxa de mots|el diccionari de sinònims)(sobre |de |d'|) {query}
+què diu (es tesaure|sa xarxa de mots|es diccionari de sinònims)(sobre |de|d'|) {query}
