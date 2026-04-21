@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.4.0a1) (2026-04-21)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.9a3...0.4.0a1)
+
+**Merged pull requests:**
+
+- feat: modernize skill — delegate to ovos-wordnet-plugin [\#78](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/78) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.2.9a3](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.9a3) (2026-04-09)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.9a2...0.2.9a3)
