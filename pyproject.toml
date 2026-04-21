@@ -16,12 +16,6 @@ dependencies = [
     "ovos-wordnet-plugin>=0.1.0a1,<1.0.0",
 ]
 
-[project.optional-dependencies]
-test = [
-    "pytest",
-    "ovos-utils[extras]>=0.7.0,<1.0.0",
-]
-
 [project.entry-points."ovos.plugin.skill"]
 "ovos-skill-wordnet.openvoiceos" = "ovos_skill_wordnet:WordnetSkill"
 
