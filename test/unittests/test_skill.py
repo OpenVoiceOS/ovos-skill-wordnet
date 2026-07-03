@@ -228,12 +228,21 @@ class TestEnglishLocale(unittest.TestCase):
                    "synonym", "antonym", "opposite"):
             self.assertIn(kw, blob, f"no coverage for {kw!r}")
 
-    def test_word_blacklist_excludes_pronouns(self):
-        # OVOS-INTENT-2 §4.3 slot-value exclusion: pronouns must not fill
-        # {word}, so anaphora ("what does it mean") stay unresolved.
-        blob = " ".join(_lines("word.blacklist"))
-        for pron in ("it", "he", "she", "they", "this", "that"):
-            self.assertIn(pron, blob, f"pronoun {pron!r} not blacklisted")
+    def test_word_blacklist_references_pronoun_and_determiner_voc(self):
+        # OVOS-INTENT-2 §4.3 slot-value exclusion: the blacklist delegates to
+        # the pronoun/determiner vocabularies so anaphora ("what does it mean")
+        # stay unresolved.
+        lines = _lines("word.blacklist")
+        self.assertIn("<pronoun>", lines)
+        self.assertIn("<determiner>", lines)
+
+    def test_pronoun_and_determiner_voc_cover_anaphora(self):
+        pron = " ".join(_lines("pronoun.voc"))
+        for p in ("it", "he", "she", "they"):
+            self.assertIn(p, pron, f"pronoun {p!r} not covered")
+        det = " ".join(_lines("determiner.voc"))
+        for d in ("this", "that", "these", "those"):
+            self.assertIn(d, det, f"determiner {d!r} not covered")
 
 
 if __name__ == "__main__":

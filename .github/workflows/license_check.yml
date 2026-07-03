@@ -9,3 +9,8 @@ jobs:
   license_check:
     uses: OpenVoiceOS/gh-automations/.github/workflows/license-check.yml@dev
     secrets: inherit
+    with:
+      # httpx (BSD-3-Clause, permissive) is pulled transitively by `wn`. Its
+      # current pre-release ships license metadata pilosus cannot parse, so it
+      # is flagged "Error"; excluded by name since the license itself is safe.
+      exclude_packages: '(?i:^httpx([=<>!~ @;].*)?$)'

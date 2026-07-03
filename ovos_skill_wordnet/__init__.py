@@ -9,7 +9,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from typing import Optional, Tuple
+import re
+from typing import Optional, Set, Tuple
 
 from ovos_bus_client.session import SessionManager
 from ovos_utils.process_utils import RuntimeRequirements
@@ -35,6 +36,29 @@ class WordnetSkill(FallbackSkill):
     def initialize(self) -> None:
         self.engine = WordnetRetrievalEngine(config=dict(self.settings))
 
+    def _slot_blacklist(self, lang: str) -> Set[str]:
+        """Return the values that may not fill the {word} slot for ``lang``.
+
+        Reads ``word.blacklist`` and resolves any ``<voc>`` reference to the
+        matching vocabulary file, so an anaphoric pronoun (or bare determiner)
+        cannot be looked up as if it were a dictionary word.
+        """
+        path = self.find_resource("word.blacklist", lang=lang)
+        if not path:
+            return set()
+        terms: Set[str] = set()
+        with open(path) as blacklist:
+            for line in blacklist:
+                line = line.strip()
+                if not line or line.startswith("#"):
+                    continue
+                voc = re.match(r"^<(.+)>$", line)
+                if voc:
+                    terms.update(v.lower() for v in self.voc_list(voc.group(1), lang=lang))
+                else:
+                    terms.add(line.lower())
+        return terms
+
     # ------------------------------------------------------------------
     # Common Query pipeline
     # ------------------------------------------------------------------
@@ -51,10 +75,16 @@ class WordnetSkill(FallbackSkill):
     # Explicit intent
     # ------------------------------------------------------------------
 
-    @intent_handler("search_wordnet.intent")
+    @intent_handler("search_wordnet.intent",
+                    voc_blacklist=["pronoun", "determiner"])
     def handle_search(self, message):
         query = message.data["word"]
         lang = self.lang
+        if query.strip().lower() in self._slot_blacklist(lang):
+            # anaphoric slot value: leave {word} unresolved so a later stage
+            # can supply the referent active in the conversation
+            self.speak_dialog("unresolved")
+            return
         results = self.engine.query(query, lang=lang, k=1)
         if results:
             self.speak(results[0][0])
