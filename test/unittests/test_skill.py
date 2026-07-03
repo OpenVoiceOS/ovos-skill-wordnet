@@ -4,11 +4,24 @@ Unit tests for ovos-skill-wordnet.
 All tests are offline — WordnetRetrievalEngine is mocked so no WordNet
 data or translation plugin is required.
 """
+import os
 import unittest
 from unittest.mock import MagicMock, patch, call
 
 from ovos_bus_client.message import Message
 from ovos_utils.fakebus import FakeBus
+
+LOCALE_EN = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+    "ovos_skill_wordnet", "locale", "en-US",
+)
+
+
+def _lines(name):
+    """Non-comment, non-blank lines of an en-US locale resource."""
+    with open(os.path.join(LOCALE_EN, name)) as f:
+        return [ln.strip() for ln in f
+                if ln.strip() and not ln.lstrip().startswith("#")]
 
 
 # ---------------------------------------------------------------------------
@@ -189,6 +202,38 @@ class TestFallback(unittest.TestCase):
         self.skill.voc_match.return_value = False
         result = self._fallback_msg("")
         self.assertFalse(result)
+
+
+# ---------------------------------------------------------------------------
+# en-US locale resources
+# ---------------------------------------------------------------------------
+
+class TestEnglishLocale(unittest.TestCase):
+
+    def test_every_intent_line_has_word_slot(self):
+        lines = _lines("search_wordnet.intent")
+        self.assertTrue(lines)
+        for ln in lines:
+            self.assertIn("{word}", ln, f"missing open slot: {ln!r}")
+
+    def test_intent_declares_only_the_word_slot(self):
+        import re
+        for ln in _lines("search_wordnet.intent"):
+            for slot in re.findall(r"{(\w+)}", ln):
+                self.assertEqual(slot, "word", f"undefined slot in: {ln!r}")
+
+    def test_intent_covers_dictionary_and_thesaurus_phrasings(self):
+        blob = " ".join(_lines("search_wordnet.intent"))
+        for kw in ("define", "definition", "meaning", "mean",
+                   "synonym", "antonym", "opposite"):
+            self.assertIn(kw, blob, f"no coverage for {kw!r}")
+
+    def test_word_blacklist_excludes_pronouns(self):
+        # OVOS-INTENT-2 §4.3 slot-value exclusion: pronouns must not fill
+        # {word}, so anaphora ("what does it mean") stay unresolved.
+        blob = " ".join(_lines("word.blacklist"))
+        for pron in ("it", "he", "she", "they", "this", "that"):
+            self.assertIn(pron, blob, f"pronoun {pron!r} not blacklisted")
 
 
 if __name__ == "__main__":

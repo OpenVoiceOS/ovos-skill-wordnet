@@ -1,0 +1,6 @@
+# Values that MUST NOT fill the {word} slot of search_wordnet.intent
+# (slot-value exclusion, OVOS-INTENT-2 §4.3). Anaphoric pronouns are left
+# unresolved so a later stage (OVOS-CONTEXT-1 §7 context fill or a re-prompt)
+# supplies the referent — e.g. "what does it mean" carries no lookup word.
+(he|him|his|she|her|hers|it|its|they|them|their|theirs)
+(this|that|these|those)
