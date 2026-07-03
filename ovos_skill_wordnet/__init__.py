@@ -75,8 +75,7 @@ class WordnetSkill(FallbackSkill):
     # Explicit intent
     # ------------------------------------------------------------------
 
-    @intent_handler("search_wordnet.intent",
-                    voc_blacklist=["pronoun", "determiner"])
+    @intent_handler("search_wordnet.intent")
     def handle_search(self, message):
         query = message.data["word"]
         lang = self.lang
