@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.5.0a1) (2026-07-16)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.4.0a2...0.5.0a1)
+
+**Merged pull requests:**
+
+- feat: broaden en-US intent coverage and pronoun slot exclusion [\#82](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/82) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.4.0a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.4.0a2) (2026-07-12)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.4.0a1...0.4.0a2)
