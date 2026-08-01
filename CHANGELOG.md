@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.5.0a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.5.0a2) (2026-08-01)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.5.0a1...0.5.0a2)
+
+**Merged pull requests:**
+
+- docs: rewrite README in Simplified Technical English [\#88](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/88) ([JarbasAl](https://github.com/JarbasAl))
+- fix\(da-DK\): add missing determiner.voc, pronoun.voc, unresolved.dialog [\#87](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/87) ([andlo](https://github.com/andlo))
+
 ## [0.5.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.5.0a1) (2026-07-16)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.4.0a2...0.5.0a1)
