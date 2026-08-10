@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.6.0a1) (2026-08-10)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.5.0a2...0.6.0a1)
+
+**Merged pull requests:**
+
+- feat: add ovoscope end2end intent-routing tests [\#81](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/81) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.5.0a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.5.0a2) (2026-08-01)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.5.0a1...0.5.0a2)
