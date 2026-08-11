@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.1a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.6.1a1) (2026-08-11)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.6.0a1...0.6.1a1)
+
+**Merged pull requests:**
+
+- fix: implement can\_answer so the fallback ping is answered [\#92](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/92) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.6.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.6.0a1) (2026-08-10)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.5.0a2...0.6.0a1)
