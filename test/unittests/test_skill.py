@@ -245,5 +245,39 @@ class TestEnglishLocale(unittest.TestCase):
             self.assertIn(d, det, f"determiner {d!r} not covered")
 
 
+class TestCanAnswer(unittest.TestCase):
+    """The skills service pings every fallback skill and routes only to the
+    ones that pong. FallbackSkill.can_answer raises NotImplementedError, so a
+    skill that does not override it drops out of the fallback pipeline with no
+    error the user ever sees."""
+
+    def setUp(self):
+        self.skill, self.engine = _make_skill()
+
+    def _ping(self, utterance):
+        return Message("ovos.skills.fallback.ping",
+                       data={"utterances": [utterance]})
+
+    def test_claims_a_definition_question(self):
+        self.assertTrue(self.skill.can_answer(self._ping("what is the meaning of stoic")))
+
+    def test_declines_an_unrelated_question(self):
+        self.assertFalse(self.skill.can_answer(self._ping("turn on the kitchen light")))
+
+    def test_ping_does_not_query_the_engine(self):
+        # the ping fires for every fallback utterance; a lookup here would run
+        # on questions this skill never handles
+        self.skill.can_answer(self._ping("define stoic"))
+        self.engine.query.assert_not_called()
+
+    def test_ping_emits_a_pong(self):
+        replies = []
+        self.skill.bus.on("ovos.skills.fallback.pong", lambda m: replies.append(m))
+        self.skill.bus.emit(self._ping("define stoic"))
+        self.assertEqual(len(replies), 1)
+        self.assertTrue(replies[0].data["can_handle"])
+        self.assertEqual(replies[0].data["skill_id"], "test.wordnet")
+
+
 if __name__ == "__main__":
     unittest.main()
