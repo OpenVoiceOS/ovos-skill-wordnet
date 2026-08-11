@@ -11,6 +11,7 @@ jobs:
     secrets: inherit
     with:
       python_version: '3.11'
+      system_deps: 'swig libfann-dev'
       install_extras: 'test'
       test_path: 'test/end2end/'
       require_padatious: true

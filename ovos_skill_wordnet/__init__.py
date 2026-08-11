@@ -12,6 +12,7 @@
 import re
 from typing import Optional, Set, Tuple
 
+from ovos_bus_client.message import Message
 from ovos_bus_client.session import SessionManager
 from ovos_utils.process_utils import RuntimeRequirements
 from ovos_wordnet_plugin import WordnetRetrievalEngine
@@ -77,9 +78,12 @@ class WordnetSkill(FallbackSkill):
 
     @intent_handler("search_wordnet.intent")
     def handle_search(self, message):
-        query = message.data["word"]
+        # {word} is left unresolved (no key at all) when the utterance's slot
+        # value is excluded by the matcher itself, same as an explicit
+        # anaphoric blacklist hit below — both re-prompt instead of crashing.
+        query = message.data.get("word", "")
         lang = self.lang
-        if query.strip().lower() in self._slot_blacklist(lang):
+        if not query.strip() or query.strip().lower() in self._slot_blacklist(lang):
             # anaphoric slot value: leave {word} unresolved so a later stage
             # can supply the referent active in the conversation
             self.speak_dialog("unresolved")
@@ -93,6 +97,14 @@ class WordnetSkill(FallbackSkill):
     # ------------------------------------------------------------------
     # Fallback
     # ------------------------------------------------------------------
+
+    def can_answer(self, message: Message) -> bool:
+        # Wordnet only answers definition-shaped questions, so the ping applies
+        # the same vocab guard the handler does. The lookup itself is left to
+        # the handler.
+        utterance = message.data["utterances"][0]
+        return self.voc_match(utterance, "WordnetQuery",
+                              lang=SessionManager.get(message).lang)
 
     @fallback_handler(priority=90)
     def handle_fallback(self, message):
