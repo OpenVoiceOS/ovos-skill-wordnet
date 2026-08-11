@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.2a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.6.2a1) (2026-08-11)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.6.1a1...0.6.2a1)
+
+**Merged pull requests:**
+
+- fix\(da-DK\): relocate misplaced locale files into package locale dir [\#90](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/90) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.6.1a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.6.1a1) (2026-08-11)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.6.0a1...0.6.1a1)
