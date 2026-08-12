@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.2a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.6.2a2) (2026-08-12)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.6.2a1...0.6.2a2)
+
+**Merged pull requests:**
+
+- test: add golden-utterance e2e suite [\#95](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/95) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.6.2a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.6.2a1) (2026-08-11)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.6.1a1...0.6.2a1)
