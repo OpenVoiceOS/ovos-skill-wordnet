@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.3a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.6.3a1) (2026-08-12)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.6.2a2...0.6.3a1)
+
+**Merged pull requests:**
+
+- fix: handle\_search no longer lets engine.query exceptions leak skill.error [\#97](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/97) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.6.2a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.6.2a2) (2026-08-12)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.6.2a1...0.6.2a2)
