@@ -86,9 +86,34 @@ class WordnetSkill(FallbackSkill):
         if not query.strip() or query.strip().lower() in self._slot_blacklist(lang):
             # anaphoric slot value: leave {word} unresolved so a later stage
             # can supply the referent active in the conversation
+            #
+            # KNOWN GAP: "unresolved" ("I did not catch which word you
+            # mean") only ships for en-US and da-DK. It is intentionally
+            # NOT "no_answer" ("word net does not know the answer") - that
+            # dialog means WordNet has no definition for a word it did
+            # understand, which is a different situation from never having
+            # understood which word was meant, and speaking it here would
+            # actively mislead the user about what went wrong. Until a human
+            # translator supplies the missing unresolved.dialog for the
+            # other 29 shipped locales, this path speaks the raw dialog id
+            # ("unresolved") in those locales rather than a sentence -
+            # tracked by test_unresolved_dialog_only_covers_en_and_da below,
+            # not silently patched over with a machine translation.
             self.speak_dialog("unresolved")
             return
-        results = self.engine.query(query, lang=lang, k=1)
+        # Mirror handle_fallback's try/except: an uncaught exception here
+        # (e.g. the underlying wn sqlite connection racing with a concurrent
+        # common_qa lookup on another thread) would otherwise propagate out
+        # of this @intent_handler. The framework's generic error path then
+        # tries to speak a "skill.error" dialog this skill never ships, and
+        # falls back to speaking that literal, un-localized string. Speaking
+        # "no_answer" here keeps every failure mode inside real, localized
+        # dialog.
+        try:
+            results = self.engine.query(query, lang=lang, k=1)
+        except Exception:
+            self.log.exception("WordnetSkill: engine.query failed for %r", query)
+            results = []
         if results:
             self.speak(results[0][0])
         else:

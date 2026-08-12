@@ -99,6 +99,76 @@ class TestHandleSearch(unittest.TestCase):
         _, kwargs = self.engine.query.call_args
         self.assertEqual(kwargs.get("k"), 1)
 
+    def test_engine_exception_does_not_propagate(self):
+        # Regression: an uncaught exception here (e.g. the wn thread-safety
+        # bug firing mid-query) used to escape handle_search entirely. The
+        # framework's generic handler-error path then tried to speak this
+        # skill's "skill.error" dialog, which doesn't exist for any locale,
+        # so it fell back to literally saying "skill.error" out loud.
+        self.engine.query.side_effect = Exception("boom")
+        try:
+            self.skill.handle_search(_message({"word": "dog"}))
+        except Exception as e:  # noqa: BLE001
+            self.fail(f"handle_search must not let engine exceptions propagate: {e!r}")
+        self.skill.speak_dialog.assert_called_once_with("no_answer")
+        self.skill.speak.assert_not_called()
+
+
+# ---------------------------------------------------------------------------
+# Explicit intent — real skill, no mocked speak/speak_dialog
+# ---------------------------------------------------------------------------
+
+class TestHandleSearchNeverLeaksSkillError(unittest.TestCase):
+    """End-to-end guard against the literal "skill.error" leak.
+
+    Replays the exact dispatch path OVOS uses for a registered intent
+    handler (``ovos_utils.events.create_wrapper`` wrapping the handler with
+    the skill's own start/end/error callbacks, see
+    ``OVOSSkill.add_event``/``_on_event_error``) so this test exercises the
+    real framework fallback, not a mock of it. On the unfixed skill this
+    fails: it captures a spoken utterance literally equal to "skill.error",
+    because ``ovos_skill_wordnet`` ships no ``skill.error.dialog`` for any
+    locale and ``handle_search`` let the engine exception escape.
+    """
+
+    def setUp(self):
+        self.skill, self.engine = _make_skill()
+        self.spoken = []
+        self.skill.bus.on("speak", lambda m: self.spoken.append(m.data.get("utterance")))
+
+    def _dispatch_through_real_wrapper(self, message):
+        from ovos_utils.events import create_wrapper
+
+        skill_data = {"name": "handle_search"}
+
+        def on_start(msg):
+            pass
+
+        def on_end(msg):
+            pass
+
+        def on_error(error, msg):
+            self.skill._on_event_error(str(error), msg, "handle_search",
+                                       skill_data, speak_errors=True)
+
+        wrapper = create_wrapper(self.skill.handle_search, self.skill.skill_id,
+                                 on_start, on_end, on_error)
+        wrapper(message)
+
+    def test_engine_exception_never_speaks_literal_skill_error(self):
+        self.engine.query.side_effect = Exception("boom")
+        self._dispatch_through_real_wrapper(_message({"word": "dog"}))
+        self.assertNotIn("skill.error", self.spoken,
+                         f"leaked un-localized 'skill.error' literal: {self.spoken}")
+
+    def test_engine_exception_speaks_real_no_answer_dialog(self):
+        self.engine.query.side_effect = Exception("boom")
+        self._dispatch_through_real_wrapper(_message({"word": "dog"}))
+        no_answer_lines = _lines("no_answer.dialog")
+        self.assertTrue(self.spoken, "handle_search spoke nothing on engine failure")
+        self.assertIn(self.spoken[0], no_answer_lines,
+                      f"expected a real no_answer.dialog line, got {self.spoken[0]!r}")
+
 
 # ---------------------------------------------------------------------------
 # Common Query
@@ -243,6 +313,87 @@ class TestEnglishLocale(unittest.TestCase):
         det = " ".join(_lines("determiner.voc"))
         for d in ("this", "that", "these", "those"):
             self.assertIn(d, det, f"determiner {d!r} not covered")
+
+
+# ---------------------------------------------------------------------------
+# Known gap: unresolved.dialog locale coverage
+# ---------------------------------------------------------------------------
+
+LOCALE_ROOT = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+    "ovos_skill_wordnet", "locale",
+)
+
+
+class TestUnresolvedDialogLocaleCoverage(unittest.TestCase):
+    """Tracks the known "unresolved" locale-coverage gap.
+
+    handle_search speaks the "unresolved" dialog when the {word} slot is
+    empty or anaphoric. Only en-US and da-DK ship a real unresolved.dialog;
+    every other locale falls back to OVOS's missing-resource behavior, which
+    is to speak the raw dialog id ("unresolved") verbatim rather than a
+    sentence - not a crash, but still an un-localized string reaching the
+    user, same failure shape as the "skill.error" leak this PR otherwise
+    fixes.
+
+    HARD RULE: no machine-translated locale drafts. So this gap is
+    deliberately NOT closed by adding 29 auto-translated unresolved.dialog
+    files, and NOT closed by repointing the call at no_answer.dialog either
+    - "no answer" and "I didn't understand which word" are different
+    situations and conflating them would mislead the user about what went
+    wrong. This test just locks down the current, known state so the gap
+    is visible and doesn't silently grow (a locale added without
+    unresolved.dialog support should show up here) or silently shrink via
+    an unreviewed machine-translated file (a locale gaining the file
+    without going through this test list should also show up here).
+    """
+
+    def _locales(self):
+        return sorted(
+            d for d in os.listdir(LOCALE_ROOT)
+            if os.path.isdir(os.path.join(LOCALE_ROOT, d))
+        )
+
+    def test_unresolved_dialog_only_covers_en_and_da(self):
+        covered = {
+            loc for loc in self._locales()
+            if os.path.isfile(os.path.join(LOCALE_ROOT, loc, "unresolved.dialog"))
+        }
+        self.assertEqual(
+            covered, {"en-US", "da-DK"},
+            "unresolved.dialog locale coverage changed - if this is a new "
+            "human translation, update this test's expected set; if it's "
+            "machine-translated, it violates the no-machine-translation "
+            "rule and should not be merged"
+        )
+
+    def test_no_answer_dialog_covers_every_shipped_locale(self):
+        # Sanity check for the *other* branch's fallback: no_answer.dialog
+        # (spoken when the engine genuinely found nothing) must not have
+        # the same gap "unresolved" does.
+        locales = self._locales()
+        missing = [
+            loc for loc in locales
+            if not os.path.isfile(os.path.join(LOCALE_ROOT, loc, "no_answer.dialog"))
+        ]
+        self.assertEqual(missing, [], f"no_answer.dialog missing for: {missing}")
+
+    def test_unresolved_path_leaks_raw_dialog_id_outside_covered_locales(self):
+        # Documents (does not fix - see class docstring) the literal-string
+        # leak for the 29 locales without unresolved.dialog: OVOS's missing
+        # resource behavior speaks the dialog id itself, not a sentence.
+        skill, engine = _make_skill()
+        with patch.object(type(skill), "lang", new_callable=lambda: property(lambda s: "de-DE")):
+            captured = []
+            skill.bus.on("speak", lambda m: captured.append(m.data.get("utterance")))
+            skill.speak_dialog("unresolved")
+            self.assertEqual(
+                captured, ["unresolved"],
+                "expected the known raw-dialog-id leak for de-DE (no "
+                "unresolved.dialog shipped); if this now speaks a real "
+                "sentence, a translation was added - update "
+                "test_unresolved_dialog_only_covers_en_and_da's expected set"
+            )
 
 
 class TestCanAnswer(unittest.TestCase):
