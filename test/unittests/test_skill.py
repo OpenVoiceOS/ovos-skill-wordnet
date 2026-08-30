@@ -337,7 +337,7 @@ class TestUnresolvedDialogLocaleCoverage(unittest.TestCase):
     fixes.
 
     HARD RULE: no machine-translated locale drafts. So this gap is
-    deliberately NOT closed by adding 29 auto-translated unresolved.dialog
+    deliberately NOT closed by adding auto-translated unresolved.dialog
     files, and NOT closed by repointing the call at no_answer.dialog either
     - "no answer" and "I didn't understand which word" are different
     situations and conflating them would mislead the user about what went
@@ -360,7 +360,7 @@ class TestUnresolvedDialogLocaleCoverage(unittest.TestCase):
             if os.path.isfile(os.path.join(LOCALE_ROOT, loc, "unresolved.dialog"))
         }
         self.assertEqual(
-            covered, {"en-US", "da-DK"},
+            covered, {"en-US", "da-DK", "kab"},
             "unresolved.dialog locale coverage changed - if this is a new "
             "human translation, update this test's expected set; if it's "
             "machine-translated, it violates the no-machine-translation "
