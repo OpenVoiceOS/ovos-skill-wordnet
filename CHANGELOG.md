@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.6.3a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.6.3a2) (2026-08-30)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.6.3a1...0.6.3a2)
+
+**Merged pull requests:**
+
+- translate\(kab\): update no\_answer.dialog [\#101](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/101) ([ovos-localize[bot]](https://github.com/apps/ovos-localize))
+- translate\(kab\): update pronoun.voc [\#99](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/99) ([ovos-localize[bot]](https://github.com/apps/ovos-localize))
+
 ## [0.6.3a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.6.3a1) (2026-08-12)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.6.2a2...0.6.3a1)
