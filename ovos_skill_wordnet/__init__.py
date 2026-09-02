@@ -20,6 +20,14 @@ from ovos_workshop.decorators import intent_handler, common_query, fallback_hand
 from ovos_workshop.skills.fallback import FallbackSkill
 
 
+# OVOS-CONTEXT-1 shared-scope key holding the last word successfully looked
+# up, so a follow-up ("what does that mean", "spell that") can resolve
+# without repeating the word. Same shape as ovos-skill-days-in-history's
+# "prev_dialog" context: {value, turns_remaining}, decayed by the core after
+# a few turns rather than living for the rest of the session.
+PREV_WORD_CONTEXT = "prev_word"
+
+
 class WordnetSkill(FallbackSkill):
     """Voice interface to WordNet via ovos-wordnet-plugin."""
 
@@ -80,27 +88,34 @@ class WordnetSkill(FallbackSkill):
     def handle_search(self, message):
         # {word} is left unresolved (no key at all) when the utterance's slot
         # value is excluded by the matcher itself, same as an explicit
-        # anaphoric blacklist hit below — both re-prompt instead of crashing.
+        # anaphoric blacklist hit below — both fall back to the active
+        # "prev_word" conversation context before re-prompting.
         query = message.data.get("word", "")
         lang = self.lang
+        session = SessionManager.get(message)
         if not query.strip() or query.strip().lower() in self._slot_blacklist(lang):
-            # anaphoric slot value: leave {word} unresolved so a later stage
-            # can supply the referent active in the conversation
-            #
-            # KNOWN GAP: "unresolved" ("I did not catch which word you
-            # mean") only ships for en-US and da-DK. It is intentionally
-            # NOT "no_answer" ("word net does not know the answer") - that
-            # dialog means WordNet has no definition for a word it did
-            # understand, which is a different situation from never having
-            # understood which word was meant, and speaking it here would
-            # actively mislead the user about what went wrong. Until a human
-            # translator supplies the missing unresolved.dialog for the
-            # other 29 shipped locales, this path speaks the raw dialog id
-            # ("unresolved") in those locales rather than a sentence -
-            # tracked by test_unresolved_dialog_only_covers_en_and_da below,
-            # not silently patched over with a machine translation.
-            self.speak_dialog("unresolved")
-            return
+            # anaphoric slot value: try the word from the last successful
+            # lookup ("what does it mean" after "define serendipity" should
+            # resolve to "serendipity") before giving up on the referent.
+            entry = (session.intent_context or {}).get(PREV_WORD_CONTEXT)
+            if isinstance(entry, dict) and entry.get("value"):
+                query = entry["value"]
+            else:
+                # KNOWN GAP: "unresolved" ("I did not catch which word you
+                # mean") only ships for en-US and da-DK. It is intentionally
+                # NOT "no_answer" ("word net does not know the answer") - that
+                # dialog means WordNet has no definition for a word it did
+                # understand, which is a different situation from never
+                # having understood which word was meant, and speaking it
+                # here would actively mislead the user about what went
+                # wrong. Until a human translator supplies the missing
+                # unresolved.dialog for the other 29 shipped locales, this
+                # path speaks the raw dialog id ("unresolved") in those
+                # locales rather than a sentence - tracked by
+                # test_unresolved_dialog_only_covers_en_and_da below, not
+                # silently patched over with a machine translation.
+                self.speak_dialog("unresolved")
+                return
         # Mirror handle_fallback's try/except: an uncaught exception here
         # (e.g. the underlying wn sqlite connection racing with a concurrent
         # common_qa lookup on another thread) would otherwise propagate out
@@ -116,8 +131,28 @@ class WordnetSkill(FallbackSkill):
             results = []
         if results:
             self.speak(results[0][0])
+            session.set_intent_context(PREV_WORD_CONTEXT, query,
+                                       scope="shared", turns_remaining=3)
         else:
             self.speak_dialog("no_answer")
+
+    @intent_handler("spell_word.intent",
+                    requires_context=[{"key": PREV_WORD_CONTEXT, "scope": "shared"}])
+    def handle_spell_word_intent(self, message):
+        """Spell out the word from the active "prev_word" conversation context.
+
+        Gated on OVOS-CONTEXT-1 ``requires_context`` rather than a {word}
+        slot: "spell that"/"spell it" carry no word of their own, they only
+        make sense as a follow-up to a lookup that already set the context.
+        """
+        session = SessionManager.get(message)
+        entry = (session.intent_context or {}).get(PREV_WORD_CONTEXT)
+        if not isinstance(entry, dict) or not entry.get("value"):
+            self.speak_dialog("unresolved")
+            return
+        word = entry["value"]
+        letters = ", ".join(word.upper())
+        self.speak_dialog("spell.word", {"word": word, "letters": letters})
 
     # ------------------------------------------------------------------
     # Fallback

@@ -9,6 +9,7 @@ import unittest
 from unittest.mock import MagicMock, patch, call
 
 from ovos_bus_client.message import Message
+from ovos_bus_client.session import Session, SessionManager
 from ovos_utils.fakebus import FakeBus
 
 LOCALE_EN = os.path.join(
@@ -41,6 +42,12 @@ def _make_skill():
 
 def _message(data=None):
     return Message("ovos.skills.test", data=data or {})
+
+
+def _message_with_session(data, session):
+    msg = Message("ovos.skills.test", data=data or {})
+    msg.context["session"] = session.serialize()
+    return msg
 
 
 # ---------------------------------------------------------------------------
@@ -112,6 +119,84 @@ class TestHandleSearch(unittest.TestCase):
             self.fail(f"handle_search must not let engine exceptions propagate: {e!r}")
         self.skill.speak_dialog.assert_called_once_with("no_answer")
         self.skill.speak.assert_not_called()
+
+
+# ---------------------------------------------------------------------------
+# "prev_word" follow-up context
+# ---------------------------------------------------------------------------
+
+class TestPrevWordContext(unittest.TestCase):
+
+    def setUp(self):
+        self.skill, self.engine = _make_skill()
+        self.skill.speak = MagicMock()
+        self.skill.speak_dialog = MagicMock()
+
+    def test_successful_lookup_sets_prev_word_context(self):
+        self.engine.query.return_value = [("a loyal companion", 0.9)]
+        session = Session("s1")
+        self.skill.handle_search(_message_with_session({"word": "dog"}, session))
+        stored = SessionManager.sessions["s1"].intent_context.get("prev_word")
+        self.assertEqual(stored["value"], "dog")
+
+    def test_failed_lookup_does_not_set_prev_word_context(self):
+        self.engine.query.return_value = []
+        session = Session("s2")
+        self.skill.handle_search(_message_with_session({"word": "xyzzy"}, session))
+        self.assertNotIn("prev_word", SessionManager.sessions["s2"].intent_context or {})
+
+    def test_blacklisted_slot_resolves_from_prev_word_context(self):
+        session = Session("s3")
+        session.set_intent_context("prev_word", "serendipity", scope="shared")
+        self.engine.query.return_value = [("a fortunate accident", 0.9)]
+        self.skill.handle_search(_message_with_session({"word": "it"}, session))
+        self.skill.speak.assert_called_once_with("a fortunate accident")
+        self.skill.speak_dialog.assert_not_called()
+        self.engine.query.assert_called_once()
+        args, _ = self.engine.query.call_args
+        self.assertEqual(args[0], "serendipity")
+
+    def test_empty_slot_without_context_still_reprompts(self):
+        session = Session("s4")
+        self.skill.handle_search(_message_with_session({"word": ""}, session))
+        self.skill.speak_dialog.assert_called_once_with("unresolved")
+        self.skill.speak.assert_not_called()
+
+
+# ---------------------------------------------------------------------------
+# Context-gated spell intent
+# ---------------------------------------------------------------------------
+
+class TestSpellWordIntent(unittest.TestCase):
+
+    def setUp(self):
+        self.skill, self.engine = _make_skill()
+        self.skill.speak = MagicMock()
+        self.skill.speak_dialog = MagicMock()
+
+    def test_spells_word_from_prev_word_context(self):
+        session = Session("spell-1")
+        session.set_intent_context("prev_word", "cat", scope="shared")
+        self.skill.handle_spell_word_intent(_message_with_session({}, session))
+        self.skill.speak_dialog.assert_called_once_with(
+            "spell.word", {"word": "cat", "letters": "C, A, T"})
+
+    def test_reprompts_with_no_prev_word_context(self):
+        session = Session("spell-2")
+        self.skill.handle_spell_word_intent(_message_with_session({}, session))
+        self.skill.speak_dialog.assert_called_once_with("unresolved")
+
+    def test_spell_word_intent_file_has_no_word_slot(self):
+        # spell_word.intent is gated on context, not a {word} slot - the
+        # follow-up utterance itself never carries the word.
+        for line in _lines("spell_word.intent"):
+            self.assertNotIn("{word}", line)
+
+    def test_spell_word_dialog_uses_word_and_letters(self):
+        lines = _lines("spell.word.dialog")
+        self.assertEqual(len(lines), 1)
+        self.assertIn("{word}", lines[0])
+        self.assertIn("{letters}", lines[0])
 
 
 # ---------------------------------------------------------------------------
