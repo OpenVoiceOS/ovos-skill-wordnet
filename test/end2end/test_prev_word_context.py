@@ -10,24 +10,30 @@ prompts ("I did not catch which word you mean") exactly like the negative
 case below, because handle_search never saw a real word to remember.
 
 Verification is client-side (§3 CLIENT-MERGE): the test never reads the
-orchestrator's private ``SessionManager.sessions`` registry (that registry is
-default-session-only per spec and never holds a named session's state). It
-captures the session carrier off the skill's OWN done-signal
-(``mycroft.skill.handler.complete``, whose context is stamped with the live
-session once the handler has fully returned) and re-declares that captured
-session on the next turn's utterance, exactly as a real client would.
-``mycroft.skill.handler.complete`` is used over ``ovos.utterance.speak``
-because this skill's handler speaks BEFORE writing the "prev_word" context
-(speak-then-set order, unchanged); ``ovos.utterance.speak`` fires mid-handler
-and would race the context write, while ``handler.complete`` only fires after
-the handler function has fully returned.
+orchestrator's private ``SessionManager.sessions`` registry (a named,
+non-default session is never even registered there). It captures the
+session carried on the universal §9.5 ``ovos.utterance.handled`` end-marker
+via ``ovoscope``'s ``CaptureSession`` (which deserializes its own
+independent copy of every message off the bus, so it never shares object
+identity with whatever the orchestrator is still holding) and re-declares
+that captured session on the next turn's utterance, exactly as a real
+client would.
+
+``ovos.utterance.handled`` is the correct observation point, not the §8
+``ovos.intent.handler.complete`` terminal: the handler-lifecycle terminal is
+always ``Message.forward``-derived, and ``forward`` unconditionally
+re-stamps its derived message with whatever the *live* session currently
+holds (OVOS-MSG-1 §5.1's own bookkeeping) - so it reflects the write
+regardless of whether OVOS-SESSION-2 §2.6's completion sync ran. The §9.5
+end-marker is emitted from the plain dispatch snapshot instead, so it only
+carries the "prev_word" write once §2.6 has folded it in - the deciding
+observation point that actually depends on ovos-core>=3.2.5a1.
 """
-import time
 import uuid
 from unittest import TestCase
 
 from ovos_bus_client.message import Message
-from ovoscope import get_minicroft
+from ovoscope import CaptureSession, get_minicroft
 
 SKILL_ID = "ovos-skill-wordnet.openvoiceos"
 LANG = "en-US"
@@ -45,7 +51,6 @@ class TestPrevWordContext(TestCase):
         cls.skill = cls.minicroft.plugin_skills[SKILL_ID].instance
         cls.skill.engine.query = lambda *a, **k: [("a stubbed definition", 0.9)]
         cls.skill.engine.get_definition = lambda *a, **k: "a stubbed definition"
-        cls.bus = cls.minicroft.bus
 
     @classmethod
     def tearDownClass(cls):
@@ -54,35 +59,30 @@ class TestPrevWordContext(TestCase):
 
     def _say(self, utterance, session=None):
         """Emit ``utterance``, optionally re-declaring a ``session`` dict
-        captured from a previous turn's ``mycroft.skill.handler.complete``
-        (a fresh client-chosen session id is used when ``session`` is
+        captured from a previous turn's ``ovos.utterance.handled`` end-
+        marker (a fresh client-chosen session id is used when ``session`` is
         omitted, never one pulled from the orchestrator's registry).
 
         Returns ``(spoken_utterances, carried_session)`` where
-        ``carried_session`` is the session dict pulled off the skill's own
-        ``mycroft.skill.handler.complete`` message context for this turn
-        (the wire carrier of whatever ``intent_context`` the handler just
-        wrote, captured only after the handler has fully returned).
+        ``carried_session`` is the session dict pulled off this turn's
+        ``ovos.utterance.handled`` message context (the wire carrier of
+        whatever ``intent_context`` the handler just wrote, once
+        OVOS-SESSION-2 §2.6 has synced it into the round's working session).
         """
-        spoken = []
-        carried = {}
-
-        def _on_speak(m):
-            spoken.append(m.data.get("utterance", ""))
-
-        def _on_complete(m):
-            if m.context.get("session"):
-                carried.update(m.context["session"])
-
-        stop_speak = self.bus.on("speak", _on_speak)
-        stop_complete = self.bus.on("mycroft.skill.handler.complete", _on_complete)
         session = session or {"session_id": f"prev-word-{uuid.uuid4()}"}
-        self.bus.emit(Message("recognizer_loop:utterance",
-                              {"utterances": [utterance], "lang": LANG},
-                              {"session": session}))
-        time.sleep(3)
-        self.bus.remove("speak", stop_speak) if callable(stop_speak) else None
-        self.bus.remove("mycroft.skill.handler.complete", stop_complete) if callable(stop_complete) else None
+        msg = Message("recognizer_loop:utterance",
+                      {"utterances": [utterance], "lang": LANG},
+                      {"session": session})
+        capture = CaptureSession(self.minicroft, eof_msgs=["ovos.utterance.handled"])
+        capture.capture(msg, timeout=20)
+        responses = capture.finish()
+
+        spoken = [m.data.get("utterance", "") for m in responses
+                  if m.msg_type == "ovos.utterance.speak"]
+        carried = {}
+        for m in responses:
+            if m.msg_type == "ovos.utterance.handled" and m.context.get("session"):
+                carried.update(m.context["session"])
         return spoken, carried
 
     def test_followup_resolves_from_prev_word_context(self):

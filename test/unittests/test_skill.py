@@ -10,6 +10,8 @@ from unittest.mock import MagicMock, patch, call
 
 from ovos_bus_client.message import Message
 from ovos_bus_client.session import Session, SessionManager
+from ovos_core.intent_services.dispatcher import IntentDispatcher
+from ovos_core.intent_services.service import IntentService
 from ovos_utils.fakebus import FakeBus
 
 LOCALE_EN = os.path.join(
@@ -133,15 +135,18 @@ class TestPrevWordContext(unittest.TestCase):
         self.skill.speak_dialog = MagicMock()
 
     def _dispatch_and_capture(self, event, data, session):
-        """Emit ``event`` on the skill's own bus (a real intent dispatch,
-        not a direct method call) and capture the session carried on the
-        skill's ``mycroft.skill.handler.complete`` done-signal, which fires
-        only after the whole handler has returned - after any
-        ``intent_context`` write the handler made, regardless of whether
-        that write happens before or after the handler's own ``speak()``
-        call. This is the wire carrier of the handler's context write;
-        the orchestrator's private ``SessionManager.sessions`` registry is
-        never read.
+        """Drive ``event`` through the real ``IntentDispatcher`` (the same
+        §8 handler-lifecycle owner ovos-core wires up) and capture the
+        session carried on ``ovos.intent.handler.complete`` — the §8
+        terminal, which OVOS-SESSION-2 §2.6 has the orchestrator's
+        completion sync (``IntentService._sync_handler_mutations``, the real
+        production callback) fold the handler's ``intent_context`` write
+        into before this terminal fires. This is the wire carrier of the
+        handler's context write; the orchestrator's private
+        ``SessionManager.sessions`` registry is never read directly, and
+        ``mycroft.skill.handler.complete`` (ovos-workshop's own internal
+        done-signal to ovos-core, never a spec topic) is only consumed by
+        the dispatcher itself, exactly as in the real stack.
         """
         carried = {}
 
@@ -149,10 +154,17 @@ class TestPrevWordContext(unittest.TestCase):
             if m.context.get("session"):
                 carried.update(m.context["session"])
 
-        self.skill.bus.on("mycroft.skill.handler.complete", _on_complete)
+        self.skill.bus.on("ovos.intent.handler.complete", _on_complete)
+        dispatcher = IntentDispatcher(self.skill.bus, timeout=5,
+                                      on_done_signal=lambda done, dispatch:
+                                          IntentService._sync_handler_mutations(
+                                              None, done, dispatch))
         msg = Message(f"{self.skill.skill_id}:{event}", data=data or {})
         msg.context["session"] = session.serialize()
-        self.skill.bus.emit(msg)
+        try:
+            dispatcher.dispatch(msg, skill_id=self.skill.skill_id, intent_name=event)
+        finally:
+            dispatcher.shutdown()
         return carried
 
     def test_successful_lookup_sets_prev_word_context(self):
