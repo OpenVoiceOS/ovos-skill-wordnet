@@ -9,6 +9,9 @@ import unittest
 from unittest.mock import MagicMock, patch, call
 
 from ovos_bus_client.message import Message
+from ovos_bus_client.session import Session, SessionManager
+from ovos_core.intent_services.dispatcher import IntentDispatcher
+from ovos_core.intent_services.service import IntentService
 from ovos_utils.fakebus import FakeBus
 
 LOCALE_EN = os.path.join(
@@ -41,6 +44,12 @@ def _make_skill():
 
 def _message(data=None):
     return Message("ovos.skills.test", data=data or {})
+
+
+def _message_with_session(data, session):
+    msg = Message("ovos.skills.test", data=data or {})
+    msg.context["session"] = session.serialize()
+    return msg
 
 
 # ---------------------------------------------------------------------------
@@ -112,6 +121,117 @@ class TestHandleSearch(unittest.TestCase):
             self.fail(f"handle_search must not let engine exceptions propagate: {e!r}")
         self.skill.speak_dialog.assert_called_once_with("no_answer")
         self.skill.speak.assert_not_called()
+
+
+# ---------------------------------------------------------------------------
+# "prev_word" follow-up context
+# ---------------------------------------------------------------------------
+
+class TestPrevWordContext(unittest.TestCase):
+
+    def setUp(self):
+        self.skill, self.engine = _make_skill()
+        self.skill.speak = MagicMock()
+        self.skill.speak_dialog = MagicMock()
+
+    def _dispatch_and_capture(self, event, data, session):
+        """Drive ``event`` through the real ``IntentDispatcher`` (the same
+        §8 handler-lifecycle owner ovos-core wires up) and capture the
+        session carried on ``ovos.intent.handler.complete`` — the §8
+        terminal, which OVOS-SESSION-2 §2.6 has the orchestrator's
+        completion sync (``IntentService._sync_handler_mutations``, the real
+        production callback) fold the handler's ``intent_context`` write
+        into before this terminal fires. This is the wire carrier of the
+        handler's context write; the orchestrator's private
+        ``SessionManager.sessions`` registry is never read directly, and
+        ``mycroft.skill.handler.complete`` (ovos-workshop's own internal
+        done-signal to ovos-core, never a spec topic) is only consumed by
+        the dispatcher itself, exactly as in the real stack.
+        """
+        carried = {}
+
+        def _on_complete(m):
+            if m.context.get("session"):
+                carried.update(m.context["session"])
+
+        self.skill.bus.on("ovos.intent.handler.complete", _on_complete)
+        dispatcher = IntentDispatcher(self.skill.bus, timeout=5,
+                                      on_done_signal=lambda done, dispatch:
+                                          IntentService._sync_handler_mutations(
+                                              None, done, dispatch))
+        msg = Message(f"{self.skill.skill_id}:{event}", data=data or {})
+        msg.context["session"] = session.serialize()
+        try:
+            dispatcher.dispatch(msg, skill_id=self.skill.skill_id, intent_name=event)
+        finally:
+            dispatcher.shutdown()
+        return carried
+
+    def test_successful_lookup_sets_prev_word_context(self):
+        self.engine.query.return_value = [("a loyal companion", 0.9)]
+        session = Session("s1")
+        carried = self._dispatch_and_capture("search_wordnet", {"word": "dog"}, session)
+        stored = carried.get("intent_context", {}).get("prev_word")
+        self.assertEqual(stored["value"], "dog")
+
+    def test_failed_lookup_does_not_set_prev_word_context(self):
+        self.engine.query.return_value = []
+        session = Session("s2")
+        carried = self._dispatch_and_capture("search_wordnet", {"word": "xyzzy"}, session)
+        self.assertNotIn("prev_word", carried.get("intent_context", {}) or {})
+
+    def test_blacklisted_slot_resolves_from_prev_word_context(self):
+        session = Session("s3")
+        session.set_intent_context("prev_word", "serendipity", scope="shared")
+        self.engine.query.return_value = [("a fortunate accident", 0.9)]
+        self.skill.handle_search(_message_with_session({"word": "it"}, session))
+        self.skill.speak.assert_called_once_with("a fortunate accident")
+        self.skill.speak_dialog.assert_not_called()
+        self.engine.query.assert_called_once()
+        args, _ = self.engine.query.call_args
+        self.assertEqual(args[0], "serendipity")
+
+    def test_empty_slot_without_context_still_reprompts(self):
+        session = Session("s4")
+        self.skill.handle_search(_message_with_session({"word": ""}, session))
+        self.skill.speak_dialog.assert_called_once_with("unresolved")
+        self.skill.speak.assert_not_called()
+
+
+# ---------------------------------------------------------------------------
+# Context-gated spell intent
+# ---------------------------------------------------------------------------
+
+class TestSpellWordIntent(unittest.TestCase):
+
+    def setUp(self):
+        self.skill, self.engine = _make_skill()
+        self.skill.speak = MagicMock()
+        self.skill.speak_dialog = MagicMock()
+
+    def test_spells_word_from_prev_word_context(self):
+        session = Session("spell-1")
+        session.set_intent_context("prev_word", "cat", scope="shared")
+        self.skill.handle_spell_word_intent(_message_with_session({}, session))
+        self.skill.speak_dialog.assert_called_once_with(
+            "spell.word", {"word": "cat", "letters": "C, A, T"})
+
+    def test_reprompts_with_no_prev_word_context(self):
+        session = Session("spell-2")
+        self.skill.handle_spell_word_intent(_message_with_session({}, session))
+        self.skill.speak_dialog.assert_called_once_with("unresolved")
+
+    def test_spell_word_intent_file_has_no_word_slot(self):
+        # spell_word.intent is gated on context, not a {word} slot - the
+        # follow-up utterance itself never carries the word.
+        for line in _lines("spell_word.intent"):
+            self.assertNotIn("{word}", line)
+
+    def test_spell_word_dialog_uses_word_and_letters(self):
+        lines = _lines("spell.word.dialog")
+        self.assertEqual(len(lines), 1)
+        self.assertIn("{word}", lines[0])
+        self.assertIn("{letters}", lines[0])
 
 
 # ---------------------------------------------------------------------------
