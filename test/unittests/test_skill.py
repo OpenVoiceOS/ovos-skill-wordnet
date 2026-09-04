@@ -132,18 +132,41 @@ class TestPrevWordContext(unittest.TestCase):
         self.skill.speak = MagicMock()
         self.skill.speak_dialog = MagicMock()
 
+    def _dispatch_and_capture(self, event, data, session):
+        """Emit ``event`` on the skill's own bus (a real intent dispatch,
+        not a direct method call) and capture the session carried on the
+        skill's ``mycroft.skill.handler.complete`` done-signal, which fires
+        only after the whole handler has returned - after any
+        ``intent_context`` write the handler made, regardless of whether
+        that write happens before or after the handler's own ``speak()``
+        call. This is the wire carrier of the handler's context write;
+        the orchestrator's private ``SessionManager.sessions`` registry is
+        never read.
+        """
+        carried = {}
+
+        def _on_complete(m):
+            if m.context.get("session"):
+                carried.update(m.context["session"])
+
+        self.skill.bus.on("mycroft.skill.handler.complete", _on_complete)
+        msg = Message(f"{self.skill.skill_id}:{event}", data=data or {})
+        msg.context["session"] = session.serialize()
+        self.skill.bus.emit(msg)
+        return carried
+
     def test_successful_lookup_sets_prev_word_context(self):
         self.engine.query.return_value = [("a loyal companion", 0.9)]
         session = Session("s1")
-        self.skill.handle_search(_message_with_session({"word": "dog"}, session))
-        stored = SessionManager.sessions["s1"].intent_context.get("prev_word")
+        carried = self._dispatch_and_capture("search_wordnet", {"word": "dog"}, session)
+        stored = carried.get("intent_context", {}).get("prev_word")
         self.assertEqual(stored["value"], "dog")
 
     def test_failed_lookup_does_not_set_prev_word_context(self):
         self.engine.query.return_value = []
         session = Session("s2")
-        self.skill.handle_search(_message_with_session({"word": "xyzzy"}, session))
-        self.assertNotIn("prev_word", SessionManager.sessions["s2"].intent_context or {})
+        carried = self._dispatch_and_capture("search_wordnet", {"word": "xyzzy"}, session)
+        self.assertNotIn("prev_word", carried.get("intent_context", {}) or {})
 
     def test_blacklisted_slot_resolves_from_prev_word_context(self):
         session = Session("s3")
