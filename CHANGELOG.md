@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.4a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.6.4a1) (2026-09-07)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.6.3a5...0.6.4a1)
+
+**Merged pull requests:**
+
+- fix: ship unresolved.dialog in every locale [\#112](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/112) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.6.3a5](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.6.3a5) (2026-09-01)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.6.3a4...0.6.3a5)
