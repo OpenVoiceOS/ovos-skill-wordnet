@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.7.0a1) (2026-09-07)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.6.4a1...0.7.0a1)
+
+**Merged pull requests:**
+
+- feat: pt-BR locale parity [\#111](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/111) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.6.4a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.6.4a1) (2026-09-07)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.6.3a5...0.6.4a1)
