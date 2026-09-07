@@ -316,7 +316,7 @@ class TestEnglishLocale(unittest.TestCase):
 
 
 # ---------------------------------------------------------------------------
-# Known gap: unresolved.dialog locale coverage
+# Fallback dialog locale coverage
 # ---------------------------------------------------------------------------
 
 LOCALE_ROOT = os.path.join(
@@ -326,26 +326,17 @@ LOCALE_ROOT = os.path.join(
 
 
 class TestUnresolvedDialogLocaleCoverage(unittest.TestCase):
-    """Tracks the known "unresolved" locale-coverage gap.
+    """Every shipped locale must ship both fallback dialogs.
 
-    handle_search speaks the "unresolved" dialog when the {word} slot is
-    empty or anaphoric. Only en-US and da-DK ship a real unresolved.dialog;
-    every other locale falls back to OVOS's missing-resource behavior, which
-    is to speak the raw dialog id ("unresolved") verbatim rather than a
-    sentence - not a crash, but still an un-localized string reaching the
-    user, same failure shape as the "skill.error" leak this PR otherwise
-    fixes.
+    handle_search speaks "unresolved" when the {word} slot is empty or
+    anaphoric, and "no_answer" when the lookup engine genuinely found
+    nothing. A locale missing either file falls back to OVOS's
+    missing-resource behavior, which speaks the raw dialog id verbatim
+    instead of a sentence - an un-localized string reaching the user.
 
-    HARD RULE: no machine-translated locale drafts. So this gap is
-    deliberately NOT closed by adding auto-translated unresolved.dialog
-    files, and NOT closed by repointing the call at no_answer.dialog either
-    - "no answer" and "I didn't understand which word" are different
-    situations and conflating them would mislead the user about what went
-    wrong. This test just locks down the current, known state so the gap
-    is visible and doesn't silently grow (a locale added without
-    unresolved.dialog support should show up here) or silently shrink via
-    an unreviewed machine-translated file (a locale gaining the file
-    without going through this test list should also show up here).
+    The two dialogs describe different situations ("I didn't understand
+    which word you mean" vs "I don't know the answer to that word") and
+    must stay distinct: one is never a substitute for the other.
     """
 
     def _locales(self):
@@ -354,46 +345,20 @@ class TestUnresolvedDialogLocaleCoverage(unittest.TestCase):
             if os.path.isdir(os.path.join(LOCALE_ROOT, d))
         )
 
-    def test_unresolved_dialog_only_covers_en_and_da(self):
-        covered = {
+    def test_unresolved_dialog_covers_every_shipped_locale(self):
+        missing = [
             loc for loc in self._locales()
-            if os.path.isfile(os.path.join(LOCALE_ROOT, loc, "unresolved.dialog"))
-        }
-        self.assertEqual(
-            covered, {"en-US", "da-DK", "kab"},
-            "unresolved.dialog locale coverage changed - if this is a new "
-            "human translation, update this test's expected set; if it's "
-            "machine-translated, it violates the no-machine-translation "
-            "rule and should not be merged"
-        )
+            if not os.path.isfile(os.path.join(LOCALE_ROOT, loc, "unresolved.dialog"))
+        ]
+        self.assertEqual(missing, [], f"unresolved.dialog missing for: {missing}")
 
     def test_no_answer_dialog_covers_every_shipped_locale(self):
-        # Sanity check for the *other* branch's fallback: no_answer.dialog
-        # (spoken when the engine genuinely found nothing) must not have
-        # the same gap "unresolved" does.
         locales = self._locales()
         missing = [
             loc for loc in locales
             if not os.path.isfile(os.path.join(LOCALE_ROOT, loc, "no_answer.dialog"))
         ]
         self.assertEqual(missing, [], f"no_answer.dialog missing for: {missing}")
-
-    def test_unresolved_path_leaks_raw_dialog_id_outside_covered_locales(self):
-        # Documents (does not fix - see class docstring) the literal-string
-        # leak for the 29 locales without unresolved.dialog: OVOS's missing
-        # resource behavior speaks the dialog id itself, not a sentence.
-        skill, engine = _make_skill()
-        with patch.object(type(skill), "lang", new_callable=lambda: property(lambda s: "de-DE")):
-            captured = []
-            skill.bus.on("speak", lambda m: captured.append(m.data.get("utterance")))
-            skill.speak_dialog("unresolved")
-            self.assertEqual(
-                captured, ["unresolved"],
-                "expected the known raw-dialog-id leak for de-DE (no "
-                "unresolved.dialog shipped); if this now speaks a real "
-                "sentence, a translation was added - update "
-                "test_unresolved_dialog_only_covers_en_and_da's expected set"
-            )
 
 
 class TestCanAnswer(unittest.TestCase):
