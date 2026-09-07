@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.0a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.7.0a2) (2026-09-07)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.7.0a1...0.7.0a2)
+
+**Merged pull requests:**
+
+- Update dependency pytest to v9 [\#86](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/86) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [0.7.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.7.0a1) (2026-09-07)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.6.4a1...0.7.0a1)
