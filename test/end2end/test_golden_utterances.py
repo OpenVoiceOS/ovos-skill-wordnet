@@ -184,7 +184,13 @@ def _types(mc, text, session_id):
     )
     capture = CaptureSession(
         mc,
-        eof_msgs=["mycroft.skill.handler.start", "ovos.intent.unmatched"],
+        # ``ovos.intent.unmatched`` catches the no-match path; the matched
+        # path needs no extra eof topic here — ``terminal_signals`` (default
+        # True) already merges the universal §9.5 ``ovos.utterance.handled``
+        # end-marker in, which fires once for every utterance's lifecycle
+        # regardless of outcome. ``mycroft.skill.handler.start`` is an
+        # ovos-workshop-internal signal to ovos-core, never a spec topic.
+        eof_msgs=["ovos.intent.unmatched"],
         ignore_messages=_IGNORE,
     )
     capture.capture(utterance, timeout=30)
