@@ -92,6 +92,25 @@ class TestWordnetIntentRouting(_RoutingTest):
                       f"handler did not speak the lookup result: {spoken}")
 
 
+class TestSearchXBlacklist(_RoutingTest):
+    """search_wordnet.blacklist (OVOS-INTENT-2 §4.3) suppresses "search X
+    for Y" utterances that name another skill, and must not suppress a
+    genuine wordnet query.
+    """
+
+    def test_search_wikihow_is_not_claimed(self):
+        words, _ = self._run("search wikihow for how to tie a tie")
+        self.assertEqual(words, [], f"wikihow utterance was claimed: {words}")
+
+    def test_search_wordnet_still_matches(self):
+        words, _ = self._run("search wordnet for serendipity")
+        self.assertIn("serendipity", words)
+
+    def test_define_still_matches(self):
+        words, _ = self._run("define serendipity")
+        self.assertIn("serendipity", words)
+
+
 class TestPronounSlotExclusion(_RoutingTest):
     def test_pronoun_does_not_fill_word_slot(self):
         """``word.blacklist`` refuses an anaphoric pronoun in the {word} slot.
