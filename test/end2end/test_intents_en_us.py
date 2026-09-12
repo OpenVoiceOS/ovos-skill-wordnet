@@ -15,7 +15,16 @@ from ovoscope import get_minicroft
 
 SKILL_ID = "ovos-skill-wordnet.openvoiceos"
 LANG = "en-US"
-INTENT_EVENT = f"{SKILL_ID}:search_wordnet.intent"
+# OVOS-MSG-1 §2.1.1 builds the dispatch topic as <skill_id>:<intent_name>.
+# Which spelling reaches the wire depends on the workshop vintage in the
+# container: current workshop canonicalizes (no ".intent"), older releases
+# (9.3.0a2 and below) build the topic from the padatious resource FILENAME and
+# the authoring extension leaks onto the wire. The e2e suite pins
+# ovos-core>=2.2.4a1,<2.3.0, which resolves to a workshop that still emits the
+# legacy form, so the collector listens on both spellings -- the same
+# both-spellings tolerance the golden-utterance suite's _matches_intent uses.
+INTENT_EVENTS = (f"{SKILL_ID}:search_wordnet",
+                 f"{SKILL_ID}:search_wordnet.intent")
 PIPELINE = [
     "ovos-padatious-pipeline-plugin-high",
     "ovos-padatious-pipeline-plugin-medium",
@@ -44,8 +53,9 @@ class _RoutingTest(TestCase):
         """Emit ``utterance`` and collect the intent + speak messages it yields."""
         intents = []
         spoken = []
-        self.bus.on(INTENT_EVENT,
-                    lambda m: intents.append(m.data.get("word")))
+        for event in INTENT_EVENTS:
+            self.bus.on(event,
+                        lambda m: intents.append(m.data.get("word")))
         self.bus.on("speak",
                     lambda m: spoken.append(m.data.get("utterance", "")))
         session = Session(f"e2e-{abs(hash(utterance))}")
@@ -59,17 +69,27 @@ class _RoutingTest(TestCase):
 
 
 class TestWordnetIntentRouting(_RoutingTest):
+    # The dispatch message goes out before the handler runs, so the word in
+    # it proves routing only. The stubbed engine always answers "a stubbed
+    # definition": asserting it was spoken proves the handler looked the
+    # word up and spoke the result.
     def test_what_does_word_mean(self):
-        words, _ = self._run("what does serendipity mean")
+        words, spoken = self._run("what does serendipity mean")
         self.assertIn("serendipity", words)
+        self.assertIn("a stubbed definition", spoken,
+                      f"handler did not speak the lookup result: {spoken}")
 
     def test_define_word(self):
-        words, _ = self._run("define ephemeral")
+        words, spoken = self._run("define ephemeral")
         self.assertIn("ephemeral", words)
+        self.assertIn("a stubbed definition", spoken,
+                      f"handler did not speak the lookup result: {spoken}")
 
     def test_synonym_of_word(self):
-        words, _ = self._run("synonym of happy")
+        words, spoken = self._run("synonym of happy")
         self.assertIn("happy", words)
+        self.assertIn("a stubbed definition", spoken,
+                      f"handler did not speak the lookup result: {spoken}")
 
 
 class TestPronounSlotExclusion(_RoutingTest):
