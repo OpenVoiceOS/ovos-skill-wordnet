@@ -15,7 +15,16 @@ from ovoscope import get_minicroft
 
 SKILL_ID = "ovos-skill-wordnet.openvoiceos"
 LANG = "en-US"
-INTENT_EVENT = f"{SKILL_ID}:search_wordnet.intent"
+# OVOS-MSG-1 §2.1.1 builds the dispatch topic as <skill_id>:<intent_name>.
+# Which spelling reaches the wire depends on the workshop vintage in the
+# container: current workshop canonicalizes (no ".intent"), older releases
+# (9.3.0a2 and below) build the topic from the padatious resource FILENAME and
+# the authoring extension leaks onto the wire. The e2e suite pins
+# ovos-core>=2.2.4a1,<2.3.0, which resolves to a workshop that still emits the
+# legacy form, so the collector listens on both spellings -- the same
+# both-spellings tolerance the golden-utterance suite's _matches_intent uses.
+INTENT_EVENTS = (f"{SKILL_ID}:search_wordnet",
+                 f"{SKILL_ID}:search_wordnet.intent")
 PIPELINE = [
     "ovos-padatious-pipeline-plugin-high",
     "ovos-padatious-pipeline-plugin-medium",
@@ -44,8 +53,9 @@ class _RoutingTest(TestCase):
         """Emit ``utterance`` and collect the intent + speak messages it yields."""
         intents = []
         spoken = []
-        self.bus.on(INTENT_EVENT,
-                    lambda m: intents.append(m.data.get("word")))
+        for event in INTENT_EVENTS:
+            self.bus.on(event,
+                        lambda m: intents.append(m.data.get("word")))
         self.bus.on("speak",
                     lambda m: spoken.append(m.data.get("utterance", "")))
         session = Session(f"e2e-{abs(hash(utterance))}")
