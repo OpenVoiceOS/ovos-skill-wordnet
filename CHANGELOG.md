@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.2a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.7.2a1) (2026-09-13)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.7.1a1...0.7.2a1)
+
+**Merged pull requests:**
+
+- fix: end2end intent test listens on wrong dispatch topic [\#117](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/117) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.7.1a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.7.1a1) (2026-09-13)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.7.0a2...0.7.1a1)
