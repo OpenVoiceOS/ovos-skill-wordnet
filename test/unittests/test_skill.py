@@ -246,7 +246,7 @@ class TestFallback(unittest.TestCase):
         self._fallback_msg("what is the meaning of happy", lang="en-US")
         self.skill.voc_match.assert_called_once()
         args = self.skill.voc_match.call_args[0]
-        self.assertIn("WordnetQuery", args)
+        self.assertIn("wordnet_query", args)
 
     def test_engine_called_with_full_utterance(self):
         self.skill.voc_match.return_value = True

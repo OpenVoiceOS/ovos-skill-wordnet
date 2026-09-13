@@ -10,7 +10,7 @@ The skill supports three answer modes:
 
 - **Explicit intent** handles utterances that name WordNet directly (for example, "ask wordnet about dog"). These always go to this skill. The plugin's built-in intent parser detects the relation type (definition, antonym, hypernym, and more) and returns a spoken-language response.
 - **Common Query** handles dictionary-style questions through the [OVOS Common Query pipeline](https://github.com/OpenVoiceOS/ovos-common-query-pipeline-plugin). It competes with other knowledge skills and returns confidence 0.6 for definition matches.
-- **Fallback** catches utterances that no other skill answers. The fallback handler intercepts utterances that match `WordnetQuery.voc` (dictionary and thesaurus keywords) and queries the plugin for an answer before OVOS says "I don't know".
+- **Fallback** catches utterances that no other skill answers. The fallback handler intercepts utterances that match `wordnet_query.voc` (dictionary and thesaurus keywords) and queries the plugin for an answer before OVOS says "I don't know".
 
 ---
 

@@ -10,7 +10,7 @@ The WordNet backend is fully offline (local corpus via
 ``ovos-wordnet-plugin``, ``runtime_requirements.requires_internet=False``),
 but ``engine.query``/``engine.get_definition`` are still stubbed for
 determinism, same as ``test_intents_en_us.py``. Unlike ovos-skill-wolfie,
-``can_answer``/the fallback handler gate on a specific ``WordnetQuery`` vocab
+``can_answer``/the fallback handler gate on a specific ``wordnet_query`` vocab
 match rather than "any word with a definition", so they're much less likely
 to over-claim negatives -- but the stub keeps the suite from depending on
 what words are actually in the bundled WordNet corpus.

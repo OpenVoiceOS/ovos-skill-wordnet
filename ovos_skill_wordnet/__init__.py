@@ -128,7 +128,7 @@ class WordnetSkill(FallbackSkill):
         # the same vocab guard the handler does. The lookup itself is left to
         # the handler.
         utterance = message.data["utterances"][0]
-        return self.voc_match(utterance, "WordnetQuery",
+        return self.voc_match(utterance, "wordnet_query",
                               lang=SessionManager.get(message).lang)
 
     @fallback_handler(priority=90)
@@ -137,7 +137,7 @@ class WordnetSkill(FallbackSkill):
         sess = SessionManager.get(message)
         lang = sess.lang
 
-        if not self.voc_match(utterance, "WordnetQuery", lang=lang):
+        if not self.voc_match(utterance, "wordnet_query", lang=lang):
             return False
 
         try:
