@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.8.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.8.0a1) (2026-09-13)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.7.2a1...0.8.0a1)
+
+**Merged pull requests:**
+
+- feat\(locale\): parity for ovos-skill-wordnet \(10 locales\) [\#122](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/122) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.7.2a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.7.2a1) (2026-09-13)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.7.1a1...0.7.2a1)
