@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.8.1a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.8.1a1) (2026-09-13)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.8.0a1...0.8.1a1)
+
+**Merged pull requests:**
+
+- fix\(locale\): determiner and pronoun vocs after \#122 [\#124](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/124) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.8.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.8.0a1) (2026-09-13)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.7.2a1...0.8.0a1)
