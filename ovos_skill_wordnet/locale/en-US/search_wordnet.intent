@@ -1,0 +1,12 @@
+ask (word net|wordnet) about {word}
+search (word net|wordnet) for {word}
+what does (word net|wordnet) say about {word}
+define {word}
+describe {word}
+what does {word} mean
+what does {word} stand for
+what is a {word}
+what is the (definition|meaning) of {word}
+(definition|meaning) of {word}
+what is the (synonym|antonym|opposite) of {word}
+(synonym|synonyms|antonym|antonyms|opposite|opposites) of {word}
