@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.8.1a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.8.1a2) (2026-09-14)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.8.1a1...0.8.1a2)
+
+**Merged pull requests:**
+
+- translate\(kab\): update search\_wordnet.intent [\#126](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/126) ([ovos-localize[bot]](https://github.com/apps/ovos-localize))
+
 ## [0.8.1a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.8.1a1) (2026-09-13)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.8.0a1...0.8.1a1)
