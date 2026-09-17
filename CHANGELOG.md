@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.10.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.10.0a1) (2026-09-17)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.9.0a1...0.10.0a1)
+
+**Merged pull requests:**
+
+- feat\(locale\): fill de-DE, es-ES, gl-ES, eu-ES and ca-ES gaps against en-US [\#130](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/130) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- feat\(locale\): fill el-GR, pl-PL and ro-RO gaps against en-US [\#129](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/129) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.9.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.9.0a1) (2026-09-17)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.8.1a2...0.9.0a1)
@@ -503,10 +512,6 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.10...0.0.11a1)
 
-**Merged pull requests:**
-
-- da-dk/translate [\#24](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/24) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
-
 ## [0.0.10](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.10) (2024-11-19)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.9...0.0.10)
@@ -515,25 +520,13 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.9a1...0.0.9)
 
-**Merged pull requests:**
-
-- Release 0.0.9a1 [\#23](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/23) ([github-actions[bot]](https://github.com/apps/github-actions))
-
 ## [0.0.9a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.9a1) (2024-11-19)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.8...0.0.9a1)
 
-**Merged pull requests:**
-
-- fix:allow workshop 3.0.0 [\#22](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/22) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [0.0.8](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.8) (2024-11-15)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.8a1...0.0.8)
-
-**Merged pull requests:**
-
-- Release 0.0.8a1 [\#21](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/21) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [0.0.8a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.8a1) (2024-11-15)
 
