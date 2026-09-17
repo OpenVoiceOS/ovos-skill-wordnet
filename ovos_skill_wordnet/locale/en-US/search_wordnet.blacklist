@@ -1,0 +1,10 @@
+# Phrases that MUST NOT trigger search_wordnet.intent
+# (intent-suppression blacklist, OVOS-INTENT-2 §4.3).
+#
+# padatious scores "search (word net|wordnet) for {word}" against ANY
+# "search X for Y" utterance via bag-of-words overlap on the phrase shape,
+# even when neither "word net" nor "wordnet" appears in the utterance
+# (confirmed: "search wikihow for something" scores 0.72-0.80 confidence
+# with no wordnet token present at all). That utterance names a different
+# skill (ovos-skill-wikihow) and must never be claimed here.
+(wiki how|wikihow)
