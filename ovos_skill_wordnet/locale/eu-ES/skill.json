@@ -1,0 +1,15 @@
+{
+  "skill_id": "ovos-skill-wordnet.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-wordnet",
+  "name": "Wordnet trebetasuna",
+  "description": "Erabili Wordnet hiztegi motako galderak erantzuteko.",
+  "examples": [
+    "zein da ... hitzaren definizioa",
+    "zein da ... hitzaren antonimoa"
+  ],
+  "tags": [
+    "Wordnet",
+    "kontsulta",
+    "informazioa"
+  ]
+}
