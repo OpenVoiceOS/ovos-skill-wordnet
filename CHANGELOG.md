@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.12.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.12.0a1) (2026-09-17)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.11.0a1...0.12.0a1)
+
+**Merged pull requests:**
+
+- feat\(locale\): fill da-DK, fr-FR, sv-SE and it-IT gaps against en-US [\#128](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/128) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.11.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.11.0a1) (2026-09-17)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.10.0a1...0.11.0a1)
+
 ## [0.10.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.10.0a1) (2026-09-17)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.9.0a1...0.10.0a1)
@@ -498,15 +510,10 @@
 **Merged pull requests:**
 
 - Add Catalan strings [\#27](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/27) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
-- Add Catalan strings [\#26](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/26) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
 
 ## [0.0.11](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.11) (2024-11-25)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.11a1...0.0.11)
-
-**Merged pull requests:**
-
-- Release 0.0.11a1 [\#25](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/25) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [0.0.11a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.11a1) (2024-11-25)
 
