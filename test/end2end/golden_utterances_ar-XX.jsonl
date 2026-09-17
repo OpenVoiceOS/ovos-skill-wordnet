@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "ابحث في ووردنت عن كتاب", "lang": "ar-XX", "intent_label": "search_wordnet.intent", "intent_type": "padacioso", "needs_manual": false, "machine_generated": false}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "ابحث في ووردنت عن كتاب, تعريف", "lang": "ar-XX", "intent_label": "search_wordnet.intent", "intent_type": "padacioso", "needs_manual": false, "machine_generated": false}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "ابحث في ووردنت عن بيت", "lang": "ar-XX", "intent_label": "search_wordnet.intent", "intent_type": "padacioso", "needs_manual": false, "machine_generated": false}
