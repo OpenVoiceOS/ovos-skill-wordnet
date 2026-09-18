@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.12.1a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.12.1a1) (2026-09-18)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.12.0a1...0.12.1a1)
+
+**Merged pull requests:**
+
+- fix: lift the test-extra caps onto the current alpha line [\#137](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/137) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.12.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.12.0a1) (2026-09-17)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.11.0a1...0.12.0a1)
@@ -499,17 +507,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.12a1...0.0.12a2)
 
-**Merged pull requests:**
-
-- de-de/translate [\#28](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/28) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
-
 ## [0.0.12a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.12a1) (2024-11-27)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.11...0.0.12a1)
-
-**Merged pull requests:**
-
-- Add Catalan strings [\#27](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/27) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
 
 ## [0.0.11](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.11) (2024-11-25)
 
