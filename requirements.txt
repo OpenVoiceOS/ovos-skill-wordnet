@@ -1,3 +1,0 @@
-ovos_workshop>=3.3.0,<8.0.0
-ovos-translate-server-plugin
-ovos-plugin-manager>=0.0.26,<3.0.0
