@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.13.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.13.0a1) (2026-09-18)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.12.1a1...0.13.0a1)
+
+**Merged pull requests:**
+
+- feat\(locale\): fill determiner.voc, pronoun.voc and word.blacklist for 16 locales against en-US [\#139](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/139) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.12.1a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.12.1a1) (2026-09-18)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.12.0a1...0.12.1a1)
@@ -491,17 +499,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.12...0.0.13a1)
 
-**Merged pull requests:**
-
-- import galician translations [\#30](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/30) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [0.0.12](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.12) (2024-11-30)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.12a2...0.0.12)
-
-**Merged pull requests:**
-
-- Release 0.0.12a2 [\#29](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/29) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [0.0.12a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.12a2) (2024-11-30)
 
