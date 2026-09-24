@@ -28,14 +28,26 @@ def _lines(name):
 # Helpers
 # ---------------------------------------------------------------------------
 
-def _make_skill():
-    """Instantiate WordnetSkill with a mocked engine and a FakeBus."""
+def _make_skill(testcase):
+    """Instantiate WordnetSkill with a mocked engine and a FakeBus.
+
+    ``OVOSSkill.__del__`` runs ``shutdown()``/``default_shutdown()`` (which
+    log) if nothing shut the skill down already. Left to the garbage
+    collector, that call lands whenever the skill object's reference cycle
+    (skill <-> bus <-> bound event handlers) is next swept, which can be
+    mid-iteration of an unrelated dict elsewhere (e.g. pytest's log-capture
+    fixture walking ``logging.Logger.manager.loggerDict``) and raises
+    "dictionary changed size during iteration". Shutting the skill down
+    deterministically here, before the reference cycle can outlive the test,
+    avoids that race.
+    """
     with patch("ovos_skill_wordnet.WordnetRetrievalEngine") as mock_cls:
         mock_engine = MagicMock()
         mock_cls.return_value = mock_engine
         from ovos_skill_wordnet import WordnetSkill
         skill = WordnetSkill(bus=FakeBus(), skill_id="test.wordnet")
         skill.engine = mock_engine
+        testcase.addCleanup(skill.default_shutdown)
         return skill, mock_engine
 
 
@@ -50,11 +62,11 @@ def _message(data=None):
 class TestSkillInit(unittest.TestCase):
 
     def test_engine_created_on_initialize(self):
-        skill, engine = _make_skill()
+        skill, engine = _make_skill(self)
         self.assertIsNotNone(skill.engine)
 
     def test_runtime_requirements_offline(self):
-        skill, _ = _make_skill()
+        skill, _ = _make_skill(self)
         req = skill.runtime_requirements
         self.assertFalse(req.requires_internet)
         self.assertFalse(req.requires_network)
@@ -69,7 +81,7 @@ class TestSkillInit(unittest.TestCase):
 class TestHandleSearch(unittest.TestCase):
 
     def setUp(self):
-        self.skill, self.engine = _make_skill()
+        self.skill, self.engine = _make_skill(self)
         self.skill.speak = MagicMock()
         self.skill.speak_dialog = MagicMock()
 
@@ -132,7 +144,7 @@ class TestHandleSearchNeverLeaksSkillError(unittest.TestCase):
     """
 
     def setUp(self):
-        self.skill, self.engine = _make_skill()
+        self.skill, self.engine = _make_skill(self)
         self.spoken = []
         self.skill.bus.on("speak", lambda m: self.spoken.append(m.data.get("utterance")))
 
@@ -177,7 +189,7 @@ class TestHandleSearchNeverLeaksSkillError(unittest.TestCase):
 class TestMatchCommonQuery(unittest.TestCase):
 
     def setUp(self):
-        self.skill, self.engine = _make_skill()
+        self.skill, self.engine = _make_skill(self)
 
     def test_returns_definition_with_confidence(self):
         self.engine.get_definition.return_value = "a domestic canine"
@@ -210,7 +222,7 @@ class TestMatchCommonQuery(unittest.TestCase):
 class TestFallback(unittest.TestCase):
 
     def setUp(self):
-        self.skill, self.engine = _make_skill()
+        self.skill, self.engine = _make_skill(self)
         self.skill.speak = MagicMock()
         self.skill.voc_match = MagicMock()
 
@@ -368,7 +380,7 @@ class TestCanAnswer(unittest.TestCase):
     error the user ever sees."""
 
     def setUp(self):
-        self.skill, self.engine = _make_skill()
+        self.skill, self.engine = _make_skill(self)
 
     def _ping(self, utterance):
         return Message("ovos.skills.fallback.ping",
@@ -393,6 +405,36 @@ class TestCanAnswer(unittest.TestCase):
         self.assertEqual(len(replies), 1)
         self.assertTrue(replies[0].data["can_handle"])
         self.assertEqual(replies[0].data["skill_id"], "test.wordnet")
+
+
+# ---------------------------------------------------------------------------
+# Regression: a skill built by _make_skill() must be shut down deterministically
+# by the end of the test, not left for __del__ to shut down at some later,
+# unpredictable point (a background thread dropping the bus's last reference
+# to the skill, or the cyclic garbage collector). A skill still holding a
+# reference cycle when __del__ eventually fires logs a "shutting down"
+# message, which can mutate logging.Logger.manager.loggerDict while pytest's
+# log-capture fixture is iterating that same dict elsewhere (raising
+# "dictionary changed size during iteration" from contextlib.py, exactly the
+# failure this reproduced under the coverage job). Calling
+# ``default_shutdown()`` sets ``OVOSSkill._shutdown_done``, so a later
+# ``__del__`` -- on any thread, at any time -- no-ops instead of logging.
+# ---------------------------------------------------------------------------
+
+class TestMakeSkillShutsDownDeterministically(unittest.TestCase):
+
+    def test_skill_is_shut_down_by_end_of_test(self):
+        skill, _ = _make_skill(self)
+        self.assertFalse(skill._shutdown_done)
+        self.doCleanups()  # runs what _make_skill(self) registered via addCleanup
+        self.assertTrue(skill._shutdown_done)
+
+    def test_shutdown_done_makes_a_later_del_a_no_op(self):
+        skill, _ = _make_skill(self)
+        self.doCleanups()
+        skill.log.info = MagicMock()
+        skill.__del__()  # simulates __del__ firing again later, e.g. from the GC
+        skill.log.info.assert_not_called()
 
 
 if __name__ == "__main__":
