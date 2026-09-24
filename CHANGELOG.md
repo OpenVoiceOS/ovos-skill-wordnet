@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.13.0a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.13.0a2) (2026-09-24)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.13.0a1...0.13.0a2)
+
+**Merged pull requests:**
+
+- test: coverage job no longer trips a dict mutation in TestHandleSearch setup [\#141](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/141) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.13.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.13.0a1) (2026-09-18)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.12.1a1...0.13.0a1)
@@ -475,25 +483,13 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.14a1...0.0.14)
 
-**Merged pull requests:**
-
-- Release 0.0.14a1 [\#33](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/33) ([github-actions[bot]](https://github.com/apps/github-actions))
-
 ## [0.0.14a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.14a1) (2024-12-02)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.13...0.0.14a1)
 
-**Merged pull requests:**
-
-- import basque translations [\#32](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/32) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [0.0.13](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.13) (2024-12-02)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.13a1...0.0.13)
-
-**Merged pull requests:**
-
-- Release 0.0.13a1 [\#31](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/31) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [0.0.13a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.13a1) (2024-12-02)
 
