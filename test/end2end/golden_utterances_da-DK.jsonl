@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "hvad siger word net om hund", "lang": "da-DK", "intent_label": "search_wordnet.intent", "intent_type": "padacioso", "needs_manual": false, "machine_generated": false}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "hvad siger word net om hund, definition", "lang": "da-DK", "intent_label": "search_wordnet.intent", "intent_type": "padacioso", "needs_manual": false, "machine_generated": false}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "spørg word net om hus", "lang": "da-DK", "intent_label": "search_wordnet.intent", "intent_type": "padacioso", "needs_manual": false, "machine_generated": false}
