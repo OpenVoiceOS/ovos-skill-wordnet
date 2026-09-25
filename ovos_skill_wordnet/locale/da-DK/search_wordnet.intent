@@ -4,3 +4,22 @@ spørg word net om {word}
 spørg wordnet om {word}
 søg i wordnet efter {word}
 søgeord net for {word}
+# machine translation from en-US, unvouched
+definere {word}
+beskriv {word}
+hvad betyder {word} betyder
+hvad betyder {word} står for
+hvad er et {word}
+hvad er definitionen af {word}
+hvad er betydningen af {word}
+definition af {word}
+betydning af {word}
+hvad er synonymet for {word}
+hvad er antonym for {word}
+hvad er det modsatte af {word}
+synonymt med {word}
+synonymer for {word}
+antonym for {word}
+antonymer af {word}
+modsat {word}
+modsætninger til {word}

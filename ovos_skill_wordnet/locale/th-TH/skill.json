@@ -1,0 +1,15 @@
+{
+  "skill_id": "ovos-skill-wordnet.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-wordnet",
+  "name": "หลักสูตร",
+  "description": "ใช้ Wordnet เพื่อตอบคําถามเช่นคําพูด",
+  "examples": [
+    "what is the definition of ...",
+    "what is the antonym of ..."
+  ],
+  "tags": [
+    "Wordnet",
+    "query",
+    "information"
+  ]
+}

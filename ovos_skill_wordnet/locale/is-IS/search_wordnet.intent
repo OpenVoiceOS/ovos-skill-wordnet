@@ -1,2 +1,19 @@
 leita í WordNet að {word}
 spyrja WordNet um {word}
+# machine translation from en-US, unvouched
+Skilgreindu {word}
+Lýsing {word}
+hvað inniheldur {word}
+hvað stendur fyrir {word}
+hvað er {word}
+hver er skilgreiningin á {word}
+hvað er merking {word}
+skilgreining á {word}
+Merking {word}
+hvað er samheitamál {word}
+hvað er mainom af {word}
+hvað er andstæða við {word}
+Samheiti {word}
+nafnorð {word}
+öfugt við {word}
+gagnstæður við {word}

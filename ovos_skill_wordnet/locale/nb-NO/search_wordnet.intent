@@ -1,2 +1,21 @@
 søk i WordNet etter {word}
 spør WordNet om {word}
+# machine translation from en-US, unvouched
+velg {word}
+beskriv {word}
+hva betyr {word}?
+hva står {word} for
+hva er et {word}
+hva er definisjonen av {word}
+hva er betydningen av {word}?
+definisjon av {word}
+betydningen av {word}
+hva er synonymet til {word}
+hva er antonymet til {word}
+hva er det motsatte av {word}?
+synonym til {word}
+synonymer til {word}
+antonym of {word}
+antonymer av {word}
+motsatt av {word}
+motsatte av {word}

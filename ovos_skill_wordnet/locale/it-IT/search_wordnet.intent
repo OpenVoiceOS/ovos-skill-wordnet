@@ -5,3 +5,21 @@ che cosa dice wordnet su {word}
 che cosa dice net su {word}
 chiedere parola net su {word}
 parola di ricerca net per {word}
+# machine translation from en-US, unvouched
+definisce {word}
+descrivere {word}
+che cosa significa {word}
+che cosa sta per {word}
+che cos'è una {word}
+qual è la definizione di {word}
+definizione di {word}
+significato di {word}
+qual è il sinonimo di {word}
+che cos'è l'antonimo di {word}
+qual è l'opposto di {word}
+sinonimo di {word}
+sinonimi di {word}
+antonimo di {word}
+antonimi di {word}
+opposto a {word}
+opposti di {word}

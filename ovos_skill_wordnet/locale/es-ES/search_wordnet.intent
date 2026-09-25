@@ -4,3 +4,20 @@ Pregunta a Word Net sobre {word}
 Pregunta a WordNet sobre {word}
 ¿Qué dice Word Net sobre {word}?
 ¿Qué dice WordNet sobre {word}?
+# machine translation from en-US, unvouched
+definir {word}
+Describa {word}
+¿Qué significa {word}
+¿Cuál es la definición de {word}
+¿Cuál es el significado de {word}
+definición de {word}
+significa {word}
+¿cuál es el sinónimo de {word}
+¿Cuál es el antónimo de {word}
+¿Qué es lo contrario de {word}
+sinónimo de {word}
+sinónimos de {word}
+antónimo de {word}
+antónimos de {word}
+opuesta a {word}
+opuestos de {word}

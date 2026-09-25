@@ -1,2 +1,21 @@
 søk i WordNet etter {word}
 spør WordNet om {word}
+# machine translation from en-US, unvouched
+definer {word}
+skildrar {word}
+kva tyder {word}
+Kva fungerer {word}
+Kva er eit {word}
+kva er definisjonen av {word}
+kva er meininga av {word}
+definisjon av {word}
+seik av {word}
+Kva er synonymet til {word}?
+kva er antonymet til {word}
+kva er det motsatte av {word}
+synonymt til {word}
+synonym av {word}
+antonym of {word}
+antonym for {word}
+motsett av {word}
+motset av {word}

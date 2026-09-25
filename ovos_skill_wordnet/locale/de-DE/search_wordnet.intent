@@ -4,3 +4,22 @@ Suche im word net nach {word}
 frage word net nach {word}
 was sagt Wordnet über {word}
 was sagt word net über {word}
+# machine translation from en-US, unvouched
+definieren {word}
+Beschreibung {word}
+was bedeutet {word}
+wofür steht {word}
+was ist ein {word}
+was ist die Definition von {word}
+was ist die Bedeutung von {word}
+Definition von {word}
+Bedeutung von {word}
+was ist das Synonym von {word}
+was ist der Antonym von {word}
+was ist das Gegenteil von {word}
+Synonym von {word}
+Synonyme von {word}
+Antonym von {word}
+Antonyme von {word}
+gegenüber {word}
+Gegensätze von {word}

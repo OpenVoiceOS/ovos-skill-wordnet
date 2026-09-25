@@ -1,2 +1,20 @@
 sök i WordNet efter {word}
 fråga WordNet om {word}
+# machine translation from en-US, unvouched
+definiera {word}
+beskriva {word}
+vad {word} betyder
+vad står {word} för
+vad är ett {word}
+vad är definitionen av {word}
+vad är innebörden av {word}
+definition av {word}
+betydelse av {word}
+vad är synonymen till {word}
+Vad är anonymt {word}
+vad är motsatsen till {word}
+synonym till {word}
+synonymer till {word}
+Antonym för {word}
+motsatt {word}
+motsatser till {word}

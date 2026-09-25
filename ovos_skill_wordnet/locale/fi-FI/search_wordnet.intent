@@ -1,2 +1,20 @@
 hae WordNetistä {word}
 kysy WordNetiltä {word}
+# machine translation from en-US, unvouched
+Määrittele {word}
+kuvaile {word}
+Mitä {word} tarkoittaa
+mikä on {word}
+Mikä on {word} määritelmä
+Mitä tarkoittaa {word}
+{word} määritelmä
+{word} merkitys
+mikä on {word} synonyymi
+mikä on {word} muurahaisuus
+mikä on {word} vastakohta
+{word} synonyymi
+{word} synonyymit
+{word} anonyymi
+{word} anonyymit
+{word} vastakohta
+{word} vastakohdat

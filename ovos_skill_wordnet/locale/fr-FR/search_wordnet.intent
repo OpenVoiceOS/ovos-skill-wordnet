@@ -2,3 +2,22 @@ Demande à WordNet des informations sur {word}
 Interroge WordNet sur {word}
 Cherche {word} dans WordNet
 Que dit WordNet sur {word}
+# machine translation from en-US, unvouched
+définir {word}
+décrire {word}
+que signifie {word}
+que représente {word}
+ce qui est un {word}
+quelle est la définition de {word}
+ce qui est le sens de {word}
+définition de {word}
+signification de {word}
+quel est le synonyme de {word}
+quel est l'anonymat de {word}
+ce qui est le contraire de {word}
+synonyme de {word}
+synonymes de {word}
+anonyme de {word}
+anonymes de {word}
+contraire à {word}
+les contraires de {word}

@@ -1,2 +1,18 @@
 szukaj w WordNet {word}
 zapytaj WordNet o {word}
+# machine translation from en-US, unvouched
+definicja {word}
+opisz {word}
+Co oznacza {word}
+co oznacza {word}
+Jaka jest definicja {word}
+Co to znaczy {word}
+Znaczenie {word}
+Jaki jest synonim {word}
+Jaka jest antonymia {word}
+Co jest przeciwnością {word}?
+synonim {word}
+Synonimów {word}
+Antonim z {word}
+Antonimy z {word}
+przeciwności {word}

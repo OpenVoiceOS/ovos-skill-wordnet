@@ -1,2 +1,9 @@
 ieškoti WordNet {word}
 klausk WordNet apie {word}
+# machine translation from en-US, unvouched
+Apibrėžti {word}
+Kas yra {word}
+Apibrėžimas {word}
+Kas yra sinonimas {word}
+Kas yra priešinga {word}
+Sinonimai apie {word}

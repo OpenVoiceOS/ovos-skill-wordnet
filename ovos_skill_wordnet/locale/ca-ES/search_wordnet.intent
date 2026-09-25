@@ -4,3 +4,21 @@
 (demana|pregunta) (al tesaure|a la xarxa de mots|al diccionari de sinònims) {word}
 què diu (el tesaure|la xarxa de mots|el diccionari de sinònims)(sobre |de |d'|) {word}
 què diu (es tesaure|sa xarxa de mots|es diccionari de sinònims)(sobre |de|d'|) {word}
+# machine translation from en-US, unvouched
+defineix {word}
+descriu {word}
+què significa {word}
+què és una {word}
+Quina és la definició de {word}
+quin és el significat de {word}
+definició de {word}
+significat de {word}
+quin és el sinònim de {word}
+quin és l'antònim de {word}
+què és el contrari de {word}
+sinònim de {word}
+sinònims de {word}
+antònim de {word}
+antònims de {word}
+oposat de {word}
+oposats de {word}

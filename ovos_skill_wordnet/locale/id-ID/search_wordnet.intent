@@ -1,2 +1,15 @@
 cari di WordNet {word}
 tanya WordNet tentang {word}
+# machine translation from en-US, unvouched
+definisikan {word}
+deskripsi {word}
+apa artinya {word} berarti
+apa {word} berdiri
+apa itu {word}
+apa definisi dari {word}
+definisi dari {word}
+arti dari {word}
+apa sinonim dari {word}
+apa kebalikan dari {word}
+sinonim dari {word}
+berlawanan dari {word}
