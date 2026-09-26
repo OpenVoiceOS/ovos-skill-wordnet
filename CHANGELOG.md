@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.13.1a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.13.1a1) (2026-09-26)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.13.0a2...0.13.1a1)
+
+**Merged pull requests:**
+
+- fix\(locale\): pt-BR and kab keep only intent lines that name the service [\#145](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/145) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.13.0a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.13.0a2) (2026-09-24)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.13.0a1...0.13.0a2)
@@ -451,33 +459,17 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.1.1a1...0.1.1)
 
-**Merged pull requests:**
-
-- Release 0.1.1a1 [\#37](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/37) ([github-actions[bot]](https://github.com/apps/github-actions))
-
 ## [0.1.1a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.1.1a1) (2024-12-09)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.1.0...0.1.1a1)
-
-**Merged pull requests:**
-
-- fix: typo in catalan \(invalid syntax\) [\#36](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/36) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.1.0](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.1.0) (2024-12-04)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.1.0a1...0.1.0)
 
-**Merged pull requests:**
-
-- Release 0.1.0a1 [\#35](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/35) ([github-actions[bot]](https://github.com/apps/github-actions))
-
 ## [0.1.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.1.0a1) (2024-12-04)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.0.14...0.1.0a1)
-
-**Merged pull requests:**
-
-- feat: multilingual wordnet [\#34](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/34) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.0.14](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.0.14) (2024-12-02)
 
