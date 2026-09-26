@@ -1,0 +1,14 @@
+# The carrier phrasings that used to live in search_wordnet.intent.
+# They are NOT intent lines: the intent is only for sentences that name
+# WordNet. They are kept here so the fallback and the common query can
+# strip the carrier and look up the term alone, because the engine answers
+# 'stoic' and answers nothing for 'define stoic'.
+defina {word}
+descreva {word}
+o que {word} significa
+o que {word} quer dizer
+o que é um {word}
+qual é a (definição|significado) de {word}
+(definição|significado) de {word}
+qual é o (sinônimo|antônimo|oposto) de {word}
+(sinônimo|sinônimos|antônimo|antônimos|oposto|opostos) de {word}

@@ -1,0 +1,14 @@
+# The carrier phrasings that used to live in search_wordnet.intent.
+# They are NOT intent lines: the intent is only for sentences that name
+# WordNet. They are kept here so the fallback and the common query can
+# strip the carrier and look up the term alone, because the engine answers
+# 'stoic' and answers nothing for 'define stoic'.
+wṣef-d {word}
+glem {word}
+d acu i yebɣa ad d-yini {word}
+d acu i d-yemmal {word}
+d acu i d {word}
+d acu i d anamek n {word}
+anamek n {word}
+d acu i d (agdawal|amgalwal|amgal) n {word}
+(agdawal|igdawalen|amgalwal|imgalwalen|amgal|imgalen) n {word}
