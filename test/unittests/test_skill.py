@@ -304,11 +304,31 @@ class TestEnglishLocale(unittest.TestCase):
             for slot in re.findall(r"{(\w+)}", ln):
                 self.assertEqual(slot, "word", f"undefined slot in: {ln!r}")
 
-    def test_intent_covers_dictionary_and_thesaurus_phrasings(self):
-        blob = " ".join(_lines("search_wordnet.intent"))
-        for kw in ("define", "definition", "meaning", "mean",
-                   "synonym", "antonym", "opposite"):
-            self.assertIn(kw, blob, f"no coverage for {kw!r}")
+    DICTIONARY_KEYWORDS = ("define", "definition", "meaning", "mean",
+                           "synonym", "antonym", "opposite")
+
+    def test_the_dictionary_phrasings_live_in_the_voc_not_the_intent(self):
+        """The intent is only for sentences that NAME WordNet.
+
+        This assertion used to run the other way round and require the intent
+        to carry "define"/"synonym"/... . That made the skill claim every
+        definition question in the pipeline, so the phrasings moved to the
+        fallback vocabulary (see PR #143, closed for adding them back). The
+        coverage is still required, just in the file that now owns it.
+        """
+        voc = " ".join(_lines("wordnet_query.voc"))
+        for kw in self.DICTIONARY_KEYWORDS:
+            self.assertIn(kw, voc,
+                          f"the fallback lost coverage for {kw!r}, so the "
+                          f"skill answers that question nowhere")
+
+    def test_no_intent_line_omits_the_service_name(self):
+        """Every line must name WordNet, or the intent claims bare questions."""
+        offenders = [ln for ln in _lines("search_wordnet.intent")
+                     if "wordnet" not in ln.lower().replace(" ", "")]
+        self.assertEqual([], offenders,
+                         "these lines do not name WordNet and belong in the "
+                         f"fallback vocabulary instead: {offenders}")
 
     def test_word_blacklist_references_pronoun_and_determiner_voc(self):
         # OVOS-INTENT-2 §4.3 slot-value exclusion: the blacklist delegates to
@@ -388,6 +408,29 @@ class TestCanAnswer(unittest.TestCase):
 
     def test_claims_a_definition_question(self):
         self.assertTrue(self.skill.can_answer(self._ping("what is the meaning of stoic")))
+
+    def test_claims_the_phrasings_the_intent_no_longer_lists(self):
+        """search_wordnet.intent only holds sentences that NAME WordNet.
+
+        Every skill-free phrasing it used to carry has to stay answerable
+        here, or removing it from the intent silently drops the question
+        instead of moving it. These are the exact forms that were removed.
+        """
+        for utterance in ("define ephemeral",
+                          "describe serendipity",
+                          "what does serendipity mean",
+                          "what does ibm stand for",
+                          "what is a pangolin",
+                          "what is the definition of stoic",
+                          "meaning of stoic",
+                          "what is the synonym of happy",
+                          "antonyms of happy"):
+            with self.subTest(utterance=utterance):
+                self.assertTrue(
+                    self.skill.can_answer(self._ping(utterance)),
+                    f"{utterance!r} is no longer an intent line and the "
+                    f"fallback does not claim it either, so the skill has "
+                    f"stopped answering it")
 
     def test_declines_an_unrelated_question(self):
         self.assertFalse(self.skill.can_answer(self._ping("turn on the kitchen light")))
