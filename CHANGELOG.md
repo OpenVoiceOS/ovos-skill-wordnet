@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.13.2a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.13.2a1) (2026-09-28)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.13.1a1...0.13.2a1)
+
+**Merged pull requests:**
+
+- fix\(locale\): delete kab/word.entity, a stale copy of the intent file [\#147](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/147) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.13.1a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.13.1a1) (2026-09-26)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.13.0a2...0.13.1a1)
@@ -445,15 +453,10 @@
 **Merged pull requests:**
 
 - fix automations [\#40](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/40) ([JarbasAl](https://github.com/JarbasAl))
-- refactor: new common query decorators [\#39](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/39) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.1.2a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.1.2a1) (2024-12-12)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.1.1...0.1.2a1)
-
-**Merged pull requests:**
-
-- adjusting German translation from joergz2 [\#38](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/38) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
 
 ## [0.1.1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.1.1) (2024-12-09)
 
