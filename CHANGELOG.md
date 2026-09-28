@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.13.2a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.13.2a2) (2026-09-28)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.13.2a1...0.13.2a2)
+
+**Merged pull requests:**
+
+- locale: draft es-CO fa-IR ru-RU from en-US \(machine translation, unvouched\) [\#148](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/148) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.13.2a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.13.2a1) (2026-09-28)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.13.1a1...0.13.2a1)
@@ -442,17 +450,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.1.2a2...0.1.2)
 
-**Merged pull requests:**
-
-- Release 0.1.2a2 [\#41](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/41) ([github-actions[bot]](https://github.com/apps/github-actions))
-
 ## [0.1.2a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.1.2a2) (2025-01-25)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.1.2a1...0.1.2a2)
-
-**Merged pull requests:**
-
-- fix automations [\#40](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/40) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.1.2a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.1.2a1) (2024-12-12)
 
