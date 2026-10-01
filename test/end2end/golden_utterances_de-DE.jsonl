@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "Befrage Wordnet über antonym", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "de-DE", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "Suche im Wordnet nach synonym", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "de-DE", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "Suche im word net nach gegenteil", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "de-DE", "machine_generated": true}
