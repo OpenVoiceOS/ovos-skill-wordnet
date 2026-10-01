@@ -1,0 +1,15 @@
+{
+  "skill_id": "ovos-skill-wordnet.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-wordnet",
+  "name": "Keterampilan WordNet",
+  "description": "Gunakan WordNet untuk menjawab pertanyaan kamus.",
+  "examples": [
+    "cari di WordNet ...",
+    "tanya WordNet tentang ..."
+  ],
+  "tags": [
+    "Wordnet",
+    "query",
+    "information"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "skill_id": "ovos-skill-wordnet.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-wordnet",
+  "name": "WordNet įgūdis",
+  "description": "Naudokite WordNet atsakyti į žodyno klausimus.",
+  "examples": [
+    "ieškoti WordNet ...",
+    "klausk WordNet apie ..."
+  ],
+  "tags": [
+    "Wordnet",
+    "query",
+    "information"
+  ]
+}
