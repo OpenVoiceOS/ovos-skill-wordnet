@@ -2,5 +2,5 @@
 (cerca|busca) {word} (al tesaure|a la xarxa de mots|al diccionari de sinònims)
 (demana|pregunta) (al tesaure|a la xarxa de mots|al diccionari de sinònims) sobre {word}
 (demana|pregunta) (al tesaure|a la xarxa de mots|al diccionari de sinònims) {word}
-què diu (el tesaure|la xarxa de mots|el diccionari de sinònims)(sobre |de |d'|) {word}
-què diu (es tesaure|sa xarxa de mots|es diccionari de sinònims)(sobre |de|d'|) {word}
+què diu (el tesaure|la xarxa de mots|el diccionari de sinònims) (sobre |de |d'|){word}
+què diu (es tesaure|sa xarxa de mots|es diccionari de sinònims) (sobre |de |d'|){word}
