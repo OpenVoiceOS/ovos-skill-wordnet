@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.13.3a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.13.3a1) (2026-10-01)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.13.2a2...0.13.3a1)
+
+**Merged pull requests:**
+
+- fix\(locale\): skill.json for the sixteen locales without one [\#152](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/152) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.13.2a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.13.2a2) (2026-09-28)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.13.2a1...0.13.2a2)
@@ -434,17 +442,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.1.3a1...0.1.3)
 
-**Merged pull requests:**
-
-- Release 0.1.3a1 [\#43](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/43) ([github-actions[bot]](https://github.com/apps/github-actions))
-
 ## [0.1.3a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.1.3a1) (2025-01-27)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.1.2...0.1.3a1)
-
-**Merged pull requests:**
-
-- fix:catalan intents punctuation [\#42](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/42) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.1.2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.1.2) (2025-01-25)
 
