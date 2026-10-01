@@ -1,0 +1,15 @@
+{
+  "skill_id": "ovos-skill-wordnet.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-wordnet",
+  "name": "WordNet-taito",
+  "description": "Käytä WordNetiä sanakirjakysymyksiin vastaamiseen.",
+  "examples": [
+    "hae WordNetistä ...",
+    "kysy WordNetiltä ..."
+  ],
+  "tags": [
+    "Wordnet",
+    "query",
+    "information"
+  ]
+}
