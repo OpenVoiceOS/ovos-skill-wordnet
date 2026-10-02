@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "ค้นหาใน WordNet คำพ้องความหมาย", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "th-TH", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "ถาม WordNet เกี่ยวกับ คำตรงข้าม", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "th-TH", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "ค้นหาใน WordNet คำไวพจน์", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "th-TH", "machine_generated": true}

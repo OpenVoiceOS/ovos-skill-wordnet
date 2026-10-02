@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "在WordNet中搜索同义词", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "cmn-CN", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "问WordNet关于反义词", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "cmn-CN", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "在WordNet中搜索上位词", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "cmn-CN", "machine_generated": true}

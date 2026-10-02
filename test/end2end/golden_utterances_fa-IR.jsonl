@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "از وردنت درباره مترادف بپرس", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "fa-IR", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "در وردنت متضاد را جستجو کن", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "fa-IR", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "وردنت درباره متضادها چه می گوید", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "fa-IR", "machine_generated": true}
