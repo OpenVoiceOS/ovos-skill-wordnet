@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "חפש ב-WordNet נרדף", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "he-IL", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "שאל את WordNet על הפך", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "he-IL", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "חפש ב-WordNet מנוגד", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "he-IL", "machine_generated": true}
