@@ -1,0 +1,15 @@
+{
+  "skill_id": "ovos-skill-wordnet.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-wordnet",
+  "name": "מיומנות WordNet",
+  "description": "השתמש ב-WordNet כדי לענות על שאלות מילוניות.",
+  "examples": [
+    "חפש ב-WordNet ...",
+    "שאל את WordNet על ..."
+  ],
+  "tags": [
+    "Wordnet",
+    "query",
+    "information"
+  ]
+}

@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "спроси wordnet о антоним", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "ru-RU", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "найди в wordnet синоним", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "ru-RU", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "что ворднет говорит о определение", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "ru-RU", "machine_generated": true}

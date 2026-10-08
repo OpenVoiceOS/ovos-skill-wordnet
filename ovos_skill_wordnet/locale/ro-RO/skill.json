@@ -1,0 +1,15 @@
+{
+  "skill_id": "ovos-skill-wordnet.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-wordnet",
+  "name": "Abilitate Wordnet",
+  "description": "Folosește Wordnet pentru a răspunde la întrebări de tip dicționar.",
+  "examples": [
+    "care este definiția pentru ...",
+    "care este antonimul pentru ..."
+  ],
+  "tags": [
+    "Wordnet",
+    "interogare",
+    "informație"
+  ]
+}

@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "WordNetで類義語を検索して", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "ja-JP", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "WordNetに対義語について聞いて", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "ja-JP", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "WordNetで反意語を検索して", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "ja-JP", "machine_generated": true}

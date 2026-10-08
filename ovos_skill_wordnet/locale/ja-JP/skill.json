@@ -1,0 +1,15 @@
+{
+  "skill_id": "ovos-skill-wordnet.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-wordnet",
+  "name": "WordNet スキル",
+  "description": "WordNet を使って辞書のような質問に答えます。",
+  "examples": [
+    "WordNetで...を検索して",
+    "WordNetに...について聞いて"
+  ],
+  "tags": [
+    "Wordnet",
+    "query",
+    "information"
+  ]
+}

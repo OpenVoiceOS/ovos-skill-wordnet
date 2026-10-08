@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "hľadaj v WordNet synonymum", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "sk-SK", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "opýtaj sa WordNet na antonymum", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "sk-SK", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "hľadaj v WordNet opak", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "sk-SK", "machine_generated": true}
