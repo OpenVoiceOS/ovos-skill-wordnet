@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.13.3a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.13.3a2) (2026-10-08)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.13.3a1...0.13.3a2)
+
+**Merged pull requests:**
+
+- test: golden utterances for every intent in every shipped locale [\#151](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/151) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.13.3a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.13.3a1) (2026-10-01)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.13.2a2...0.13.3a1)
@@ -426,17 +434,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.0a1...0.2.0)
 
-**Merged pull requests:**
-
-- Release 0.2.0a1 [\#45](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/45) ([github-actions[bot]](https://github.com/apps/github-actions))
-
 ## [0.2.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.0a1) (2025-02-02)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.1.3...0.2.0a1)
-
-**Merged pull requests:**
-
-- feat: add solver plugin + persona [\#44](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/44) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.1.3](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.1.3) (2025-01-27)
 
