@@ -73,21 +73,22 @@ class TestWordnetIntentRouting(_RoutingTest):
     # it proves routing only. The stubbed engine always answers "a stubbed
     # definition": asserting it was spoken proves the handler looked the
     # word up and spoke the result.
-    def test_what_does_word_mean(self):
-        words, spoken = self._run("what does serendipity mean")
+    # "define X", "what does X mean" and "synonym of X" used to be asserted
+    # here as INTENT routing. They are no longer intent lines: the intent is
+    # only for sentences that name WordNet, and those phrasings are answered
+    # by the fallback through wordnet_query.voc. This pipeline is padatious
+    # only, so it cannot see the fallback at all; the coverage for them lives
+    # in test/unittests/test_skill.py::TestCanAnswer.
+
+    def test_ask_wordnet_about_word(self):
+        words, spoken = self._run("ask wordnet about serendipity")
         self.assertIn("serendipity", words)
         self.assertIn("a stubbed definition", spoken,
                       f"handler did not speak the lookup result: {spoken}")
 
-    def test_define_word(self):
-        words, spoken = self._run("define ephemeral")
+    def test_search_wordnet_for_word(self):
+        words, spoken = self._run("search word net for ephemeral")
         self.assertIn("ephemeral", words)
-        self.assertIn("a stubbed definition", spoken,
-                      f"handler did not speak the lookup result: {spoken}")
-
-    def test_synonym_of_word(self):
-        words, spoken = self._run("synonym of happy")
-        self.assertIn("happy", words)
         self.assertIn("a stubbed definition", spoken,
                       f"handler did not speak the lookup result: {spoken}")
 
@@ -96,11 +97,11 @@ class TestPronounSlotExclusion(_RoutingTest):
     def test_pronoun_does_not_fill_word_slot(self):
         """``word.blacklist`` refuses an anaphoric pronoun in the {word} slot.
 
-        "what does it mean" binds {word}="it"; the slot-value exclusion
+        "ask wordnet about it" binds {word}="it"; the slot-value exclusion
         (OVOS-INTENT-2 §4.3) rejects that anaphoric filler, so the skill never
         looks it up and instead re-prompts for the referent.
         """
-        words, spoken = self._run("what does it mean")
+        words, spoken = self._run("ask wordnet about it")
         # the pronoun is never looked up: the stubbed definition never speaks
         self.assertNotIn("a stubbed definition", spoken,
                          f"pronoun was looked up as a word: {spoken}")
