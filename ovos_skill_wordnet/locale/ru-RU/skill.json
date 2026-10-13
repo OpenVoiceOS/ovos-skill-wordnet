@@ -1,0 +1,16 @@
+{
+  "skill_id": "ovos-skill-wordnet.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-wordnet",
+  "name": "Wordnet Skill",
+  "description": "Используйте Wordnet для ответов на словарные вопросы.",
+  "examples": [
+    "что означает слово дом",
+    "какой синоним к радость",
+    "определение кошка"
+  ],
+  "tags": [
+    "Wordnet",
+    "query",
+    "information"
+  ]
+}

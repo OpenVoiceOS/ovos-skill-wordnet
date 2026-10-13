@@ -1,1 +1,1 @@
-recursive-include locale *
+recursive-include ovos_skill_wordnet/locale *

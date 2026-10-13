@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "hvad siger word net om antonym", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "da-DK", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "hvad siger wordnet om synonym", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "da-DK", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "spørg word net om modsætning", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "da-DK", "machine_generated": true}

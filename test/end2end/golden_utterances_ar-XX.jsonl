@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "ابحث في ووردنت عن مرادف", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "ar-XX", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "اسأل ووردنت عن مضاد", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "ar-XX", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "ابحث في ووردنت عن متضاد", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "ar-XX", "machine_generated": true}
