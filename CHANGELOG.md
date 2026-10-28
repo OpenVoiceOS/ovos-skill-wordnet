@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.14.1a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.14.1a1) (2026-10-28)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.14.0a2...0.14.1a1)
+
+**Merged pull requests:**
+
+- fix\(locale\): the intent keeps only sentences that name the service [\#144](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/144) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.14.0a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.14.0a2) (2026-10-28)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.14.0a1...0.14.0a2)
@@ -402,17 +410,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.3a1...0.2.3)
 
-**Merged pull requests:**
-
-- Release 0.2.3a1 [\#51](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/51) ([github-actions[bot]](https://github.com/apps/github-actions))
-
 ## [0.2.3a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.3a1) (2025-05-15)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.2...0.2.3a1)
-
-**Merged pull requests:**
-
-- fix: standardize urls / skill-id / pypi-name [\#50](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/50) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.2.2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.2) (2025-03-19)
 
