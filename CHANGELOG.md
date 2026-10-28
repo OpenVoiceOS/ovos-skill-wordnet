@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.14.0a2](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.14.0a2) (2026-10-28)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.14.0a1...0.14.0a2)
+
+**Merged pull requests:**
+
+- test: run the end2end suite on the m2v prototype pipeline [\#157](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/157) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.14.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.14.0a1) (2026-10-13)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.13.3a2...0.14.0a1)
@@ -410,17 +418,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.2a1...0.2.2)
 
-**Merged pull requests:**
-
-- Release 0.2.2a1 [\#49](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/49) ([github-actions[bot]](https://github.com/apps/github-actions))
-
 ## [0.2.2a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.2a1) (2025-03-19)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.1...0.2.2a1)
-
-**Merged pull requests:**
-
-- allow latest ovos-config [\#48](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/48) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.2.1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.1) (2025-02-28)
 
