@@ -8,3 +8,4 @@
 {"utterance": "search the wolf for something", "lang": "en-US", "source_skill": "ovos-skill-wolfie.openvoiceos"}
 {"utterance": "can you find something on wiki", "lang": "en-US", "source_skill": "ovos-skill-wikipedia.openvoiceos"}
 {"utterance": "check wikipedia for something", "lang": "en-US", "source_skill": "ovos-skill-wikipedia.openvoiceos"}
+{"utterance": "spell that", "lang": "en-US", "machine_generated": true, "needs_manual": true}

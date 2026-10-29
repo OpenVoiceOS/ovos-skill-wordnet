@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pytest
 from ovos_bus_client.message import Message
+from ovos_bus_client.session import Session
 from ovoscope.routing import TALLY, get_prototype_minicroft
 
 SKILL_ID = "ovos-skill-wordnet.openvoiceos"
@@ -39,8 +40,12 @@ def engine_for():
 
 
 def _routed(engine, row):
+    session = Session(lang=row["lang"])
+    if row.get("requires_context"):
+        session.set_intent_context("prev_word", "a word", scope="shared")
     message = Message("recognizer_loop:utterance",
-                      {"utterances": [row["utterance"]], "lang": row["lang"]}, {"lang": row["lang"]})
+                      {"utterances": [row["utterance"]], "lang": row["lang"]},
+                      {"lang": row["lang"], "session": session.serialize()})
     match = engine.match_low([row["utterance"]], row["lang"], message)
     return [match.match_type] if match else []
 

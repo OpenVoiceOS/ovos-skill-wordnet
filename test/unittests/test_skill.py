@@ -9,6 +9,9 @@ import unittest
 from unittest.mock import MagicMock, patch, call
 
 from ovos_bus_client.message import Message
+from ovos_bus_client.session import Session
+from ovos_core.intent_services.dispatcher import IntentDispatcher
+from ovos_core.intent_services.service import IntentService
 from ovos_utils.fakebus import FakeBus
 
 LOCALE_EN = os.path.join(
@@ -124,6 +127,103 @@ class TestHandleSearch(unittest.TestCase):
             self.fail(f"handle_search must not let engine exceptions propagate: {e!r}")
         self.skill.speak_dialog.assert_called_once_with("no_answer")
         self.skill.speak.assert_not_called()
+
+
+# ---------------------------------------------------------------------------
+# "prev_word" follow-up context
+# ---------------------------------------------------------------------------
+
+def _message_with_session(data, session):
+    msg = Message("ovos.skills.test", data=data or {})
+    msg.context["session"] = session.serialize()
+    return msg
+
+
+class TestPrevWordContext(unittest.TestCase):
+
+    def setUp(self):
+        self.skill, self.engine = _make_skill(self)
+        self.skill.speak = MagicMock()
+        self.skill.speak_dialog = MagicMock()
+
+    def _dispatch_and_capture(self, event, data, session):
+        """Run ``event`` through the real IntentDispatcher with ovos-core's
+        completion sync, and return the session carried on the
+        ``ovos.intent.handler.complete`` terminal."""
+        carried = {}
+
+        def _on_complete(m):
+            if m.context.get("session"):
+                carried.update(m.context["session"])
+
+        self.skill.bus.on("ovos.intent.handler.complete", _on_complete)
+        dispatcher = IntentDispatcher(self.skill.bus, timeout=5,
+                                      on_done_signal=lambda done, dispatch:
+                                          IntentService._sync_handler_mutations(
+                                              None, done, dispatch))
+        msg = Message(f"{self.skill.skill_id}:{event}", data=data or {})
+        msg.context["session"] = session.serialize()
+        try:
+            dispatcher.dispatch(msg, skill_id=self.skill.skill_id, intent_name=event)
+        finally:
+            dispatcher.shutdown()
+        return carried
+
+    def test_successful_lookup_sets_prev_word_context(self):
+        self.engine.query.return_value = [("a loyal companion", 0.9)]
+        carried = self._dispatch_and_capture("search_wordnet", {"word": "dog"}, Session("s1"))
+        self.assertEqual(carried["intent_context"]["prev_word"]["value"], "dog")
+
+    def test_failed_lookup_does_not_set_prev_word_context(self):
+        self.engine.query.return_value = []
+        carried = self._dispatch_and_capture("search_wordnet", {"word": "xyzzy"}, Session("s2"))
+        self.assertNotIn("prev_word", carried.get("intent_context") or {})
+
+    def test_blacklisted_slot_resolves_from_prev_word_context(self):
+        session = Session("s3")
+        session.set_intent_context("prev_word", "serendipity", scope="shared")
+        self.engine.query.return_value = [("a fortunate accident", 0.9)]
+        self.skill.handle_search(_message_with_session({"word": "it"}, session))
+        self.skill.speak.assert_called_once_with("a fortunate accident")
+        self.skill.speak_dialog.assert_not_called()
+        self.assertEqual(self.engine.query.call_args.args[0], "serendipity")
+
+    def test_empty_slot_without_context_still_reprompts(self):
+        self.skill.handle_search(_message_with_session({"word": ""}, Session("s4")))
+        self.skill.speak_dialog.assert_called_once_with("unresolved")
+        self.skill.speak.assert_not_called()
+
+
+class TestSpellWordIntent(unittest.TestCase):
+
+    def setUp(self):
+        self.skill, self.engine = _make_skill(self)
+        self.skill.speak = MagicMock()
+        self.skill.speak_dialog = MagicMock()
+
+    def test_spells_word_from_prev_word_context(self):
+        session = Session("spell-1")
+        session.set_intent_context("prev_word", "cat", scope="shared")
+        self.skill.handle_spell_word_intent(_message_with_session({}, session))
+        self.skill.speak_dialog.assert_called_once_with(
+            "spell_word", {"word": "cat", "letters": "C, A, T"})
+
+    def test_reprompts_with_no_prev_word_context(self):
+        self.skill.handle_spell_word_intent(_message_with_session({}, Session("spell-2")))
+        self.skill.speak_dialog.assert_called_once_with("unresolved")
+
+    def test_spell_word_intent_file_has_no_word_slot(self):
+        for line in _lines("spell_word.intent"):
+            self.assertNotIn("{word}", line)
+
+    def test_spell_word_dialog_renders_with_the_slots_the_handler_passes(self):
+        from ovos_spec_tools.dialog import render
+        from ovos_spec_tools.resources import LocaleResources
+        res = LocaleResources(os.path.dirname(LOCALE_EN))
+        phrases = res.load_dialog("spell_word", "en-US")
+        self.assertEqual(len(phrases), 1)
+        self.assertEqual(render(phrases, slots={"word": "cat", "letters": "C, A, T"}),
+                         "cat is spelled C, A, T")
 
 
 # ---------------------------------------------------------------------------
