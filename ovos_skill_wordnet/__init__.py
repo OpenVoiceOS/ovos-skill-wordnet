@@ -196,6 +196,11 @@ class WordnetSkill(FallbackSkill):
             results = []
         if results:
             self.speak(results[0][0])
+            # a shared "word" entry fills the {word} slot of a later turn that
+            # leaves it unresolved, in this skill or another (OVOS-CONTEXT-1 §7):
+            # "what does wordnet say about it", "spell that"
+            SessionManager.get(message).set_intent_context(
+                "word", query, scope="shared", turns_remaining=3)
         else:
             self.speak_dialog("no_answer")
 

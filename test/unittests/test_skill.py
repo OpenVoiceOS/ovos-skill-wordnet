@@ -9,6 +9,9 @@ import unittest
 from unittest.mock import MagicMock, patch, call
 
 from ovos_bus_client.message import Message
+from ovos_bus_client.session import Session
+from ovos_core.intent_services.dispatcher import IntentDispatcher
+from ovos_core.intent_services.service import IntentService
 from ovos_utils.fakebus import FakeBus
 
 LOCALE_EN = os.path.join(
@@ -124,6 +127,51 @@ class TestHandleSearch(unittest.TestCase):
             self.fail(f"handle_search must not let engine exceptions propagate: {e!r}")
         self.skill.speak_dialog.assert_called_once_with("no_answer")
         self.skill.speak.assert_not_called()
+
+
+# ---------------------------------------------------------------------------
+# Shared "word" context for follow-up turns
+# ---------------------------------------------------------------------------
+
+class TestWordContext(unittest.TestCase):
+
+    def setUp(self):
+        self.skill, self.engine = _make_skill(self)
+        self.skill.speak = MagicMock()
+        self.skill.speak_dialog = MagicMock()
+
+    def _dispatch_and_capture(self, event, data, session):
+        """Run ``event`` through the real IntentDispatcher with ovos-core's
+        completion sync, and return the session carried on the
+        ``ovos.intent.handler.complete`` terminal."""
+        carried = {}
+
+        def _on_complete(m):
+            if m.context.get("session"):
+                carried.update(m.context["session"])
+
+        self.skill.bus.on("ovos.intent.handler.complete", _on_complete)
+        dispatcher = IntentDispatcher(self.skill.bus, timeout=5,
+                                      on_done_signal=lambda done, dispatch:
+                                          IntentService._sync_handler_mutations(
+                                              None, done, dispatch))
+        msg = Message(f"{self.skill.skill_id}:{event}", data=data or {})
+        msg.context["session"] = session.serialize()
+        try:
+            dispatcher.dispatch(msg, skill_id=self.skill.skill_id, intent_name=event)
+        finally:
+            dispatcher.shutdown()
+        return carried
+
+    def test_successful_lookup_shares_the_word(self):
+        self.engine.query.return_value = [("a loyal companion", 0.9)]
+        carried = self._dispatch_and_capture("search_wordnet", {"word": "dog"}, Session("s1"))
+        self.assertEqual(carried["intent_context"]["word"]["value"], "dog")
+
+    def test_failed_lookup_shares_nothing(self):
+        self.engine.query.return_value = []
+        carried = self._dispatch_and_capture("search_wordnet", {"word": "xyzzy"}, Session("s2"))
+        self.assertNotIn("word", carried.get("intent_context") or {})
 
 
 # ---------------------------------------------------------------------------
