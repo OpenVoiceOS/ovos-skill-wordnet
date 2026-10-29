@@ -35,8 +35,8 @@ def _literal(text: str) -> str:
 
 
 # OVOS-CONTEXT-1 shared-scope key holding the last word looked up, so a
-# follow-up ("what does wordnet say about it", "spell that") resolves without
-# repeating the word. The core decays it after a few turns.
+# follow-up ("what does wordnet say about it") resolves without repeating
+# the word, here or in another skill. The core decays it after a few turns.
 PREV_WORD_CONTEXT = "prev_word"
 
 
@@ -196,22 +196,6 @@ class WordnetSkill(FallbackSkill):
                                        scope="shared", turns_remaining=3)
         else:
             self.speak_dialog("no_answer")
-
-    @intent_handler("spell_word.intent",
-                    requires_context=[{"key": PREV_WORD_CONTEXT, "scope": "shared"}])
-    def handle_spell_word_intent(self, message):
-        """Spell out the word from the active "prev_word" context.
-
-        "spell that" carries no word of its own, so the intent is gated on the
-        context a lookup sets rather than on a {word} slot.
-        """
-        session = SessionManager.get(message)
-        entry = (session.intent_context or {}).get(PREV_WORD_CONTEXT)
-        if not isinstance(entry, dict) or not entry.get("value"):
-            self.speak_dialog("unresolved")
-            return
-        word = entry["value"]
-        self.speak_dialog("spell_word", {"word": word, "letters": ", ".join(word.upper())})
 
     # ------------------------------------------------------------------
     # Fallback

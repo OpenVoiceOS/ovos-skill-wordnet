@@ -3,7 +3,7 @@
 A successful lookup through ``search_wordnet.intent`` writes the word to the
 OVOS-CONTEXT-1 shared-scope "prev_word" context. A follow-up in the same
 conversation then refers back to it: "what does wordnet say about it" looks
-the remembered word up instead of re-prompting, and "spell that" spells it.
+the remembered word up instead of re-prompting.
 
 The test reads the session that the ``ovos.utterance.handled`` end-marker
 carries, and declares that session on the next utterance, as a client does.
@@ -57,15 +57,7 @@ class TestPrevWordContext(TestCase):
         spoken, _ = self._say("what does wordnet say about it", session=session)
         self.assertEqual(spoken, ["a stubbed definition"])
 
-    def test_spell_followup_spells_prev_word(self):
-        _, session = self._say("search wordnet for ephemeral")
-        spoken, _ = self._say("spell that", session=session)
-        self.assertEqual(spoken, ["ephemeral is spelled E, P, H, E, M, E, R, A, L"])
-
     def test_no_prior_word_still_reprompts(self):
         spoken, _ = self._say("what does wordnet say about it")
         self.assertEqual(spoken, ["I did not catch which word you mean"])
 
-    def test_spell_without_prior_word_is_not_claimed(self):
-        spoken, _ = self._say("spell that")
-        self.assertNotIn("is spelled", " ".join(spoken))
