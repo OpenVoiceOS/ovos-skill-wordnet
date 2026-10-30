@@ -18,6 +18,7 @@ from ovos_bus_client.session import SessionManager
 from ovos_utils.process_utils import RuntimeRequirements
 from ovos_wordnet_plugin import WordnetRetrievalEngine
 from ovos_spec_tools import expand
+from ovos_spec_tools.resources import read_resource_file
 from ovos_workshop.decorators import intent_handler, common_query, fallback_handler
 from ovos_workshop.resource_files import locate_lang_directories
 from ovos_workshop.skills.fallback import FallbackSkill
@@ -90,8 +91,9 @@ class WordnetSkill(FallbackSkill):
         nothing at all for `define stoic`.
 
         The removed lines are therefore shipped as
-        `locale/<lang>/query_templates.list` and reused here to strip the
-        carrier. The locale directory is resolved the way the resource loader
+        `locale/<lang>/query_templates.intent` and reused here to strip the
+        carrier. No handler registers that file; it is only a template store
+        read through the spec resource reader. The locale directory is resolved the way the resource loader
         resolves it: `self.lang` normalises case and separator but does not add
         a region, so a hand-built `locale/{lang}` path misses `locale/en-US`
         for a session asking in `en`.
@@ -102,12 +104,11 @@ class WordnetSkill(FallbackSkill):
 
         patterns = []
         for directory in locate_lang_directories(lang, os.path.dirname(__file__)):
-            path = directory / "query_templates.list"
+            path = directory / "query_templates.intent"
             if not path.is_file():
                 continue
-            for line in path.read_text(encoding="utf-8").splitlines():
-                line = line.strip()
-                if not line or line.startswith("#") or "{word}" not in line:
+            for line in read_resource_file(path):
+                if "{word}" not in line:
                     continue
                 for variant in expand(line):
                     # one slot, and the carrier around it is literal text
