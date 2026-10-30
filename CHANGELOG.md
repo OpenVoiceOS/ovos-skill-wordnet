@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.14.2a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.14.2a1) (2026-10-30)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.14.1a1...0.14.2a1)
+
+**Merged pull requests:**
+
+- fix: ship query templates as a spec .intent file, not .list [\#162](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/162) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.14.1a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.14.1a1) (2026-10-28)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.14.0a2...0.14.1a1)
@@ -385,26 +393,13 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.5a1...0.2.5)
 
-**Merged pull requests:**
-
-- Release 0.2.5a1 [\#55](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/55) ([github-actions[bot]](https://github.com/apps/github-actions))
-
 ## [0.2.5a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.5a1) (2025-06-08)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.4a1...0.2.5a1)
 
-**Merged pull requests:**
-
-- fix: workshop 7.X.X opm 1.X.X [\#54](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/54) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [0.2.4a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.4a1) (2025-06-04)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.3...0.2.4a1)
-
-**Merged pull requests:**
-
-- Release 0.2.4a1 [\#53](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/53) ([github-actions[bot]](https://github.com/apps/github-actions))
-- gl/translate [\#52](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/52) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
 
 ## [0.2.3](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.3) (2025-05-15)
 
