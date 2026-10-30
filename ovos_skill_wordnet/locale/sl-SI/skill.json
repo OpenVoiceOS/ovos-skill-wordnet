@@ -1,0 +1,15 @@
+{
+  "skill_id": "ovos-skill-wordnet.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-wordnet",
+  "name": "Zmožnost WordNet",
+  "description": "Uporabi WordNet za odgovore na slovarska vprašanja.",
+  "examples": [
+    "išči v WordNet ...",
+    "vprašaj WordNet o ..."
+  ],
+  "tags": [
+    "Wordnet",
+    "query",
+    "information"
+  ]
+}

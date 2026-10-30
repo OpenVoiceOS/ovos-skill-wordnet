@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "søk i WordNet etter synonym", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "nn-NO", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "spør WordNet om antonym", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "nn-NO", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "søk i WordNet etter motsetnad", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "nn-NO", "machine_generated": true}

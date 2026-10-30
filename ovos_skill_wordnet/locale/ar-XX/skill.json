@@ -1,0 +1,15 @@
+{
+  "skill_id": "ovos-skill-wordnet.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-wordnet",
+  "name": "مهارة ووردنت",
+  "description": "استخدم ووردنت للإجابة على أسئلة القاموس.",
+  "examples": [
+    "ابحث في ووردنت عن ...",
+    "اسأل ووردنت عن ..."
+  ],
+  "tags": [
+    "Wordnet",
+    "query",
+    "information"
+  ]
+}
