@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.15.0a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.15.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.14.2a1...0.15.0a1)
+
+**Merged pull requests:**
+
+- feat: share the looked-up word as the word context [\#161](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/161) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.14.2a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.14.2a1) (2026-10-30)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.14.1a1...0.14.2a1)
@@ -377,17 +385,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.6a1...0.2.6a2)
 
-**Merged pull requests:**
-
-- Update ovos-plugin-manager version constraint [\#57](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/57) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [0.2.6a1](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.6a1) (2025-06-18)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wordnet/compare/0.2.5...0.2.6a1)
-
-**Merged pull requests:**
-
-- Release 0.2.6a1 [\#56](https://github.com/OpenVoiceOS/ovos-skill-wordnet/pull/56) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [0.2.5](https://github.com/OpenVoiceOS/ovos-skill-wordnet/tree/0.2.5) (2025-06-08)
 
