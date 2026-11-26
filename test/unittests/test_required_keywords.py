@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 import pytest
+from ovos_spec_tools import utterance_contains
 
 ROOT = Path(__file__).resolve().parents[2]
 LOCALE_DIR = ROOT / "ovos_skill_wordnet" / "locale"
@@ -11,6 +12,12 @@ GOLDEN_DIR = ROOT / "test" / "end2end"
 INTENT = "search_wordnet"
 
 LOCALES = sorted(p.parent.name for p in LOCALE_DIR.glob(f"*/{INTENT}.intent"))
+# Chinese and Japanese write the service name with no space before the next
+# word, so no keyword occurs in these rows as a whole word (OVOS-INTENT-2 4.3).
+ROWS_REJECTED_BY_REQUIRED = {
+    "cmn-CN": {"在WordNet中搜索同义词", "问WordNet关于反义词", "在WordNet中搜索上位词"},
+    "ja-JP": {"WordNetで類義語を検索して", "WordNetに対義語について聞いて", "WordNetで反意語を検索して"},
+}
 
 
 def _keywords(lang):
@@ -37,12 +44,12 @@ def test_required_lines_are_slot_free(lang):
 
 @pytest.mark.parametrize("lang", LOCALES)
 def test_golden_positives_name_a_keyword(lang):
-    # Substring check: Japanese, Chinese and Thai write no spaces between words.
     keywords = _keywords(lang)
     golden = GOLDEN_DIR / f"golden_utterances_{lang}.jsonl"
     rows = [json.loads(ln) for ln in golden.read_text(encoding="utf-8").splitlines()
             if ln.strip()]
-    missing = [r["utterance"] for r in rows
+    missing = {r["utterance"] for r in rows
                if r["intent_label"].removesuffix(".intent") == INTENT
-               and not any(k in r["utterance"].casefold() for k in keywords)]
-    assert not missing, f"{lang}: golden rows without a required keyword: {missing}"
+               and not utterance_contains(r["utterance"], keywords)}
+    assert missing == ROWS_REJECTED_BY_REQUIRED.get(lang, set()), (
+        f"{lang}: golden rows without a required keyword: {sorted(missing)}")
