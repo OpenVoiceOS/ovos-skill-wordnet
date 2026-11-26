@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "търси в уърднет синоним", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "bg-BG", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "питай уърднет за антоним", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "bg-BG", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "търси в уърднет противоположно", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "bg-BG", "machine_generated": true}

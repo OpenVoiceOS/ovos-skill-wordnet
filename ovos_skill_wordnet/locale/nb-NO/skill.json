@@ -1,0 +1,15 @@
+{
+  "skill_id": "ovos-skill-wordnet.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-wordnet",
+  "name": "WordNet-ferdighet",
+  "description": "Bruk WordNet til å svare på ordbokspørsmål.",
+  "examples": [
+    "søk i WordNet etter ...",
+    "spør WordNet om ..."
+  ],
+  "tags": [
+    "Wordnet",
+    "query",
+    "information"
+  ]
+}

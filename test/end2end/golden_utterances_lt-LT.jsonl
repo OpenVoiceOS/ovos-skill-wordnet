@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "ieškoti WordNet sinonimas", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "lt-LT", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "klausk WordNet apie antonimai", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "lt-LT", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "ieškoti WordNet priešingas", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "lt-LT", "machine_generated": true}

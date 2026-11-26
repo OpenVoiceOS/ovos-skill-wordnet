@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "ψάξε στο WordNet για συνώνυμο", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "el-GR", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "ρώτα το WordNet για αντώνυμο", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "el-GR", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "ψάξε στο WordNet για αντίθετο", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "el-GR", "machine_generated": true}

@@ -1,0 +1,10 @@
+{"utterance": "can you tell me the weather", "lang": "en-US", "source_skill": "ovos-skill-weather.openvoiceos"}
+{"utterance": "tell me the word of the day", "lang": "en-US", "source_skill": "ovos-skill-word-of-the-day.openvoiceos"}
+{"utterance": "search wikihow for something", "lang": "en-US", "source_skill": "ovos-skill-wikihow.openvoiceos"}
+{"utterance": "can you spell word", "lang": "en-US", "source_skill": "ovos-skill-spelling.openvoiceos"}
+{"utterance": "set an alarm", "lang": "en-US", "source_skill": "ovos-skill-alerts.openvoiceos"}
+{"utterance": "tell me a joke", "lang": "en-US", "source_skill": "ovos-skill-icanhazdadjokes.openvoiceos"}
+{"utterance": "ask the wolf something", "lang": "en-US", "source_skill": "ovos-skill-wolfie.openvoiceos"}
+{"utterance": "search the wolf for something", "lang": "en-US", "source_skill": "ovos-skill-wolfie.openvoiceos"}
+{"utterance": "can you find something on wiki", "lang": "en-US", "source_skill": "ovos-skill-wikipedia.openvoiceos"}
+{"utterance": "check wikipedia for something", "lang": "en-US", "source_skill": "ovos-skill-wikipedia.openvoiceos"}

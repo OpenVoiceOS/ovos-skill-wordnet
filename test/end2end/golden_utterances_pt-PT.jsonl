@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "o que diz o wordnet sobre antônimo", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "pt-PT", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "o que diz a wordnet sobre sinônimo", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "pt-PT", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "o que diz o wordnet sobre contrário", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "pt-PT", "machine_generated": true}

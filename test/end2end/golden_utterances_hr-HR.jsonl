@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "pretraži WordNet za sinonim", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "hr-HR", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "pitaj WordNet o antonim", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "hr-HR", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "pretraži WordNet za suprotnost", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "hr-HR", "machine_generated": true}

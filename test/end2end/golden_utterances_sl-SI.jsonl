@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "išči v WordNet sopomenka", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "sl-SI", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "vprašaj WordNet o protipomenka", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "sl-SI", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "išči v WordNet nasprotje", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "sl-SI", "machine_generated": true}

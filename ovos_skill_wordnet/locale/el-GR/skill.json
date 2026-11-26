@@ -1,0 +1,15 @@
+{
+  "skill_id": "ovos-skill-wordnet.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-wordnet",
+  "name": "Δεξιότητα Wordnet",
+  "description": "Χρησιμοποιεί το Wordnet για να απαντήσει σε ερωτήσεις τύπου λεξικού.",
+  "examples": [
+    "ποιος είναι ο ορισμός του ...",
+    "ποιο είναι το αντώνυμο του ..."
+  ],
+  "tags": [
+    "Wordnet",
+    "ερώτημα",
+    "πληροφορία"
+  ]
+}

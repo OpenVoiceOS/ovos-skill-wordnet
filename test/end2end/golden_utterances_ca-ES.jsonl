@@ -1,0 +1,3 @@
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "busca al tesaure antònim", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "ca-ES", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "cerca sinònim al tesaure", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "ca-ES", "machine_generated": true}
+{"skill_id": "ovos-skill-wordnet.openvoiceos", "utterance": "demana al tesaure sobre contrari", "intent_label": "search_wordnet", "intent_type": "padacioso", "needs_manual": true, "lang": "ca-ES", "machine_generated": true}

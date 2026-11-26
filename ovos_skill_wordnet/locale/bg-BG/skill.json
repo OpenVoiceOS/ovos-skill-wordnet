@@ -1,0 +1,15 @@
+{
+  "skill_id": "ovos-skill-wordnet.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/ovos-skill-wordnet",
+  "name": "Умение Уърднет",
+  "description": "Използвайте Уърднет за отговори на речникови въпроси.",
+  "examples": [
+    "търси в уърднет ...",
+    "питай уърднет за ..."
+  ],
+  "tags": [
+    "Wordnet",
+    "query",
+    "information"
+  ]
+}
